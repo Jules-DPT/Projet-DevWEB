@@ -1,7 +1,6 @@
-import { onMounted, ref } from "vue";
+
 
 let affichage = "en cours...";
-
 document.querySelector("#affichage").textContent = affichage;
 
 let canvas, ctx;
@@ -53,7 +52,6 @@ function ajouterPomme() {
         x = rand(0, WIDTH - 1);
         y = rand(0, HEIGHT - 1);
     } while (grille[x][y] !== 0);
-
     grille[x][y] = 2;
 }
 
@@ -103,7 +101,23 @@ function update() {
         // manger la pomme
         serpent.push([nx, ny]);
         grille[nx][ny] = 1;
-        ajouterPomme();
+        if (serpent.length<4){
+            ajouterPomme();
+            ajouterPomme();
+            ajouterPomme();
+            ajouterPomme();
+            ajouterPomme();
+        }
+        if (serpent.length<10){
+            ajouterPomme();
+            ajouterPomme();
+            ajouterPomme();
+        }
+        if (serpent.length<15){
+            ajouterPomme();
+            ajouterPomme();
+
+        }
     } else {
         // avancer
         let queue = serpent.shift();
@@ -140,6 +154,7 @@ async function gameLoop() {
     affichage.value = "PERDU...";
     document.querySelector("#affichage").textContent = affichage;
 }
+
 
 document.addEventListener("DOMContentLoaded", () => {
     canvas = document.getElementById("myCanvas");
