@@ -3,8 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="styles/recherche.css" type="text/css">
 </head>
 <body>
+
+<div>
+    <div>
+        <form class="form-center">
+            <label>
+                <input type="text" id="Recherche" name="text&quot;" placeholder="Recherchez ici!" class="input-style">
+                <input type="submit" id="Recherche_btn" value="Rechercher" class="input-style">
+            </label>
+        </form>
+        <div class="conteneur">
+            <label><input type="radio" id="étudiants" name="type" value="utilisateur"> Comptes</label>
+            <label><input type="radio" id="offres" name="type" value="posts" checked> Offres</label>
+            <label><input type="radio" id="entreprises" name="type" value="entreprise"> Fiches entreprises</label>
+        </div>
+
+    </div>
+    <nav class="nav_barre" aria-label="pagination">
+        <ul class="pagination">
+            <li class="a">
+
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="visuallyhidden">ensemble de pages précédentes</span>
+            </li>
+            <li class="a">
+                <span class="visuallyhidden">page </span>1
+            </li>
+            <li class="a">
+                    <span class="visuallyhidden">page </span>2
+            </li>
+            <li class="a">
+                 <span class="visuallyhidden">page </span>3
+            </li>
+            <li class="a">
+                <span class="visuallyhidden">page </span>4
+            </li>
+            <li class="a">
+
+        <span class="visuallyhidden">ensemble de pages suivantes</span
+        ><span aria-hidden="true">&raquo;</span>
+
+            </li>
+        </ul>
+    </nav>
+    <div>
+
+    </div>
+</div>
+
+
 
 </body>
 </html>
