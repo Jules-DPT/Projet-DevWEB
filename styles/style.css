@@ -13,7 +13,7 @@ body {
 header {
     height: 100vh;
     width: 100vw;
-    background-image: url("image/landscape.jpg");
+    background-image: url("../images/landscape.jpg");
     background-size: cover;
 }
 
@@ -22,7 +22,7 @@ header {
 }
 
 .navbar {
-    position: absolute;
+    position: sticky;
     padding: 50px;
     display: flex;
     justify-content: space-between;
