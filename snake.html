@@ -3,11 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
+    <link href="styles/snake.css" type="text/css" rel="stylesheet" >
 </head>
-<body>
-<h1 id="affichage">{{ affichage }}</h1>
-<canvas id="myCanvas" width="500" height="500" style="border:1px solid black;"></canvas>
+<body class="background">
+<div class="box_titre-principale">
+    <div class="form-center">
+        <h1 class="Titre_principale" id="affichage">{{ affichage }}</h1>
+    </div>
+
+</div>
+
+<div class="box_main">
+    <div class="box-simple">
+        <canvas id="myCanvas" ></canvas>
+    </div>
+
+</div>
+
 <script src="scripts/snake.js" type="application/javascript"></script>
 <noscript>Sorry, your browser does not support JavaScript!</noscript>
 </body>

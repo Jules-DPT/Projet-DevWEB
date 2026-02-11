@@ -3,12 +3,25 @@
 let affichage = "en cours...";
 document.querySelector("#affichage").textContent = affichage;
 
-let canvas, ctx;
-const cellSizex = 10;
-const cellSizey = 10;
+let canvas,ctx;
 
-const WIDTH = 25;
-const HEIGHT = 25;
+canvas = document.getElementById("myCanvas");
+ctx = canvas.getContext("2d");
+
+
+const WIDTH =  canvas.clientWidth/5;
+const HEIGHT = canvas.clientHeight/10;
+
+
+const cellSizex =  5;
+const cellSizey = 5;
+
+
+console.log(WIDTH);
+console.log(HEIGHT);l
+console.log(cellSizex);
+console.log(cellSizey);
+console.log(canvas.clientWidth);
 
 let grille = [];
 let serpent = [];
@@ -157,8 +170,7 @@ async function gameLoop() {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    canvas = document.getElementById("myCanvas");
-    ctx = canvas.getContext("2d");
     init();
     gameLoop();
 });
+
