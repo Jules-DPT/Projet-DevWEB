@@ -173,7 +173,7 @@ input[required]:user-invalid {
 }
 
 .pagination li {
-    margin: 0 1px;
+    margin: 0 2px;
 }
 
 .pagination .ad {
@@ -296,9 +296,13 @@ input::placeholder{
     text-align: center;
 }
 
-li.ad{
-    height: 30%;
-    width: 40%;
+.pagination{
+    height: 40px;
+}
+
+
+.pagination_padding{
+    padding: 0.3em;
 }
 
 .nav_barre{
