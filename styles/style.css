@@ -22,7 +22,7 @@ header {
 }
 
 .navbar {
-    position: sticky;
+    position: absolute;
     padding: 50px;
     display: flex;
     justify-content: space-between;
@@ -115,7 +115,7 @@ header {
 }
 
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 870px) {
 
     .navbar {
         padding: 0;
