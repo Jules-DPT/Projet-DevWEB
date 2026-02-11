@@ -80,6 +80,12 @@
     align-items: center;
 }
 
+.conteneur_offres{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .conteneur2{
     display: flex;
     justify-content: space-between;
@@ -205,6 +211,8 @@ input[required]:user-invalid {
 .liquid-form-center{
     text-align: center;
     margin: 0px 20px ;
+    top: 150px;
+    position: relative;
 }
 
 .liquid_box_mini{
@@ -265,4 +273,38 @@ input::placeholder{
 
 .margin_div {
     margin: 10px;
+}
+
+#recherche{
+    width: 10%;
+}
+
+
+@media screen and (max-width: 700px) {
+
+.liquid_box{
+    top: 100px;
+}
+
+.liquid_box_mini{
+    margin: 5px;
+    font-size: 0.8em;
+}
+
+.conteneur_offres{
+    display: inline-block;
+    text-align: center;
+}
+
+li.ad{
+    height: 30%;
+    width: 40%;
+}
+
+.nav_barre{
+    font-size: 1em;
+}
+.liquid-form-center{
+    top: 50px;
+}
 }
