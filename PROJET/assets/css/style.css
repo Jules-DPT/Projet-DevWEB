@@ -13,10 +13,6 @@
   --ring: 0 0 0 3px rgba(8,197,209,.25);
 }
 
-h1 {
-  color: #F5F2ED;
-}
-
 *{ box-sizing: border-box;
   margin : 0;
   padding: 0;
@@ -284,6 +280,7 @@ input:focus, select:focus{
 
   position: relative;
   overflow: hidden;   
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 .btn-primary:hover{ background: rgba(8, 196, 209, 0.075); }
 .btn-primary:focus{ outline: none; box-shadow: var(--ring); }
@@ -320,17 +317,14 @@ input:focus, select:focus{
 }
 .btn-ghost:hover{ background: rgba(8, 196, 209, 0.075);  }
 
-.site-footer{
-  padding: 18px 0 28px;
-  color: rgba(255, 255, 255, 0.7);
-}
 .footer-inner{
-  top: 100px;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-top: 1px solid rgba(0,0,0,.06);
   padding-top: 12px;
+  color: white;
 }
 
 /* ===== Login layout ===== */
@@ -341,6 +335,7 @@ input:focus, select:focus{
 }
 .auth-side{ padding: 10px 4px; }
 .auth-side h1{
+  color: #F5F2ED;
   margin: 0 0 10px;
   font-size: 1.8rem;
   line-height: 1.1;
@@ -350,7 +345,8 @@ input:focus, select:focus{
 .auth-points li{ margin: 6px 0; }
 
 .auth-card{ padding: 20px; }
-.auth-card h2{ margin: 0 0 6px; font-size: 1.4rem; }
+.auth-card h2{ margin: 0 0 6px; font-size: 1.4rem; color: #F5F2ED; }
+.auth-card:hover{ background: rgba(8,197,209,.04); }
 
 .password-wrap{
   display: flex;
@@ -362,10 +358,11 @@ input:focus, select:focus{
   padding: 10px 12px;
   border-radius: 12px;
   border: 1px solid rgba(0,0,0,.14);
-  background: rgba(0,53,63,.04);
+  background: rgba(8,197,209,.12);
   cursor: pointer;
+  transition: all 0.35s ease;
 }
-.icon-btn:hover{ background: rgba(8,197,209,.12); }
+.icon-btn:hover{ background: rgba(0,53,63,.04); }
 
 .row{
   display: flex;
@@ -388,7 +385,7 @@ input:focus, select:focus{
 /* ===== Admin/Pilote pages ===== */
 .page{ padding: 28px 0 40px; }
 .page-head{ margin-bottom: 14px; }
-.page-head h1{ margin: 0 0 8px; font-size: 1.8rem; }
+.page-head h1{ margin: 0 0 8px; font-size: 1.8rem; color: #F5F2ED; }
 
 .form-card{ padding: 20px; }
 .form-card:hover{ background: rgba(8,197,209,.04); }
@@ -481,6 +478,9 @@ input:focus, select:focus{
     z-index: 0;
   }
 
+  .footer-inner{
+    padding-top: 100px;
+  }
 
   .navbar {
       padding: 0;
