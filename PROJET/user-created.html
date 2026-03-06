@@ -8,27 +8,24 @@
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
-  <a class="skip-link" href="#main">Aller au contenu</a>
-
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="Retour à l'accueil StageForMe">
-        <span class="brand-mark" aria-hidden="true"></span>
-        <span class="brand-text">StageForMe</span>
-      </a>
-
-      <nav class="nav">
-        <a href="offres.html">Offres</a>
-        <a href="entreprises.html">Entreprises</a>
-      </nav>
+  <nav class="navbar">
+    <a href="index.html" class="logo">StageForMe</a>
+    <div class="nav-links">
+      <ul>
+        <li><a href="offres.html">Offres</a></li>
+        <li><a href="entreprises.html">Entreprises</a></li>
+        <li><a href="admin-dashboard.html">Admin</a></li>
+    </ul>
     </div>
-  </header>
+    <img src="/assets/image/menu-btn.png" alt="menu hamburger" class="menu-hamburger">
+  </nav>
 
   <main id="main" class="container page">
-    <section class="card success-card" aria-label="Compte créé">
+    <div class="page-head">
       <h1>Compte créé ✅</h1>
       <p class="muted">Transmets ces informations à l’utilisateur. Le mot de passe doit être changé à la première connexion.</p>
-
+    </div>
+    <section class="card success-card" aria-label="Compte créé">
       <div class="info">
         <div>
           <span class="k">Email</span>
@@ -52,13 +49,12 @@
     </section>
   </main>
 
-  <footer class="site-footer">
     <div class="container footer-inner">
       <span>© StageForMe</span>
       <a class="link" href="mentions-legales.html">Mentions légales</a>
     </div>
-  </footer>
 
   <script src="assets/js/copy.js"></script>
+  <script src="assets/js/menu.js"></script>
 </body>
 </html>

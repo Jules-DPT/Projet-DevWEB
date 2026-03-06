@@ -383,7 +383,7 @@ input:focus, select:focus{
 .legal{ margin: 14px 0 0; color: var(--c-muted); font-size: .9rem; }
 
 /* ===== Admin/Pilote pages ===== */
-.page{ padding: 28px 0 40px; }
+.page{ padding: 30px 0 40px; }
 .page-head{ margin-bottom: 14px; }
 .page-head h1{ margin: 0 0 8px; font-size: 1.8rem; color: #F5F2ED; }
 
@@ -425,6 +425,7 @@ input:focus, select:focus{
 /* ===== Page compte créé ===== */
 .success-card{ padding: 22px; }
 .success-card h1{ margin: 0 0 8px; font-size: 1.8rem; }
+.success-card:hover { background: rgba(8,197,209,.04); }
 
 .info{
   display: grid;
@@ -432,7 +433,7 @@ input:focus, select:focus{
   margin: 14px 0 6px;
 }
 .k{ display: block; color: var(--c-muted); font-size: .9rem; margin-bottom: 6px; }
-.v{ font-weight: 800; color: var(--c-dark); }
+.v{ font-weight: 800; color: #438fa4; }
 
 .pwd-box{
   display: flex;
@@ -441,20 +442,22 @@ input:focus, select:focus{
   justify-content: space-between;
   padding: 12px;
   border-radius: 14px;
-  border: 1px solid rgba(0,0,0,.14);
+  border: 1px solid rgba(255,255,255,.25);
   background: rgba(0,53,63,.04);
 }
-.pwd-box code{ font-size: 1rem; font-weight: 800; }
+.pwd-box code{ font-size: 1rem; font-weight: 800; color: white; }
 
 .btn-small{
+  color: white;
   padding: 10px 12px;
   border-radius: 12px;
-  border: 1px solid rgba(0,0,0,.14);
-  background: #F5F2ED;
+  border: 1px solid rgba(255,255,255,.25);
+  background: rgba(0,53,63,.04);
   font-weight: 800;
+  transition: all 0.35s ease;
   cursor: pointer;
 }
-.btn-small:hover{ background: rgba(8,197,209,.12); }
+.btn-small:hover{ background: rgba(255, 255, 255, 0.12); }
 
 /* Desktop */
 @media (min-width: 900px){
