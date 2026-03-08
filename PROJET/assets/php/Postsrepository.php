@@ -1,5 +1,6 @@
 <?php
 
+require_once("Posts.php");
 class Postsrepository
 {
     private $SQL;
@@ -39,10 +40,10 @@ class Postsrepository
     public function getPosts()
     {
         $query=("select posts.id AS id,titre, CONCAT(SUBSTRING_INDEX(description,' ',30), '...') AS description_pointille,remuneration,date,
-        nb_de_postulations from posts join bdd_web.date d on d.id = posts.id_date_post order by date LIMIT $this->limit OFFSET $this->offset");//rep
+        nb_de_postulations,nombre_wishlist from posts join bdd_web.date d on d.id = posts.id_date_post order by date LIMIT $this->limit OFFSET $this->offset");//rep
         $row=$this->SQL->query($query);
         $result=$row->fetch_assoc();
-        while($result) {
+        for($i=0;$i<count($result);$i++) {
             $posts[] = [
                 new Posts(
                     (int)$result['id'],

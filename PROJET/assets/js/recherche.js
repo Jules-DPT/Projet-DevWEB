@@ -1,0 +1,65 @@
+function chargerPage(page) {
+    fetch("assets/php/Postscontroller.php?page=" + page)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            document.getElementById("affichage_posts").innerHTML="";
+            data.aff.forEach(post=>{
+
+
+                const box = document.createElement("div");
+                box.className = "box-simple";
+                box.dataset.id = post.id;
+                box.addEventListener('click',function (){
+                    chargerPost(post.id);
+                });
+
+                const titre = document.createElement("p");
+                titre.textContent = post.titre;
+
+                const desc = document.createElement("p");
+                desc.textContent = post.description;
+
+                const rem = document.createElement("p");
+                rem.textContent = "rémunération: " + post.remuneration;
+
+                const nb = document.createElement("p");
+                nb.textContent = "nb_postulants: " + post.nb_postulants;
+
+                box.appendChild(titre);
+                box.appendChild(desc);
+                box.appendChild(rem);
+                box.appendChild(nb);
+
+
+                document.getElementById("aff").appendChild(box);
+            });
+            document.getElementById("pagination").innerHTML=data.pagination;
+        });
+}
+function chargerPost(indi) {
+    window.location.href = "post.html?ind=" + encodeURIComponent(indi);
+}
+
+function chargerPost_rand(){
+    fetch("/assets/php/Postscontroller.php?page=1")
+        .then(response => response.json())
+        .then(data => {
+            const p = data.total ;
+            chargerPost(Math.floor(Math.random() * p));
+        });
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    if(params = new URLSearchParams(window.location.search)){
+        const page = params.get("page");
+        fetch("/assets/php/Postscontroller.php?page=1")
+            .then(res => res.text())
+            .then(data => console.log(data))
+        chargerPage(page);
+    }
+    else{
+        chargerPage(1);
+    }
+
+});
