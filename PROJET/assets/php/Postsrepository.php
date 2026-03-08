@@ -42,7 +42,28 @@ class Postsrepository
         nb_de_postulations from posts join bdd_web.date d on d.id = posts.id_date_post order by date LIMIT $this->limit OFFSET $this->offset");//rep
         $row=$this->SQL->query($query);
         $result=$row->fetch_assoc();
-        return $result;
+        while($result) {
+            $posts[] = [
+                new Posts(
+                    (int)$result['id'],
+                    htmlspecialchars($result['titre'], ENT_QUOTES, 'UTF-8'),
+                    htmlspecialchars($result['description_pointille'], ENT_QUOTES, 'UTF-8'),
+                    "",
+                    "",
+                    "",
+                    "",
+                    (int)$result['nb_de_postulations'],
+                    "",
+                    htmlspecialchars($result['remuneration'], ENT_QUOTES, 'UTF-8'),
+                    "",
+                    "",
+                    (int)$result['nombre_wishlist'],
+                    "",
+                    ""
+                )
+            ];
+        }
+        return $posts;
     }
 
 }

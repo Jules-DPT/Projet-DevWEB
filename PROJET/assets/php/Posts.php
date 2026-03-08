@@ -18,6 +18,26 @@ class Posts
     private $contrat;
     private $duree;
 
+    public function __construct($id_,$titre_,$description_,$date_creation_,$email_,$telephone_,$adresse_,$nb_postulations_
+                                ,$entreprise_,$remuneration_,$date_debut_,$date_fin_,$nb_whishlist_,$contrat_,$duree_)
+    {
+        $this->id = $id_;
+        $this->titre = $titre_;
+        $this->description = $description_;
+        $this->date_creation = $date_creation_;
+        $this->email = $email_;
+        $this->telephone = $telephone_;
+        $this->adresse = $adresse_;
+        $this->nb_postulations = $nb_postulations_;
+        $this->entreprise = $entreprise_;
+        $this->remuneration = $remuneration_;
+        $this->date_debut = $date_debut_;
+        $this->date_fin = $date_fin_;
+        $this->nb_whishlist = $nb_whishlist_;
+        $this->contrat = $contrat_;
+        $this->duree = $duree_;
+    }
+
     //---------------get-methods---------------------------------------------------------------------------------------
     public function getId()
     {
