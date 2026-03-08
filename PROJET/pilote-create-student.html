@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Créer un étudiant • Pilote • StageForMe</title>
+  <meta name="description" content="Création d’un compte étudiant par un pilote de promotion StageForMe." />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="logo">StageForMe</a>
+    <div class="nav-links">
+      <ul>
+        <li><a href="offres.html">Offres</a></li>
+        <li><a href="entreprises.html">Entreprises</a></li>
+        <li><a href="pilote-dashboard.html">Pilote</a></li>
+    </ul>
+    </div>
+    <img src="/assets/image/menu-btn.png" alt="menu hamburger" class="menu-hamburger">
+  </nav>
+
+  <main id="main" class="container page">
+    <div class="page-head">
+      <h1>Créer un étudiant</h1>
+      <p class="muted">Tu peux créer des comptes <strong>Étudiant</strong> uniquement pour ta promotion.</p>
+    </div>
+
+    <section class="card form-card" aria-label="Formulaire de création d'étudiant">
+      <form action="user-created.html" method="post" novalidate>
+        <div class="grid-2">
+          <div class="field">
+            <label for="lastname">Nom</label>
+            <input id="lastname" name="lastname" type="text" required minlength="2" placeholder="ex: Martin" />
+          </div>
+
+          <div class="field">
+            <label for="firstname">Prénom</label>
+            <input id="firstname" name="firstname" type="text" required minlength="2" placeholder="ex: Sam" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required autocomplete="email" placeholder="ex: sam.martin@cesi.fr" />
+        </div>
+
+        <div class="field">
+          <label>Promotion</label>
+          <div class="readonly">A2 CPI INFO - 2026</div>
+          <input type="hidden" name="promotion_id" value="1" />
+          <input type="hidden" name="role" value="ETUDIANT" />
+          <small class="hint">La promotion est fixée automatiquement.</small>
+        </div>
+
+        <div class="actions">
+          <a class="btn-ghost" href="pilote-dashboard.html">Annuler</a>
+          <button class="btn-primary" type="submit">Créer le compte</button>
+        </div>
+
+        <p class="hint warn" style="margin:12px 0 0;">
+          Affichage du mot de passe provisoire : <strong>une seule fois</strong> après création.
+        </p>
+      </form>
+    </section>
+  </main>
+
+    <div class="container footer-inner">
+      <span>© StageForMe</span>
+      <a class="link" href="mentions-legales.html">Mentions légales</a>
+    </div>
+
+  <script src="assets/js/menu.js"></script>
+</body>
+</html>
