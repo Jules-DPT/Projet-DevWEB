@@ -36,6 +36,10 @@ a.link:hover{ color: var(--c-warm); }
   margin: 0 auto;
 }
 
+.search {
+  width: 90%;
+}
+
 .skip-link{
   position: absolute;
   left: -999px;
@@ -172,7 +176,7 @@ a.link:hover{ color: var(--c-warm); }
 .card{
   border-radius: 25px;
 
-    
+  padding: 20px;
   background: rgba(255, 255, 255, 0.12);
 
     
@@ -281,6 +285,7 @@ input:focus, select:focus{
   position: relative;
   overflow: hidden;   
   font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
 }
 .btn-primary:hover{ background: rgba(8, 196, 209, 0.075); }
 .btn-primary:focus{ outline: none; box-shadow: var(--ring); }
@@ -327,6 +332,39 @@ input:focus, select:focus{
   color: white;
 }
 
+.title {
+  margin: 0 0 8px; font-size: 1.8rem; color: #F5F2ED;
+}
+
+.side-text {
+  position: absolute;
+  top: 40%;
+  left: 50px;
+}
+
+.side-text h1 {
+  font-size: 2.5rem; color: #F5F2ED;
+}
+
+.side-text h2 {
+  margin: 0 0 8px; font-size: 1.5rem; color: #F5F2ED;
+}
+
+.stats {
+  position: absolute;
+  right: 500px;
+  top: 20%;
+}
+
+.stats .title h1 {
+  font-size: 2rem; color: #F5F2ED; margin: 0 0 8px;
+}
+
+.stats .card {
+  width: 275%;
+  min-height: 70vh;
+}
+
 /* ===== Login layout ===== */
 .auth-layout{
   padding: 32px 0 40px;
@@ -344,7 +382,6 @@ input:focus, select:focus{
 .auth-points{ margin: 0; padding-left: 18px; color: var(--c-dark); }
 .auth-points li{ margin: 6px 0; }
 
-.auth-card{ padding: 20px; }
 .auth-card h2{ margin: 0 0 6px; font-size: 1.4rem; color: #F5F2ED; }
 .auth-card:hover{ background: rgba(8,197,209,.04); }
 
@@ -387,7 +424,6 @@ input:focus, select:focus{
 .page-head{ margin-bottom: 14px; }
 .page-head h1{ margin: 0 0 8px; font-size: 1.8rem; color: #F5F2ED; }
 
-.form-card{ padding: 20px; }
 .form-card:hover{ background: rgba(8,197,209,.04); }
 .grid-2{ display: grid; gap: 12px; }
 
@@ -423,7 +459,6 @@ input:focus, select:focus{
 
 
 /* ===== Page compte créé ===== */
-.success-card{ padding: 22px; }
 .success-card h1{ margin: 0 0 8px; font-size: 1.8rem; }
 .success-card:hover { background: rgba(8,197,209,.04); }
 
