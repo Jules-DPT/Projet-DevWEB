@@ -83,6 +83,10 @@ class Posts
 
     //---------------set-methods---------------------------------------------------------------------------------------
 
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
     public function setTitre($titre_)
     {
         $this->titre = $titre_;
