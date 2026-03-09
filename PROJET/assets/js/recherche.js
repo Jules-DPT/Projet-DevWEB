@@ -6,9 +6,8 @@ function chargerPage(page) {
             console.log(data);
             document.getElementById("affichage_posts").innerHTML="";
             data.aff.forEach(post=>{
-
                 console.log("ici",i);
-                console.log(post[0]);
+                console.log(post[i]);
                 const box = document.createElement("div");
                 box.className = "box-simple";
                 box.dataset.id = post.id;
@@ -56,7 +55,6 @@ function chargerPost_rand(){
 document.addEventListener("DOMContentLoaded", function() {
     if(params = new URLSearchParams(window.location.search)){
         const page = params.get("page");
-
         chargerPage(page);
     }
     else{

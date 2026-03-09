@@ -64,7 +64,9 @@ class Postsrepository
                 )
             ];
         }
-        return $posts;
+        if ($posts){
+            return $posts;
+        }
     }
 
 }
