@@ -1,7 +1,7 @@
 {
-  "name": "CESI/PROJET",
-  "description": "description",
-  "minimum-stability": "stable",
+  "name": "cesi/projet",
+  "type": "project",
+  "description": "site_web_de_stage_projet_A2",
   "license": "proprietary",
   "authors": [
     {
@@ -9,11 +9,11 @@
       "email": "arthur.boinier@viacesi.fr"
     },
     {
-      "name": "Jules-DPT",
+      "name": "Jules_DPT",
       "email": "jules.dupontreue@viacesi.fr"
     },
     {
-      "name": "juli-mak",
+      "name": "juli_mak",
       "email": "juliecassandra.wafosiewe@viacesi.fr"
     }
   ],
