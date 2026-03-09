@@ -1,4 +1,5 @@
 function chargerPage(page) {
+    let i=0;
     fetch("assets/php/Postscontroller.php?page=" + page)
         .then(response => response.json())
         .then(data => {
@@ -6,7 +7,8 @@ function chargerPage(page) {
             document.getElementById("affichage_posts").innerHTML="";
             data.aff.forEach(post=>{
 
-
+                console.log("ici",i);
+                console.log(post[0]);
                 const box = document.createElement("div");
                 box.className = "box-simple";
                 box.dataset.id = post.id;
@@ -32,9 +34,10 @@ function chargerPage(page) {
                 box.appendChild(nb);
 
 
-                document.getElementById("aff").appendChild(box);
+                document.getElementById("affichage_posts").appendChild(box);
+                i=i+1;
             });
-            document.getElementById("pagination").innerHTML=data.pagination;
+            //document.getElementById("pagination").innerHTML=data.pagination;
         });
 }
 function chargerPost(indi) {
@@ -53,9 +56,7 @@ function chargerPost_rand(){
 document.addEventListener("DOMContentLoaded", function() {
     if(params = new URLSearchParams(window.location.search)){
         const page = params.get("page");
-        fetch("/assets/php/Postscontroller.php?page=1")
-            .then(res => res.text())
-            .then(data => console.log(data))
+
         chargerPage(page);
     }
     else{
