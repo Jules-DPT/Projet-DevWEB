@@ -2,28 +2,15 @@
 
 namespace php\Services;
 
-use php\Repositories\Postsrepository;
+use php\Services\Service;
 
-class Postsservice
+class Paginationservice extends Service
 {
-    private $Postsrep;
 
-    public function __construct(Postsrepository $Postsrep_)
+    public function getPrimaryData()
     {
-        $this->Postsrep = $Postsrep_;
-    }
-
-    public function getPosts()
-    {
-        $posts = $this->Postsrep->getPosts();
-        return $posts;
-    }
-
-
-    public function getPagination()
-    {
-        $totalPages = $this->Postsrep->getTotalPage();
-        $page = $this->Postsrep->getPage();
+        $totalPages = $this->repository->getTotalPage();
+        $page = $this->repository->getPage();
         $listepagination = "";
         $listepagination .= "<br><br>" .
             "<div class='pagination'>" .

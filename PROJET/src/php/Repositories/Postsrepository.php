@@ -6,52 +6,32 @@ use php\Contenants\Posts;
 
 require_once("Posts.php");
 
-class Postsrepository
+class Postsrepository extends Repository
 {
-    private $SQL;
     private $limit = 12;
-    private $total_page;
     private $page;
     private $offset;
 
-    public function __construct($SQL_, $page_, $limit_)
+    public function __construct($page_, $limit_)
     {
-        $this->SQL = $SQL_;
         $this->page = $page_;
         $this->limit = $limit_ >= 0 ? $limit_ : $this->limit;
         $this->offset = ($this->page - 1) * $this->limit;
     }
 
-    private function setTotalPage($total_page_)
-    {
-        $this->totalPages = $total_page_ < 1 ? 1 : $total_page_;
-    }
-
-    public function CalcTotalPage()
-    {
-        $query = "SELECT COUNT(*) as total FROM posts";
-        $row = $this->SQL->query($query);
-        $total = $row->fetch_assoc();
-        $tot = ceil((int)$total['total'] / $this->limit);
-        $this->setTotalPage($tot);
-    }
-
-    public function getTotalPage()
-    {
-        return $this->total_page;
-    }
 
     public function getPage()
     {
         return $this->page;
     }
 
-    public function getPosts()
+    public function getPrimaryData()
     {
         $query = ("select posts.id AS id,titre, CONCAT(SUBSTRING_INDEX(description,' ',30), '...') AS description_pointille,remuneration,date,
         nb_de_postulations,nombre_wishlist from posts join bdd_web.date d on d.id = posts.id_date_post order by date LIMIT $this->limit OFFSET $this->offset");//rep
         $row = $this->SQL->query($query);
         $result = $row->fetch_assoc();
+        $posts=[];
         for ($i = 0; $i < count($result); $i++) {
             $posts[] = [
                 new Posts(
@@ -73,9 +53,9 @@ class Postsrepository
                 )
             ];
         }
-        if ($posts) {
-            return $posts;
-        }
+
+        return $posts;
+
     }
 
 }

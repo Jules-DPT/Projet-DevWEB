@@ -4,7 +4,7 @@
  * It handles the routing and dispatches requests to the appropriate controller methods.
  */
 
-require "vendor/autoload.php";
+require "../../vendor/autoload.php";
 
 
 /**
@@ -12,10 +12,15 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
  **/
 
-use App\Controllers\TaskController;
+use php\Controllers\Recherchecontroller;
 
 
 $loader = new \Twig\Loader\FilesystemLoader('templates');
 $twig = new \Twig\Environment($loader, [
     'debug' => true
 ]);
+
+
+$postscontroller = new Recherchecontroller(3);//posts
+
+$postscontroller->getPrimaryData();

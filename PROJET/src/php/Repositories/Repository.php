@@ -1,10 +1,10 @@
 <?php
 
 namespace php\Repositories;
-
+require '../main.php';
 abstract class Repository
 {
-protected $SQL;
+protected $SQL=$mysqli;
 
 public function setSQL($SQL_){
     $this->SQL = $SQL_;

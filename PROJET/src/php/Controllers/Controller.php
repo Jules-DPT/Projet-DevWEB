@@ -1,0 +1,11 @@
+<?php
+
+namespace php\Controllers;
+
+abstract class Controller
+{
+    protected $template;
+    protected $service;
+
+    abstract protected function getPrimaryData();
+}
