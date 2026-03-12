@@ -10,6 +10,8 @@ class Posts
     private $email;
     private $telephone;
     private $adresse;
+
+    private $ville;
     private $nb_postulations;
     private $entreprise;
     private $remuneration;
@@ -19,7 +21,7 @@ class Posts
     private $contrat;
     private $duree;
 
-    public function __construct($id_, $titre_, $description_, $date_creation_, $email_, $telephone_, $adresse_, $nb_postulations_
+    public function __construct($id_, $titre_, $description_, $date_creation_, $email_, $telephone_, $adresse_, $ville_, $nb_postulations_
         ,                       $entreprise_, $remuneration_, $date_debut_, $date_fin_, $nb_whishlist_, $contrat_, $duree_)
     {
         $this->id = $id_;
@@ -29,6 +31,7 @@ class Posts
         $this->email = $email_;
         $this->telephone = $telephone_;
         $this->adresse = $adresse_;
+        $this->ville = $ville_;
         $this->nb_postulations = $nb_postulations_;
         $this->entreprise = $entreprise_;
         $this->remuneration = $remuneration_;
@@ -73,6 +76,10 @@ class Posts
     public function getAdresse()
     {
         return $this->adresse;
+    }
+
+    public function getVille(){
+        return $this->ville;
     }
 
     public function getNbPostulations()
@@ -150,6 +157,10 @@ class Posts
     public function setAdresse($adresse_)
     {
         $this->adresse = $adresse_;
+    }
+
+    public function setVille($ville_){
+        $this->ville = $ville_;
     }
 
     public function setNbPostulations($nb_postulations_)
