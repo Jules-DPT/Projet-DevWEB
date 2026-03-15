@@ -1,16 +1,16 @@
 <nav class="nav_barre" aria-label="pagination">
     <ul class="pagination">
         <li class="ad">
-            <a class="pagination_padding" href="index.html">
+            <a class="pagination_padding" href="../../index.php?uri=recherche&?page=1">
                 <span aria-hidden="true">&laquo;</span>
                 <span class="visuallyhidden">ensemble de pages précédentes</span>
             </a>
         </li>
 
-
         <li class="ad">
-            <a class="pagination_padding" href="index.html">
-                <span class="visuallyhidden">page </span>1
+            {% set previous_page = (page - 1 > 1) ? (page - 1) : 1 %}
+            <a class="pagination_padding" href='../../index.php?uri=recherche&page={{ previous_page }}'>
+                <span class="visuallyhidden">page précédente </span><
             </a>
         </li>
         <li class="ad">

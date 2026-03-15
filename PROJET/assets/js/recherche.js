@@ -52,13 +52,11 @@ function chargerPost_rand(){
         });
 }
 
+function radio(){
+    const selectedValue = document.querySelector('input[name="type"]:checked')?.value;
+}
+
 document.addEventListener("DOMContentLoaded", function() {
-    if(params = new URLSearchParams(window.location.search)){
-        const page = params.get("page");
-        chargerPage(page);
-    }
-    else{
-        chargerPage(1);
-    }
+
 
 });

@@ -1,38 +1,57 @@
-{% extends "base.html.twig" %}
 
 
+<html lang="en">
+
+<body>
+{# {% extends "base.html.twig" %} #}
+<link rel="stylesheet" href="../../assets/css/recherche.css">
+<link rel="stylesheet" href="../../assets/css/style.css">
+{% block body %}
 <div class="liquid-form-center">
 
     <div class="liquid_box">
         <div class="margin_div">
-            <form class="form-center">
+            <form class="form-center" action="/recherche" method="get">
                 <label>
-                    <input type="search" id="Recherche" name="text&quot;" placeholder="Recherchez ici !" class="liquid_box_mini">
+                    <input type="search" id="Recherche" name="recherche" placeholder="Recherchez ici !" class="liquid_box_mini">
                     <input type="submit" id="Recherche_btn" value="Rechercher" class="liquid_box_mini">
                 </label>
             </form>
             <br>
-            <div class="conteneur">
-                <label class="liquid_box_mini" ><input type="radio" id="étudiants" name="type" value="utilisateur" > Comptes</label>
-                <label class="liquid_box_mini" ><input type="radio" id="offres" name="type" value="posts" checked> Offres</label>
-                <label class="liquid_box_mini" ><input type="radio" id="entreprises" name="type" value="entreprise"> Fiches entreprises</label>
-            </div>
+
+                <form method="get" action="/recherche" >
+                    <div class="conteneur" >
+                        <label class="liquid_box_mini" ><input type="radio" id="etudiants" name="type" value=1 formmethod="get" onclick="radio()"> Comptes</label>
+                        <label class="liquid_box_mini" ><input type="radio" id="offres" name="type" value=3 checked formmethod="get" onclick="radio()"> Offres</label>
+                        <label class="liquid_box_mini" ><input type="radio" id="entreprises" name="type" value=2 formmethod="get" onclick="radio()"> Fiches entreprises</label>
+                    </div>
+                </form>
+
+
 
         </div>
         <div class="conteneur_offres" >
             <div id="affichage_posts" class="conteneurgrid">
                 {% block affichage %}
-                    <div class="box-simple">
-                        <p></p>
-                        <P></P>
-                        <P></P>
-                        <p></p>
-                    </div>
+                    {% for post in contenant %}
+                        <div class="liquid_box_offre">
+                            <p>{{ post.titre }}</p>
+                            <P>{{ post.description }}</P>
+                            <P>Rémunération:{{ post.remuneration }}</P>
+                            <p>{{ post.entreprise }}</p>
+                            <p>{{ post.ville }}</p>
+                        </div>
+                    {% endfor %}
                 {% endblock %}
             </div>
 
         </div>
+        <script src="../../assets/js/recherche.js"></script>
     </div>
 
-    {% extends "Pagination.html.twig" %}
+
+
 </div>
+{% endblock %}
+</body>
+</html>

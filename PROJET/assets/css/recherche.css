@@ -237,7 +237,7 @@ input[required]:user-invalid {
     color: white;
     text-align: center;
     margin: 10px;
-    padding: 14px 32px;
+    padding: 7px 16px;
     border-radius: 15px;
     background: rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(12px);
@@ -250,10 +250,8 @@ input[required]:user-invalid {
     position: relative;
     overflow: hidden;
 
-    max-height: 60%;
-    max-width: 60%;
-    min-height: 40%;
-    min-width: 40%;
+    height: 80%;
+    width: auto;
 }
 
 
