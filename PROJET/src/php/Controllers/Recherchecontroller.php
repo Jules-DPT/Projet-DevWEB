@@ -34,7 +34,15 @@ class Recherchecontroller extends Controller
     {
         $contenant = $this->service->getPrimaryData();
         header('Content-Type: text/html; charset=UTF-8');
-        echo $this->template->render('Recherche.html.twig',["contenant"=>$contenant]);
+        if (count($contenant) ==0 )
+        {
+            echo $this->template->render('Recherche.html.twig',["contenant"=>$contenant,"res"=>null]);
+        }
+        else
+        {
+            echo $this->template->render('Recherche.html.twig',["contenant"=>$contenant,"res"=>1]);
+        }
+
 
     }
 }
