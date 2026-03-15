@@ -1,7 +1,7 @@
 <?php
-namespace php\Repositories;
+namespace App\php\Repositories;
 
-use php\Repositories\Repository;
+use App\php\Repositories\Repository;
 
 class Paginationrepository extends Repository{
 

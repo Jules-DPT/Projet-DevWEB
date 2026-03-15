@@ -1,5 +1,5 @@
 <?php
-namespace php\Entreprises;
+namespace App\php\Entreprises;
 
 class Entreprises
 {

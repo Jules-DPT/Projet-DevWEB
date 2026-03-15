@@ -1,6 +1,6 @@
 <?php
 
-namespace php\Contenants;
+namespace App\php\Contenants;
 
 class Comptes
 {

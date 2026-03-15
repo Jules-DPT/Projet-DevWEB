@@ -1,10 +1,10 @@
 <?php
 
-namespace php\Repositories;
+namespace App\php\Repositories;
 
-use php\Contenants\Posts;
+use App\php\Contenants\Posts;
+require_once 'Repository.php';
 
-require_once("Posts.php");
 
 class Postsrepository extends Repository
 {
@@ -15,6 +15,7 @@ class Postsrepository extends Repository
     private $recherche;
     public function __construct($page_, $limit_, $recherche_)
     {
+        $this->autoSQL();
         $this->page = $page_;
         $this->limit = $limit_ >= 0 ? $limit_ : $this->limit;
         $this->offset = ($this->page - 1) * $this->limit;
@@ -40,33 +41,32 @@ class Postsrepository extends Repository
                      JOIN bdd_web.contrat c on posts.id_contrat = c.id
                     where (titre like ?) or (description like ?) or (e.nom like ?) or (v.nom like ?) or (c.type like ?)
                     order by d.date LIMIT $this->limit OFFSET $this->offset");
-
         $row =$this->SQL->prepare($query);
-        $row->bind("s",$this->recherche);
+        $row->bind_param("sssss",$this->recherche,$this->recherche,$this->recherche,$this->recherche,$this->recherche);
         $row->execute();
-        $result = $row->fetch_assoc();
+        $result = $row->get_result();
         $posts=[];
-        for ($i = 0; $i < count($result); $i++) {
-            $posts[] = [
+        while ( $data = $result->fetch_assoc()) {
+            $posts[] =
                 new Posts(
-                    (int)$result['id'],
-                    htmlspecialchars($result['titre'], ENT_QUOTES, 'UTF-8'),
-                    htmlspecialchars($result['description_pointille'], ENT_QUOTES, 'UTF-8'),
-                    htmlspecialchars($result['date'], ENT_QUOTES, 'UTF-8'),
+                    (int)$data['id'],
+                    htmlspecialchars($data['titre'], ENT_QUOTES, 'UTF-8'),
+                    htmlspecialchars($data['description_pointille'], ENT_QUOTES, 'UTF-8'),
+                    htmlspecialchars($data['date'], ENT_QUOTES, 'UTF-8'),
                     "",
                     "",
                     "",
-                    htmlspecialchars($result['ville'], ENT_QUOTES, 'UTF-8'),
-                    (int)$result['nb_de_postulations'],
-                    htmlspecialchars($result['entreprise'], ENT_QUOTES, 'UTF-8'),
-                    htmlspecialchars($result['remuneration'], ENT_QUOTES, 'UTF-8'),
+                    htmlspecialchars($data['ville'], ENT_QUOTES, 'UTF-8'),
+                    (int)$data['nb_de_postulations'],
+                    htmlspecialchars($data['entreprise'], ENT_QUOTES, 'UTF-8'),
+                    htmlspecialchars($data['remuneration'], ENT_QUOTES, 'UTF-8'),
                     "",
                     "",
-                    (int)$result['nombre_wishlist'],
-                    htmlspecialchars($result['contrat'], ENT_QUOTES, 'UTF-8'),
+                    (int)$data['nombre_wishlist'],
+                    htmlspecialchars($data['contrat'], ENT_QUOTES, 'UTF-8'),
                     ""
                 )
-            ];
+            ;
         }
         $row->close();
         return $posts;

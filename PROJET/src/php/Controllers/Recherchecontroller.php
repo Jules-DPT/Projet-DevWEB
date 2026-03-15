@@ -1,10 +1,9 @@
 <?php
 
-namespace php\Controllers;
+namespace App\php\Controllers;
 
-use php\Repositories\Postsrepository;
-use php\Services\Postsservice;
-use php\Services\Recherchesservice;
+
+use App\php\Services\Recherchesservice;
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -12,27 +11,31 @@ error_reporting(E_ALL);
 header('Content-Type: application/json');
 
 
-require '../Services/Recherchesservice.php';
+
 
 
 class Recherchecontroller extends Controller
 {
     private $Page;
 
+    private $recherche;
 
-    public function __construct($int)
+
+    public function __construct($int,$page_,$recherche_,$template_)
     {
-        $this->Page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-        if ($this->Page < 1) {
-            $this->Page = 1;
-        }
-        $this->service = new Recherchesservice($this->Page,$int);
+
+        $this->template=$template_;
+        $this->Page = $page_;
+        $this->recherche = $recherche_;
+        $this->service = new Recherchesservice($this->Page,$int,$this->recherche);
     }
 
     public function getPrimaryData()
     {
         $contenant = $this->service->getPrimaryData();
-        echo $this->template->rebder('Recherche.html.twig',$contenant);
+        header('Content-Type: text/html; charset=UTF-8');
+        echo $this->template->render('Recherche.html.twig',["contenant"=>$contenant]);
+
     }
 }
 

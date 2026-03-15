@@ -1,21 +1,24 @@
 <?php
 
-namespace php\Services;
+namespace App\php\Services;
 
-use php\Services\Service;
+use App\php\Services\Service;
 
 class Paginationservice extends Service
 {
+    private $totalPages;
+    public function __construct($totalpages_){
+        $this->totalpages = $totalpages_;
 
+    }
     public function getPrimaryData()
     {
-        $totalPages = $this->repository->getTotalPage();
         $page = $this->repository->getPage();
         $listepagination = "";
         $listepagination .= "<br><br>" .
             "<div class='pagination'>" .
             "<a href='../../../recherche.html?page=1'>" . "<<" . "</a>";
-        if ($totalPages < 3) {
+        if ($this->totalpages < 3) {
             $listepagination .= "<a id='<' href='../../recherche.html?page=" . ($page - 1 > 1 ? $page - 1 : 1) . "'>" . "<" . "</a>";
             for ($i = 1; $i <= $totalPages; $i++) {
                 if ($page == $i) {
