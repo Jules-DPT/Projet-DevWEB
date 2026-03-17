@@ -1,35 +1,47 @@
+
 <nav class="nav_barre" aria-label="pagination">
+    <link href="../../assets/css/Pagination.css" rel="stylesheet">
     <ul class="pagination">
         <li class="ad">
-            <a class="pagination_padding" href="../../index.php?uri=recherche&?page=1">
+            <a class="pagination_padding" href={{ path }}1>
                 <span aria-hidden="true">&laquo;</span>
                 <span class="visuallyhidden">ensemble de pages précédentes</span>
             </a>
         </li>
-
         <li class="ad">
             {% set previous_page = (page - 1 > 1) ? (page - 1) : 1 %}
-            <a class="pagination_padding" href='../../index.php?uri=recherche&page={{ previous_page }}'>
-                <span class="visuallyhidden">page précédente </span><
+            <a class="pagination_padding" href={{ path }}{{ previous_page }}>
+                <span class="visuallyhidden">page précédente </span><span>&lt</span>
+            </a>
+        </li>
+        {% for PAGE in 1..totalPages %}
+            {% if  ((PAGE)==page)   %}
+                <li class="ac">
+                    <label >
+                    <a class="pagination_padding" href={{ path }}{{ (PAGE) }}>
+                        <span class="visuallyhidden">page </span><span>{{ (PAGE) }}</span>
+                    </a>
+                    </label>
+                </li>
+
+            {% else %}
+                <li class="ad">
+                    <label >
+                        <a class="pagination_padding" href={{ path }}{{ (PAGE) }}>
+                            <span class="visuallyhidden">page </span><span>{{ (PAGE) }}</span>
+                        </a>
+                    </label>
+                </li>
+            {% endif %}
+        {% endfor %}
+        <li class="ad">
+            {% set next_page = (page + 1 < totalPages) ? (page + 1) : (totalPages) %}
+            <a class="pagination_padding" href={{ path }}{{ next_page }}>
+                <span class="visuallyhidden">page suivante  </span><span>&gt</span>
             </a>
         </li>
         <li class="ad">
-            <a class="pagination_padding" href="index.html">
-                <span class="visuallyhidden">page </span>2
-            </a>
-        </li>
-        <li class="ad">
-            <a class="pagination_padding" href="index.html">
-                <span class="visuallyhidden">page </span>3
-            </a>
-        </li>
-        <li class="ad">
-            <a class="pagination_padding" href="index.html">
-                <span class="visuallyhidden">page </span>4
-            </a>
-        </li>
-        <li class="ad">
-            <a class="pagination_padding" href="index.html">
+            <a class="pagination_padding" href={{ path }}{{ totalPages }}>
         <span class="visuallyhidden">ensemble de pages suivantes</span
         ><span aria-hidden="true">&raquo;</span>
             </a>
