@@ -33,14 +33,17 @@ class Recherchecontroller extends Controller
     public function getPrimaryData()
     {
         $contenant = $this->service->getPrimaryData();
+        $totalpages= $this->service->getTotalPages();
+        $page=$this->service->getPage();
+        $path=$this->service->getPath("?recherche=".$this->recherche);
         header('Content-Type: text/html; charset=UTF-8');
         if (count($contenant) ==0 )
         {
-            echo $this->template->render('Recherche.html.twig',["contenant"=>$contenant,"res"=>null]);
+            echo $this->template->render('Recherche.html.twig',["contenant"=>$contenant,"res"=>null,"totalPages"=>$totalpages,"path"=>$path,"page"=>$page]);
         }
         else
         {
-            echo $this->template->render('Recherche.html.twig',["contenant"=>$contenant,"res"=>1]);
+            echo $this->template->render('Recherche.html.twig',["contenant"=>$contenant,"res"=>1,"totalPages"=>$totalpages,"path"=>$path,"page"=>$page]);
         }
 
 

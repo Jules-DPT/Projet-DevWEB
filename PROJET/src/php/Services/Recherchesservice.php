@@ -5,30 +5,42 @@ namespace App\php\Services;
 use App\php\Repositories\Postsrepository;
 use App\php\Repositories\Entreprisesrepository;
 use App\php\Repositories\Comptesrepository;
+use App\php\Services\Paginationservice;
 
 require_once 'Service.php';
 
 class Recherchesservice extends Service
 {
 
-    public function __construct($page,$int,$recherche)
+    private $pagination;
+    private $limit;
+    private $page;
+
+    private $totalPages;
+    public function __construct($page_,$int,$recherche)
     {
-        if ($page < 1) {
-            $page = 1;
+        $page_=(int)$page_;
+        if ($page_ < 1) {
+            $this->page = 1;
+        }
+        else{
+            $this->page=$page_;
         }
         $recherche=htmlspecialchars($recherche);
         $recherche='%'.$recherche.'%';
+        $this->limit=12;
         switch ($int){
             case 1:
-                $this->repository = new Comptesrepository($page,12,$recherche);
+                $this->repository = new Comptesrepository($this->page,$this->limit,$recherche);
                 break;
             case 2:
-                $this->repository = new EntreprisesRepository($page,12,$recherche);
+                $this->repository = new EntreprisesRepository($this->page,$this->limit,$recherche);
                 break;
             case 3:
-                $this->repository = new PostsRepository($page,12,$recherche);
+                $this->repository = new PostsRepository($this->page,$this->limit,$recherche);
                 break;
         }
+        $this->pagination= new Paginationservice();
     }
 
     public function getPrimaryData()
@@ -36,6 +48,20 @@ class Recherchesservice extends Service
         return $this->repository->getPrimaryData();
     }
 
+    public function getTotalPages()
+    {
+
+        $this->totalPages = ceil($this->repository->getSecondaryData()/$this->limit);
+        return  $this->totalPages ;
+    }
 
 
+    public function getPath($get_)
+    {
+        return $this->pagination->getPath(htmlspecialchars($get_));
+    }
+    public function getPage()
+    {
+        return $this->page;
+    }
 }
