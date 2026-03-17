@@ -22,8 +22,6 @@ $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 switch ($uri) {
     case '/':
         // TODO : call the welcomePage method of the controller
-        //$controller->welcomePage();
-        //echo $twig->render('.html');
         break;
     case '/recherche':
         $Page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
