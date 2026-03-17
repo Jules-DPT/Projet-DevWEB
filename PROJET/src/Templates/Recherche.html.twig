@@ -19,11 +19,11 @@
             </form>
             <br>
 
-                <form method="get" action="/recherche" >
+                <form method="get" action="?= strtok($_SERVER['REQUEST_URI'], '?') ?>" >
                     <div class="conteneur" >
-                        <label class="liquid_box_mini" ><input type="radio" id="etudiants" name="type" value=1 formmethod="get" onclick="radio()"> Comptes</label>
-                        <label class="liquid_box_mini" ><input type="radio" id="offres" name="type" value=3 checked formmethod="get" onclick="radio()"> Offres</label>
-                        <label class="liquid_box_mini" ><input type="radio" id="entreprises" name="type" value=2 formmethod="get" onclick="radio()"> Fiches entreprises</label>
+                        <label class="liquid_box_mini" ><input type="radio" id="etudiants" name="type" value=1 formmethod="get" onclick="radio()" formaction="/recherche?type=1"> Comptes</label>
+                        <label class="liquid_box_mini" ><input type="radio" id="offres" name="type" value=3 checked formmethod="get" onclick="radio()" formaction="/recherche?type=1"> Offres</label>
+                        <label class="liquid_box_mini" ><input type="radio" id="entreprises" name="type" value=2 formmethod="get" onclick="radio()" formaction="/recherche?type=1"> Fiches entreprises</label>
                     </div>
                 </form>
 
@@ -39,24 +39,33 @@
             <div id="affichage_posts" class="conteneurgrid">
                 {% block affichage %}
                     {% for post in contenant %}
-                        <div class="liquid_box_offre">
-                            <p>{{ post.titre }}</p>
-                            <P>{{ post.description }}</P>
-                            <P>Rémunération:{{ post.remuneration }}</P>
-                            <p>{{ post.entreprise }}</p>
-                            <p>{{ post.ville }}</p>
-                        </div>
+
+                            <div class="offres">
+                                <span class="offres title">{{ post.titre }}</span>
+                                <div class="bottom">
+                                    <span class="nb-post">Rémunération:{{ post.remuneration }}</span>
+                                    <span class="date">{{ post.entreprise }}</span>
+                                </div>
+                                <span class="offres desc">{{ post.description }}</span>
+                                <span class="lieu">{{ post.ville }}</span>
+                                <div class="bottom">
+                                    <span class="date">Du {{ post.datedebut}} au {{ post.datefin }}</span> <span class="nb-post">{{ post.nb_postulation }}</span>
+                                </div>
+                            </div>
+
                     {% endfor %}
                 {% endblock %}
             </div>
 
         </div>
         <script src="../../assets/js/recherche.js"></script>
+        {% include 'Pagination.html.twig' with {'totalPages':totalPages , 'path':path,'page':page} %}
     </div>
 
 
 
 </div>
+
 {% endblock %}
 </body>
 </html>
