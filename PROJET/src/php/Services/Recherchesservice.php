@@ -27,7 +27,6 @@ class Recherchesservice extends Service
             $this->page=$page_;
         }
         $recherche=htmlspecialchars($recherche);
-        $recherche='%'.$recherche.'%';
         $this->limit=12;
         switch ($int){
             case 1:

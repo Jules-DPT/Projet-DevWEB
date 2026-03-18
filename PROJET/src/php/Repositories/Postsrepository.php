@@ -27,6 +27,16 @@ class Postsrepository extends Repository
 
     public function getPrimaryData()
     {
+        $words=explode(" ",trim($this->recherche));
+        $where = "";
+        if (!empty($words) && $words[0] !== "") {
+            $rec = [];
+            foreach ($words as $word) {
+                $rec[] = "CONCAT(titre, ' ', description, ' ', e.nom,' ',v.nom) LIKE '%".$word."%'";
+            }
+            $where = "WHERE " . implode(" AND ", $rec);
+        }
+
 
         $query = ("select posts.id AS id,titre, CONCAT(SUBSTRING_INDEX(description,' ',30), '...') AS description_pointille,
                    remuneration,d.date as date_post,d2.date as date_debut,d3.date as date_fin,nb_de_postulations,nombre_wishlist,
@@ -39,10 +49,11 @@ class Postsrepository extends Repository
                       left JOIN bdd_web.adresse a ON posts.id_adresse = a.id
                       left JOIN bdd_web.ville v ON a.id_ville = v.id
                       left JOIN bdd_web.contrat c on posts.id_contrat = c.id
-                    where (titre like ?) or (description like ?) or (e.nom like ?) or (v.nom like ?) or (c.type like ?)
-                    order by date_post LIMIT $this->limit OFFSET $this->offset");
+                     $where
+                    order by date_post LIMIT ? OFFSET ? ");
+
         $row =$this->SQL->prepare($query);
-        $row->bind_param("sssss",$this->recherche,$this->recherche,$this->recherche,$this->recherche,$this->recherche);
+        $row->bind_param("ii",$this->limit,$this->offset);
         $row->execute();
         $result = $row->get_result();
         $posts=[];
