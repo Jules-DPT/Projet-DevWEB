@@ -14,7 +14,7 @@
                 <span class="visuallyhidden">page précédente </span><span>&lt</span>
             </a>
         </li>
-        {% for PAGE in 1..totalPages %}
+        {% for PAGE in 1..(totalPages+1) %}
             {% if  ((PAGE)==page)   %}
                 <li class="ac">
                     <label >
@@ -23,7 +23,6 @@
                     </a>
                     </label>
                 </li>
-
             {% else %}
                 <li class="ad">
                     <label >
