@@ -12,6 +12,10 @@ class Entreprises
 
     private $email;
 
+    private $note;
+
+    private $nb_posts;
+
     //---------------------------- getters-------------------------------------------
     public function getId()
     {
@@ -42,6 +46,17 @@ class Entreprises
         return $this->email;
     }
 
+    public function getNote()
+    {
+        return $this->note;
+    }
+    public function getNbPosts()
+    {
+        return $this->nb_posts;
+    }
+
+    //------------------------------getters------------------------------------------
+
     public function setId($id_)
     {
         $this->id = $id_;
@@ -51,7 +66,7 @@ class Entreprises
         $this->nom = $nom_;
     }
 
-    //------------------------------getters------------------------------------------
+
 
     public function setAdresse($adresse_)
     {
@@ -72,6 +87,15 @@ class Entreprises
     public function setEmail($email_)
     {
         $this->email = $email_;
+    }
+
+    public function setNote($note_)
+    {
+        $this->note = $note_;
+    }
+    public function setNbPosts($nb_posts_)
+    {
+        $this->nb_posts = $nb_posts_;
     }
 
 }
