@@ -16,6 +16,20 @@ class Entreprises
 
     private $nb_posts;
 
+    //--------------------------Constructor----------------------------------------
+    public function __CONSTRUCT($id_,$nom_,$adresse_,$description_,$telephone_,$file,$email_,$note_,$nb_posts)
+    {
+        $this->id = $id_;
+        $this->nom = $nom_;
+        $this->adresse = $adresse_;
+        $this->description = $description_;
+        $this->telephone = $telephone_;
+        $this->file = $file;
+        $this->email = $email_;
+        $this->note = $note_;
+        $this->nb_posts = $nb_posts;
+    }
+
     //---------------------------- getters-------------------------------------------
     public function getId()
     {
