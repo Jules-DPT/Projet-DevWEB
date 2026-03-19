@@ -20,4 +20,20 @@ public function setSQL($SQL_){
 
 }
 abstract protected function getPrimaryData();
+
+protected function getSearchData($query_,$limit_,$offset_)
+{
+    $row =$this->SQL->prepare($query_);
+    $row->bind_param("ii",$limit_,$offset_);
+    $row->execute();
+    return $row->get_result();
+}
+
+protected function getDataByID($query_,$id_)
+{
+    $row =$this->SQL->prepare($query_);
+    $row->bind_param("i",$id_);
+    $row->execute();
+    return $row->get_result();
+}
 }

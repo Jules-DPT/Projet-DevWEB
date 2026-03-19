@@ -27,6 +27,7 @@ switch ($uri) {
         $Page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
         $recherche = isset($_GET['recherche']) ? (string)$_GET['recherche'] : '';
         $int =isset($_GET['type']) ? (int)$_GET['type'] : 3;
+        echo $int;
         $recherchecontroller = new Recherchecontroller($int,$Page,$recherche,$twig);
 
         $recherchecontroller->getPrimaryData();

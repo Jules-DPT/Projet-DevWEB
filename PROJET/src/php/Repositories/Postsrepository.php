@@ -22,25 +22,26 @@ class Postsrepository extends Repository
         $this->recherche = $recherche_;
     }
 
-
-
-
-    public function getPrimaryData()
-    {
+    private function getWhere(){
         $words=explode(" ",trim($this->recherche));
         $where = "";
         if (!empty($words) && $words[0] !== "") {
             $rec = [];
             foreach ($words as $word) {
-                $rec[] = "CONCAT(titre, ' ', description, ' ', e.nom,' ',v.nom) LIKE '%".$word."%'";
+                $rec[] = "CONCAT(titre, ' ', description, ' ', e.nom,' ',v.nom,' ',v.code_postal,' ',c.type) LIKE '%".$word."%'";
             }
             $where = "WHERE " . implode(" AND ", $rec);
         }
+        return $where;
+    }
 
 
+    public function getPrimaryData()
+    {
+        $where = $this->getWhere();
         $query = ("select posts.id AS id,titre, CONCAT(SUBSTRING_INDEX(description,' ',30), '...') AS description_pointille,
                    remuneration,d.date as date_post,d2.date as date_debut,d3.date as date_fin,nb_de_postulations,nombre_wishlist,
-                    e.nom as entreprise,v.nom as ville ,c.type as contrat
+                    e.nom as entreprise,v.nom as ville ,c.type as contrat 
                     FROM bdd_web.posts
                       left JOIN bdd_web.date d ON d.id = posts.id_date_post
                       left join bdd_web.date d2 ON d2.id = posts.id_date_debut
@@ -49,13 +50,10 @@ class Postsrepository extends Repository
                       left JOIN bdd_web.adresse a ON posts.id_adresse = a.id
                       left JOIN bdd_web.ville v ON a.id_ville = v.id
                       left JOIN bdd_web.contrat c on posts.id_contrat = c.id
-                     $where
+                    $where
                     order by date_post LIMIT ? OFFSET ? ");
 
-        $row =$this->SQL->prepare($query);
-        $row->bind_param("ii",$this->limit,$this->offset);
-        $row->execute();
-        $result = $row->get_result();
+        $result = $this->getSearchData($query,$this->limit,$this->offset);
         $posts=[];
         while ( $data = $result->fetch_assoc()) {
             $posts[] =
@@ -79,13 +77,13 @@ class Postsrepository extends Repository
                 )
             ;
         }
-        $row->close();
+        $result->close();
         return $posts;
-
     }
 
     public function getSecondaryData()
     {
+        $where = $this->getWhere();
         $query = ("select count(posts.id) as nb
                     FROM bdd_web.posts
                       left JOIN bdd_web.date d ON d.id = posts.id_date_post
@@ -93,14 +91,16 @@ class Postsrepository extends Repository
                       left JOIN bdd_web.adresse a ON posts.id_adresse = a.id
                       left JOIN bdd_web.ville v ON a.id_ville = v.id
                       left JOIN bdd_web.contrat c on posts.id_contrat = c.id
-                    where (titre like ?) or (description like ?) or (e.nom like ?) or (v.nom like ?) or (c.type like ?)
-                    order by d.date ");
-        $row =$this->SQL->prepare($query);
-        $row->bind_param("sssss",$this->recherche,$this->recherche,$this->recherche,$this->recherche,$this->recherche);
-        $row->execute();
-        $result = $row->get_result();
+                    $where
+                    order by d.date LIMIT ? OFFSET ? ");
+        $result = $this->getSearchData($query,$this->limit,$this->offset);
         $data = $result->fetch_assoc();
         return (int)$data['nb'];
+    }
+
+    public function getpostbyid($id_post)
+    {
+
     }
 
 }
