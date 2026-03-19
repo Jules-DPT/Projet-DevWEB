@@ -1,0 +1,18 @@
+{% block affichage %}
+    {% for post in contenant %}
+
+        <div class="offres">
+            <span class="offres title">{{ post.titre }}</span>
+            <div class="bottom">
+                <span class="nb-post">Rémunération:{{ post.remuneration }}</span>
+                <span class="date">{{ post.entreprise }}</span>
+            </div>
+            <span class="offres desc">{{ post.description }}</span>
+            <span class="lieu">{{ post.ville }}</span>
+            <div class="bottom">
+                <span class="date">Du {{ post.datedebut}} au {{ post.datefin }}</span> <span class="nb-post">{{ post.nb_postulation }}</span>
+            </div>
+        </div>
+
+    {% endfor %}
+{% endblock %}
