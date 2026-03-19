@@ -1,0 +1,15 @@
+{% block affichage %}
+    {% for entreprise in contenant %}
+
+        <div class="offres">
+            <span><img src="../../assets/images/{{ entreprise.file }}" alt="PNG"></span>
+            <span class="offres title">{{ entreprise.nom }}</span>
+            <span class="offres desc">{{ entreprise.description }}</span>
+            <span class="lieu">{{ entreprise.ville }}</span>
+            <div class="bottom">
+                <span class="date">note: {{ entreprise.note}} </span> <span class="nb-post">{{ entreprise.nb_posts }}</span>
+            </div>
+        </div>
+
+    {% endfor %}
+{% endblock %}
