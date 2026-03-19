@@ -7,7 +7,8 @@
             <span class="offres desc">{{ entreprise.description }}</span>
             <span class="lieu">{{ entreprise.ville }}</span>
             <div class="bottom">
-                <span class="date">note: {{ entreprise.note}} </span> <span class="nb-post">Posts :{{ entreprise.nbposts }}</span>
+
+                <span class="date">note: {{  entreprise.note!= 0 ? entreprise.note : '...' }} </span> <span class="nb-post">Posts :{{ entreprise.nbposts }}</span>
             </div>
         </div>
 
