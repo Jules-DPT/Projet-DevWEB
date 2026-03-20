@@ -6,7 +6,7 @@ use App\php\Contenants\Posts;
 require_once 'Repository.php';
 
 
-class Postsrepository extends Repository
+class Postsrepository extends Rechercherepository
 {
     private $limit = 12;
     private $page;
@@ -22,23 +22,10 @@ class Postsrepository extends Repository
         $this->recherche = $recherche_;
     }
 
-    private function getWhere(){
-        $words=explode(" ",trim($this->recherche));
-        $where = "";
-        if (!empty($words) && $words[0] !== "") {
-            $rec = [];
-            foreach ($words as $word) {
-                $rec[] = "CONCAT(titre, ' ', description, ' ', e.nom,' ',v.nom,' ',v.code_postal,' ',c.type) LIKE '%".$word."%'";
-            }
-            $where = "WHERE " . implode(" AND ", $rec);
-        }
-        return $where;
-    }
-
 
     public function getPrimaryData()
     {
-        $where = $this->getWhere();
+        $where = $this->getWhere($this->recherche);
         $query = ("select posts.id AS id,titre, CONCAT(SUBSTRING_INDEX(description,' ',30), '...') AS description_pointille,
                    remuneration,d.date as date_post,d2.date as date_debut,d3.date as date_fin,nb_de_postulations,nombre_wishlist,
                     e.nom as entreprise,v.nom as ville ,c.type as contrat 
@@ -83,7 +70,7 @@ class Postsrepository extends Repository
 
     public function getSecondaryData()
     {
-        $where = $this->getWhere();
+        $where = $this->getWhere($this->recherche);
         $query = ("select count(posts.id) as nb
                     FROM bdd_web.posts
                       left JOIN bdd_web.date d ON d.id = posts.id_date_post
@@ -92,13 +79,21 @@ class Postsrepository extends Repository
                       left JOIN bdd_web.ville v ON a.id_ville = v.id
                       left JOIN bdd_web.contrat c on posts.id_contrat = c.id
                     $where
-                    order by d.date LIMIT ? OFFSET ? ");
-        $result = $this->getSearchData($query,$this->limit,$this->offset);
+                    order by d.date ");
+        $result = $this->getCountData($query);
         $data = $result->fetch_assoc();
+        if ($data==null){
+            $data['nb']=1;
+        }
         return (int)$data['nb'];
     }
 
     public function getpostbyid($id_post)
+    {
+
+    }
+
+    public function getPostsbyEntreprise($id_entreprise)
     {
 
     }

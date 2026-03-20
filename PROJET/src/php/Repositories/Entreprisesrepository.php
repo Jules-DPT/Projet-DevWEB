@@ -6,7 +6,7 @@ use App\php\Contenants\Entreprises;
 use App\php\Repositories\Repository;
 require_once 'Repository.php';
 
-class Entreprisesrepository extends Repository
+class Entreprisesrepository extends Rechercherepository
 {
     private $limit = 12;
     private $page;
@@ -22,22 +22,10 @@ class Entreprisesrepository extends Repository
         $this->recherche = $recherche_;
     }
 
-    private function getWhere()
-    {
-        $words=explode(" ",trim($this->recherche));
-        $where = "";
-        if (!empty($words) && $words[0] !== "") {
-            $rec = [];
-            foreach ($words as $word) {
-                $rec[] = "CONCAT(entreprise.nom, ' ', entreprise.descritption,' ',v.nom,' ',v.code_postal) LIKE '%".$word."%'";
-            }
-            $where = "WHERE " . implode(" AND ", $rec);
-        }
-        return $where;
-    }
+
     public function getPrimaryData()
     {
-        $where = $this->getWhere();
+        $where = $this->getWhere($this->recherche);
         $query="select entreprise.id as id, entreprise.nom as nom,CONCAT(SUBSTRING_INDEX(entreprise.descritption,' ',30), '...') AS description_pointille,
                        v.nom as ville,f.chemin as file
                 from bdd_web.entreprise
@@ -60,6 +48,7 @@ class Entreprisesrepository extends Repository
                 $this->getMoyNote((float)$data['id']),
                 $this->getNbPosts((int)$data['id'])
             );
+
         }
         $result->close();
         return $Entreprises;
@@ -67,7 +56,20 @@ class Entreprisesrepository extends Repository
 
     public function getSecondaryData()
     {
-
+        $where = $this->getWhere($this->recherche);
+        $query="select count(entreprise.id) as nb
+                from bdd_web.entreprise
+                left JOIN bdd_web.file f on f.id = entreprise.id_logo
+                left JOIN bdd_web.adresse a ON entreprise.id_adresse = a.id
+                left JOIN bdd_web.ville v ON a.id_ville = v.id
+                $where
+                ORDER BY entreprise.nom ASC ";
+        $result = $this->getCountData($query);
+        $data = $result->fetch_assoc();
+        if ($data==null){
+            $data['nb']=1;
+        }
+        return (int)$data['nb'];
     }
 
     public function getAlldata()
@@ -75,7 +77,7 @@ class Entreprisesrepository extends Repository
 
     }
 
-    public function getpostbyid($id_post)
+    public function getEntreprisebyid($id_entreprise)
     {
 
     }

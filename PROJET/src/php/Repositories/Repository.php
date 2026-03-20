@@ -21,10 +21,11 @@ public function setSQL($SQL_){
 }
 abstract protected function getPrimaryData();
 
-protected function getSearchData($query_,$limit_,$offset_)
+
+
+protected function getCountData($query_)
 {
     $row =$this->SQL->prepare($query_);
-    $row->bind_param("ii",$limit_,$offset_);
     $row->execute();
     return $row->get_result();
 }
