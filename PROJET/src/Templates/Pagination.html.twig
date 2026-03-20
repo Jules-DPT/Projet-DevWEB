@@ -14,12 +14,12 @@
                 <span class="visuallyhidden">page précédente </span><span>&lt</span>
             </a>
         </li>
-        {% for PAGE in 1..(totalPages+1) %}
+        {% for PAGE in 1..(totalPages==1?totalPages+1:totalPages) %}
             {% if  ((PAGE)==page)   %}
                 <li class="ac">
                     <label >
                     <a class="pagination_padding" href={{ path }}{{ (PAGE) }}>
-                        <span class="visuallyhidden">page </span><span>{{ (PAGE) }}</span>
+                        <span class="visuallyhidden">page </span><span>{{ (PAGE) }} </span>
                     </a>
                     </label>
                 </li>
