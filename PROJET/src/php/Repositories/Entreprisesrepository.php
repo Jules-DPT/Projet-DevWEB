@@ -52,11 +52,11 @@ class Entreprisesrepository extends Rechercherepository
         while ($data = $result->fetch_assoc()) {
             $Entreprises[]= new Entreprises(
                 (int)$data['id'],
-                htmlspecialchars($data['nom']),
-                htmlspecialchars($data['ville']),
-                htmlspecialchars($data['description_pointille']),
+                $data['nom'],
+                $data['ville'],
+                $data['description_pointille'],
                 '',
-                $data['file']==null ? "" : htmlspecialchars($data['file']),
+                $data['file']==null ? "" : $data['file'],
                 '',
                 $this->getMoyNote((float)$data['id']),
                 $this->getNbPosts((int)$data['id'])

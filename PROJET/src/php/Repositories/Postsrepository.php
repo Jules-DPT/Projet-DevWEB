@@ -59,20 +59,20 @@ class Postsrepository extends Rechercherepository
             $posts[] =
                 new Posts(
                     (int)$data['id'],
-                    htmlspecialchars($data['titre'], ENT_QUOTES, 'UTF-8'),
-                    htmlspecialchars($data['description_pointille'], ENT_QUOTES, 'UTF-8'),
-                    htmlspecialchars($data['date_post'], ENT_QUOTES, 'UTF-8'),
+                    $data['titre'],
+                    $data['description_pointille'],
+                    $data['date_post'],
                     "",
                     "",
                     "",
-                    htmlspecialchars($data['ville'], ENT_QUOTES, 'UTF-8'),
+                    $data['ville'],
                     (int)$data['nb_de_postulations'],
-                    htmlspecialchars($data['entreprise'], ENT_QUOTES, 'UTF-8'),
-                    htmlspecialchars($data['remuneration'], ENT_QUOTES, 'UTF-8'),
-                    htmlspecialchars($data['date_debut'], ENT_QUOTES, 'UTF-8'),
-                    htmlspecialchars($data['date_fin'], ENT_QUOTES, 'UTF-8'),
+                    $data['entreprise'],
+                    $data['remuneration'],
+                    $data['date_debut'],
+                    $data['date_fin'],
                     (int)$data['nombre_wishlist'],
-                    htmlspecialchars($data['contrat'], ENT_QUOTES, 'UTF-8'),
+                    $data['contrat'],
                     ""
                 )
             ;
