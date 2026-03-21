@@ -17,16 +17,6 @@ abstract class Rechercherepository extends Repository
         $row->execute();
         return $row->get_result();
     }
-    protected function getWhere($recherche_)
-    {
-        $words=explode(" ",trim($recherche_));
-        $where = "";
-        if (!empty($words) && $words[0] !== "") {
-            $rec = [];
-            foreach ($words as $word) {
-                $rec[] = "CONCAT(entreprise.nom, ' ', entreprise.descritption,' ',v.nom,' ',v.code_postal) LIKE '%".$word."%'";
-            }
-            $where = "WHERE " . implode(" AND ", $rec);
-        }
-        return $where;
-    }}
+    abstract protected function getWhere();
+
+}

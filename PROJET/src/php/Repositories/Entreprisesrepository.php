@@ -22,10 +22,23 @@ class Entreprisesrepository extends Rechercherepository
         $this->recherche = $recherche_;
     }
 
+    protected function getWhere()
+    {
+        $words=explode(" ",trim($this->recherche));
+        $where = "";
+        if (!empty($words) && $words[0] !== "") {
+            $rec = [];
+            foreach ($words as $word) {
+                $rec[] = "CONCAT(entreprise.nom, ' ', entreprise.descritption,' ',v.nom,' ',v.code_postal) LIKE '%".$word."%'";
+            }
+            $where = "WHERE " . implode(" AND ", $rec);
+        }
+        return $where;
+    }
 
     public function getPrimaryData()
     {
-        $where = $this->getWhere($this->recherche);
+        $where = $this->getWhere();
         $query="select entreprise.id as id, entreprise.nom as nom,CONCAT(SUBSTRING_INDEX(entreprise.descritption,' ',30), '...') AS description_pointille,
                        v.nom as ville,f.chemin as file
                 from bdd_web.entreprise
@@ -56,7 +69,7 @@ class Entreprisesrepository extends Rechercherepository
 
     public function getSecondaryData()
     {
-        $where = $this->getWhere($this->recherche);
+        $where = $this->getWhere();
         $query="select count(entreprise.id) as nb
                 from bdd_web.entreprise
                 left JOIN bdd_web.file f on f.id = entreprise.id_logo

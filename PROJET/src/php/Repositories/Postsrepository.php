@@ -22,10 +22,23 @@ class Postsrepository extends Rechercherepository
         $this->recherche = $recherche_;
     }
 
+    protected function getWhere(){
+        $words=explode(" ",trim($this->recherche));
+        $where = "";
+        if (!empty($words) && $words[0] !== "") {
+            $rec = [];
+            foreach ($words as $word) {
+                $rec[] = "CONCAT(titre, ' ', description, ' ', e.nom,' ',v.nom,' ',v.code_postal,' ',c.type) LIKE '%".$word."%'";
+            }
+            $where = "WHERE " . implode(" AND ", $rec);
+        }
+        return $where;
+    }
+
 
     public function getPrimaryData()
     {
-        $where = $this->getWhere($this->recherche);
+        $where = $this->getWhere();
         $query = ("select posts.id AS id,titre, CONCAT(SUBSTRING_INDEX(description,' ',30), '...') AS description_pointille,
                    remuneration,d.date as date_post,d2.date as date_debut,d3.date as date_fin,nb_de_postulations,nombre_wishlist,
                     e.nom as entreprise,v.nom as ville ,c.type as contrat 
@@ -70,7 +83,7 @@ class Postsrepository extends Rechercherepository
 
     public function getSecondaryData()
     {
-        $where = $this->getWhere($this->recherche);
+        $where = $this->getWhere();
         $query = ("select count(posts.id) as nb
                     FROM bdd_web.posts
                       left JOIN bdd_web.date d ON d.id = posts.id_date_post
