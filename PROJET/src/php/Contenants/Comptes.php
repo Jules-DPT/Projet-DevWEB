@@ -19,6 +19,23 @@ class Comptes
     private $telephone;
     private $snake_score;
 
+    //-----------------------------Constructor----------------------------------
+
+    public function __construct($id_,$nom_,$prenom_,$password_,$type_,$file_,$id_pilote_,$promo_,$email_,$telephone_,$snake_score_)
+    {
+        $this->id = $id_;
+        $this->nom = $nom_;
+        $this->prenom = $prenom_;
+        $this->password = $password_;
+        $this->type = $type_;
+        $this->file = $file_;
+        $this->id_pilote = $id_pilote_;
+        $this->promo = $promo_;
+        $this->email = $email_;
+        $this->telephone = $telephone_;
+        $this->snake_score = $snake_score_;
+    }
+
     //-----------------------------------getters-------------------------------------
 
     public function getId()

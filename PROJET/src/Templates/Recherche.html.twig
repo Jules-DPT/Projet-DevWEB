@@ -50,6 +50,9 @@
                 <br> <br>  <br>
             {% endif %}
             <div id="affichage_posts" class="conteneurgrid">
+                {% if (type==1) %}
+                    {% include 'Comptes.html.twig' with {'contenant':contenant} %}
+                {% endif %}
                 {% if (type==2) %}
                     {% include 'Entreprises.html.twig' with {'contenant':contenant} %}
                 {% endif %}

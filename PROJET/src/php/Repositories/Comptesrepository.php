@@ -2,6 +2,7 @@
 
 namespace App\php\Repositories;
 
+use App\php\Contenants\Comptes;
 use App\php\Repositories\Repository;
 
 class Comptesrepository extends Rechercherepository
@@ -23,12 +24,68 @@ class Comptesrepository extends Rechercherepository
         $this->recherche = $recherche_;
     }
 
+    protected function getWhere()
+    {
+        $words=explode(" ",trim($this->recherche));
+        $where = "";
+        if (!empty($words) && $words[0] !== "") {
+            $rec = [];
+            foreach ($words as $word) {
+                $rec[] = "CONCAT(utilisateur.id, ' ', utilisateur.nom, ' ', utilisateur.prenom,' ',t.type,' ',promo) LIKE '%".$word."%'";
+            }
+            $where = "WHERE " . implode(" AND ", $rec);
+        }
+        return $where;
+    }
     public function getPage()
     {
         return $this->page;
     }
-    protected function getPrimaryData()
+    public function getPrimaryData()
     {
-        // TODO: Implement getPrimaryData() method.
+        $where = $this->getWhere();
+        $query = "select utilisateur.id as id,utilisateur.nom as nom,utilisateur.prenom as prenom,t.type as type,promo,f.chemin as file
+                    from bdd_web.utilisateur
+                    left join bdd_web.file f on f.id = utilisateur.id_chemin
+                    left join bdd_web.type_utilisateur t on utilisateur.id_type = t.id
+                    $where
+                    ORDER BY nom ASC LIMIT ? OFFSET ?  ";
+        $result = $this->getSearchData($query, $this->limit, $this->offset);
+        $comptes = [];
+        while ($data = $result->fetch_assoc()) {
+            $comptes[] =
+                new Comptes(
+                    (int)$data['id'],
+                    $data['nom'],
+                    $data['prenom'],
+                    "",
+                    $data['type'],
+                    $data['file'],
+                    "",
+                    $data['promo'],
+                    "",
+                    "",
+                    ""
+                );
+        }
+        $result->close();
+        return $comptes;
+    }
+
+    public function getSecondaryData()
+    {
+        $where = $this->getWhere();
+        $query="select count(utilisateur.id) as nb
+                    from bdd_web.utilisateur
+                    left join bdd_web.file f on f.id = utilisateur.id_chemin
+                    left join bdd_web.type_utilisateur t on utilisateur.id_type = t.id
+                    $where
+                    ORDER BY nom ASC " ;
+        $result = $this->getCountData($query);
+        $data = $result->fetch_assoc();
+        if ($data==null){
+            $data['nb']=1;
+        }
+        return (int)$data['nb'];
     }
 }
