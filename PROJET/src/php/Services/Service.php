@@ -6,4 +6,6 @@ abstract class Service
 {
     protected $repository;
 
+    abstract public function getPageData();
+
 }
