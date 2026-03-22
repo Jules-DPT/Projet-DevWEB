@@ -52,7 +52,6 @@ class Postsrepository extends Rechercherepository
                       left JOIN bdd_web.contrat c on posts.id_contrat = c.id
                     $where
                     order by date_post LIMIT ? OFFSET ? ");
-
         $result = $this->getSearchData($query,$this->limit,$this->offset);
         $posts=[];
         while ( $data = $result->fetch_assoc()) {
@@ -66,6 +65,8 @@ class Postsrepository extends Rechercherepository
                     "",
                     "",
                     $data['ville'],
+                    "",
+                    "",
                     (int)$data['nb_de_postulations'],
                     $data['entreprise'],
                     $data['remuneration'],
@@ -104,14 +105,37 @@ class Postsrepository extends Rechercherepository
         return (int)$data['nb'];
     }
 
-    public function getpostbyid($id_post)
-    {
-
-    }
 
     public function getPostsbyEntreprise($id_entreprise)
     {
 
     }
 
+
+    public function DeleteDataByID($id_)
+    {
+        $query="DELETE FROM bdd_web.posts WHERE id=?";
+        $result=$this->ExecuteQueryByID($query,$id_);
+        if ($result->affected_rows ==1) {
+            $result->close();
+            return true;
+        }
+        $result->close();
+        return false;
+    }
+
+    public function UpdateDataByID($id_,$contant_)
+    {
+        $query="UPDATE ";
+    }
+
+    public function InsertDataByID($id_,$contant_)
+    {
+        $query="INSERT INTO bdd_web.posts";
+    }
+
+    public function getDataByID($id_)
+    {
+        $query="SELECT * FROM bdd_web.posts WHERE id=?";
+    }
 }

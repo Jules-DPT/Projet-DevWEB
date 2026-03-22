@@ -12,6 +12,8 @@ class Post
     private $adresse;
 
     private $ville;
+    private $code_postal;
+    private $pays;
     private $nb_postulations;
     private $entreprise;
     private $remuneration;
@@ -21,7 +23,7 @@ class Post
     private $contrat;
     private $duree;
 
-    public function __construct($id_, $titre_, $description_, $date_creation_, $email_, $telephone_, $adresse_, $ville_, $nb_postulations_
+    public function __construct($id_, $titre_, $description_, $date_creation_, $email_, $telephone_, $adresse_, $ville_,$code_postal_,$pays_, $nb_postulations_
         ,                       $entreprise_, $remuneration_, $date_debut_, $date_fin_, $nb_whishlist_, $contrat_, $duree_)
     {
         $this->id = $id_;
@@ -32,6 +34,8 @@ class Post
         $this->telephone = $telephone_;
         $this->adresse = $adresse_;
         $this->ville = $ville_;
+        $this->code_postal = $code_postal_;
+        $this->pays = $pays_;
         $this->nb_postulations = $nb_postulations_;
         $this->entreprise = $entreprise_;
         $this->remuneration = $remuneration_;
@@ -80,6 +84,12 @@ class Post
 
     public function getVille(){
         return $this->ville;
+    }
+    public function getCodePostal(){
+        return $this->code_postal;
+    }
+    public function getPays(){
+        return $this->pays;
     }
 
     public function getNbPostulations()
@@ -161,6 +171,12 @@ class Post
 
     public function setVille($ville_){
         $this->ville = $ville_;
+    }
+    public function setCodePostal($code_postal_){
+        $this->code_postal = $code_postal_;
+    }
+    public function setPays($pays_){
+        $this->pays = $pays_;
     }
 
     public function setNbPostulations($nb_postulations_)
