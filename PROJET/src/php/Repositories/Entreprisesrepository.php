@@ -67,7 +67,7 @@ class Entreprisesrepository extends Rechercherepository
         return $Entreprises;
     }
 
-    public function getSecondaryData()
+    public function getALLCount()
     {
         $where = $this->getWhere();
         $query="select count(entreprise.id) as nb

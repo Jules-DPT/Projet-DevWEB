@@ -49,7 +49,7 @@ class Recherchesservice extends Service
 
     public function getTotalPages()
     {
-        $this->totalPages = ceil($this->repository->getSecondaryData()/$this->limit);
+        $this->totalPages = ceil($this->repository->getALLCount()/$this->limit);
         return  $this->totalPages ;
     }
 

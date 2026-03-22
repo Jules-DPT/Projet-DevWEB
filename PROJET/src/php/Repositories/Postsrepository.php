@@ -82,7 +82,7 @@ class Postsrepository extends Rechercherepository
     }
 
 
-    public function getSecondaryData()
+    public function getALLCount()
     {
         $where = $this->getWhere();
         $query = ("select count(posts.id) as nb

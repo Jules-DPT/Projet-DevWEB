@@ -20,6 +20,11 @@ abstract class Rechercherepository extends Repository
 
     protected function InsertDataByID($id_, $row)
     {}
+
+    abstract protected function getALLCount();
+
+    abstract protected function getWhere();
+
     protected function getSearchData($query_,$limit_,$offset_)
     {
         $row =$this->SQL->prepare($query_);
@@ -27,6 +32,6 @@ abstract class Rechercherepository extends Repository
         $row->execute();
         return $row->get_result();
     }
-    abstract protected function getWhere();
+
 
 }

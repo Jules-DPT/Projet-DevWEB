@@ -72,7 +72,7 @@ class Comptesrepository extends Rechercherepository
         return $comptes;
     }
 
-    public function getSecondaryData()
+    public function getALLCount()
     {
         $where = $this->getWhere();
         $query="select count(utilisateur.id) as nb
