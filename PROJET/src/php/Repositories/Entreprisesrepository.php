@@ -36,7 +36,7 @@ class Entreprisesrepository extends Rechercherepository
         return $where;
     }
 
-    public function getPrimaryData()
+    public function getPageData()
     {
         $where = $this->getWhere();
         $query="select entreprise.id as id, entreprise.nom as nom,CONCAT(SUBSTRING_INDEX(entreprise.descritption,' ',30), '...') AS description_pointille,
@@ -77,7 +77,9 @@ class Entreprisesrepository extends Rechercherepository
                 left JOIN bdd_web.ville v ON a.id_ville = v.id
                 $where
                 ORDER BY entreprise.nom ASC ";
-        $result = $this->getCountData($query);
+        $row =$this->SQL->prepare($query);
+        $row->execute();
+        $result = $row->get_result();
         $data = $result->fetch_assoc();
         if ($data==null){
             $data['nb']=1;
@@ -98,7 +100,10 @@ class Entreprisesrepository extends Rechercherepository
     public function getMoyNote($id_entreprise)
     {
         $query="select AVG(evaluation_entreprise.note) as note from evaluation_entreprise where id_entreprise=?;";
-        $result = $this->getDataByID($query,$id_entreprise);
+        $row =$this->SQL->prepare($query);
+        $row->bind_param("i",$id_entreprise);
+        $row->execute();
+        $result = $row->get_result();
         $data = $result->fetch_assoc();
         return (float)$data['note'];
     }
@@ -106,7 +111,10 @@ class Entreprisesrepository extends Rechercherepository
     public function getNbPosts($id_entreprise)
     {
         $query="select count(id) as nb from posts where id_entreprise=?";
-        $result = $this->getDataByID($query,$id_entreprise);
+        $row =$this->SQL->prepare($query);
+        $row->bind_param("i",$id_entreprise);
+        $row->execute();
+        $result = $row->get_result();
         $data = $result->fetch_assoc();
         return (int)$data['nb'];
     }

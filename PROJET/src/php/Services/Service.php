@@ -4,7 +4,6 @@ namespace App\php\Services;
 
 abstract class Service
 {
-protected $repository;
+    protected $repository;
 
-abstract protected function getPrimaryData();
 }

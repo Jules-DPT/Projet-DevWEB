@@ -31,9 +31,9 @@ class Recherchecontroller extends Controller
         $this->service = new Recherchesservice($this->Page,$int,$this->recherche);
     }
 
-    public function getPrimaryData()
+    public function getPageData()
     {
-        $contenant = $this->service->getPrimaryData();
+        $contenant = $this->service->getPageData();
         $totalpages= $this->service->getTotalPages();
         $page=$this->service->getPage();
         $path=$this->service->getPath("?recherche=".$this->recherche);

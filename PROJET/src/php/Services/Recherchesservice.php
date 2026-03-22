@@ -42,9 +42,9 @@ class Recherchesservice extends Service
         $this->pagination= new Paginationservice();
     }
 
-    public function getPrimaryData()
+    public function getPageData()
     {
-        return $this->repository->getPrimaryData();
+        return $this->repository->getPageData();
     }
 
     public function getTotalPages()

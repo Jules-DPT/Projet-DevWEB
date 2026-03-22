@@ -41,7 +41,7 @@ class Comptesrepository extends Rechercherepository
     {
         return $this->page;
     }
-    public function getPrimaryData()
+    public function getPageData()
     {
         $where = $this->getWhere();
         $query = "select utilisateur.id as id,utilisateur.nom as nom,utilisateur.prenom as prenom,t.type as type,promo,f.chemin as file
@@ -81,7 +81,9 @@ class Comptesrepository extends Rechercherepository
                     left join bdd_web.type_utilisateur t on utilisateur.id_type = t.id
                     $where
                     ORDER BY nom ASC " ;
-        $result = $this->getCountData($query);
+        $row =$this->SQL->prepare($query);
+        $row->execute();
+        $result = $row->get_result();
         $data = $result->fetch_assoc();
         if ($data==null){
             $data['nb']=1;

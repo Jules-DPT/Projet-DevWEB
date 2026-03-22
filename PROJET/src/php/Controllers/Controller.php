@@ -7,5 +7,5 @@ abstract class Controller
     protected $template;
     protected $service;
 
-    abstract protected function getPrimaryData();
+    abstract protected function getPageData();
 }

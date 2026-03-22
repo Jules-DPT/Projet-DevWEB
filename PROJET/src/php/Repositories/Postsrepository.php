@@ -36,7 +36,7 @@ class Postsrepository extends Rechercherepository
     }
 
 
-    public function getPrimaryData()
+    public function getPageData()
     {
         $where = $this->getWhere();
         $query = ("select posts.id AS id,titre, CONCAT(SUBSTRING_INDEX(description,' ',30), '...') AS description_pointille,
@@ -81,6 +81,7 @@ class Postsrepository extends Rechercherepository
         return $posts;
     }
 
+
     public function getSecondaryData()
     {
         $where = $this->getWhere();
@@ -93,7 +94,9 @@ class Postsrepository extends Rechercherepository
                       left JOIN bdd_web.contrat c on posts.id_contrat = c.id
                     $where
                     order by d.date ");
-        $result = $this->getCountData($query);
+        $row =$this->SQL->prepare($query);
+        $row->execute();
+        $result = $row->get_result();
         $data = $result->fetch_assoc();
         if ($data==null){
             $data['nb']=1;
