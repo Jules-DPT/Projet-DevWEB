@@ -100,10 +100,7 @@ class Entreprisesrepository extends Rechercherepository
     public function getMoyNote($id_entreprise)
     {
         $query="select AVG(evaluation_entreprise.note) as note from evaluation_entreprise where id_entreprise=?;";
-        $row =$this->SQL->prepare($query);
-        $row->bind_param("i",$id_entreprise);
-        $row->execute();
-        $result = $row->get_result();
+        $result = $this->ExecuteQueryByID($query,$id_entreprise);
         $data = $result->fetch_assoc();
         return (float)$data['note'];
     }
@@ -111,10 +108,7 @@ class Entreprisesrepository extends Rechercherepository
     public function getNbPosts($id_entreprise)
     {
         $query="select count(id) as nb from posts where id_entreprise=?";
-        $row =$this->SQL->prepare($query);
-        $row->bind_param("i",$id_entreprise);
-        $row->execute();
-        $result = $row->get_result();
+        $result = $this->ExecuteQueryByID($query,$id_entreprise);
         $data = $result->fetch_assoc();
         return (int)$data['nb'];
     }

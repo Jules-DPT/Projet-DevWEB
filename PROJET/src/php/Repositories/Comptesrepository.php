@@ -90,4 +90,9 @@ class Comptesrepository extends Rechercherepository
         }
         return (int)$data['nb'];
     }
+
+    public function UpdateDataByID($id_, $Compte_)
+    {
+
+    }
 }
