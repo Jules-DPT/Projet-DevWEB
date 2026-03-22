@@ -1,28 +1,203 @@
 <!DOCTYPE html>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <html lang="fr">
-
 <head>
-    <link rel="stylesheet" href="assets/style.css">
     <meta charset="UTF-8">
-    <title>Accueil</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StageForMe - Accueil</title>
+    <link rel="stylesheet" href="assets/style.css">
 </head>
-
 <body>
-<nav class="navbar">
-    <a href="#" class="logo">StageForMe</a>
-    <div class="nav-links">
-        <ul>
-            <li class="active"><a href="google.fr">Test</a></li>
-            <li><a href="google.fr">Test</a></li>
-            <li><a href="google.fr">Test</a></li>
-            <li><a href="google.fr">Test</a></li>
-            <li><a href="google.fr">Test</a></li>
-        </ul>
-    </div>
-    <img src="/assets/image/menu-btn.png" alt="menu hamburger" class="menu-hamburger">
-</nav>
-<header></header>
-<script src="assets/scripts.js"></script>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <img src="assets/image/logo.png" alt="Logo StageForMe">
+        </a>
+
+        <div class="nav-links">
+            <ul>
+                <li class="active"><a href="index.html">Accueil</a></li>
+                <li><a href="recherche.html">Recherche</a></li>
+                <li><a href="login.html">Connexion</a></li>
+                <li><a href="mentions-legales.html">Mentions légales</a></li>
+            </ul>
+        </div>
+
+        <button id="theme-toggle" aria-label="Changer le thème">🌙</button>
+
+        <img src="assets/image/menu-btn.png" alt="Menu" class="menu-hamburger">
+    </nav>
+
+    <header class="hero">
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <h1>Trouvez votre stage ou votre alternance plus facilement</h1>
+            <p>
+                StageForMe centralise les offres, les entreprises, les profils étudiants
+                et le suivi des candidatures dans une seule plateforme.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="recherche.html" class="btn btn-primary">Explorer les offres</a>
+                <a href="login.html" class="btn btn-secondary">Se connecter</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="presentation section-container">
+            <h2>À propos de la plateforme</h2>
+            <p>
+                Cette plateforme a pour objectif de faciliter la recherche de stage et d’alternance
+                pour les étudiants, tout en permettant aux pilotes et aux administrateurs
+                de gérer les profils, les entreprises et les candidatures de manière simple et efficace.
+            </p>
+        </section>
+
+        <section class="stats section-container">
+            <h2>Quelques chiffres</h2>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>120+</h3>
+                    <p>Offres publiées</p>
+                </div>
+
+                <div class="stat-card">
+                    <h3>45+</h3>
+                    <p>Entreprises partenaires</p>
+                </div>
+
+                <div class="stat-card">
+                    <h3>300+</h3>
+                    <p>Étudiants inscrits</p>
+                </div>
+
+                <div class="stat-card">
+                    <h3>85%</h3>
+                    <p>Taux de candidatures suivies</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="offers section-container">
+            <div class="section-header">
+                <h2>Offres</h2>
+                <a href="recherche.html" class="see-more">Voir plus</a>
+            </div>
+
+            <div class="offers-tabs">
+                <button class="tab-btn active" data-tab="new">Nouvelles offres</button>
+                <button class="tab-btn" data-tab="old">Anciennes offres</button>
+            </div>
+
+            <div class="offers-content active" id="new">
+                <div class="offers-grid">
+                    <article class="offer-card">
+                        <h3>Développeur Web Junior</h3>
+                        <p class="offer-company">TechNova</p>
+                        <p class="offer-location">La Rochelle</p>
+                        <p>Participation au développement d’une application web interne.</p>
+                        <a href="offre-detail.html" class="card-link">Voir l’offre</a>
+                    </article>
+
+                    <article class="offer-card">
+                        <h3>Assistant Réseau & Cybersécurité</h3>
+                        <p class="offer-company">SecureNet</p>
+                        <p class="offer-location">Niort</p>
+                        <p>Support à l’administration réseau et à la sécurisation des accès.</p>
+                        <a href="offre-detail.html" class="card-link">Voir l’offre</a>
+                    </article>
+
+                    <article class="offer-card">
+                        <h3>Développeur Full Stack</h3>
+                        <p class="offer-company">Web Horizon</p>
+                        <p class="offer-location">Bordeaux</p>
+                        <p>Création et maintenance de modules front-end et back-end.</p>
+                        <a href="offre-detail.html" class="card-link">Voir l’offre</a>
+                    </article>
+                </div>
+            </div>
+
+            <div class="offers-content" id="old">
+                <div class="offers-grid">
+                    <article class="offer-card">
+                        <h3>Technicien Support Informatique</h3>
+                        <p class="offer-company">InfoService</p>
+                        <p class="offer-location">Poitiers</p>
+                        <p>Support utilisateurs et maintenance du matériel informatique.</p>
+                        <a href="offre-detail.html" class="card-link">Voir l’offre</a>
+                    </article>
+
+                    <article class="offer-card">
+                        <h3>Stage Base de Données</h3>
+                        <p class="offer-company">DataFlow</p>
+                        <p class="offer-location">Angoulême</p>
+                        <p>Optimisation et gestion de bases de données relationnelles.</p>
+                        <a href="offre-detail.html" class="card-link">Voir l’offre</a>
+                    </article>
+
+                    <article class="offer-card">
+                        <h3>Développeur Applicatif</h3>
+                        <p class="offer-company">DevCore</p>
+                        <p class="offer-location">Tours</p>
+                        <p>Conception et évolution d’outils métiers pour l’entreprise.</p>
+                        <a href="offre-detail.html" class="card-link">Voir l’offre</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="companies section-container">
+            <div class="section-header">
+                <h2>Entreprises à découvrir</h2>
+                <a href="recherche.html" class="see-more">Voir plus</a>
+            </div>
+
+            <div class="company-grid">
+                <article class="company-card">
+                    <h3>TechNova</h3>
+                    <p>Entreprise spécialisée dans les solutions web et cloud.</p>
+                    <a href="entreprise-detail.html" class="card-link">Voir la fiche</a>
+                </article>
+
+                <article class="company-card">
+                    <h3>SecureNet</h3>
+                    <p>Expert en réseaux, cybersécurité et supervision d’infrastructure.</p>
+                    <a href="entreprise-detail.html" class="card-link">Voir la fiche</a>
+                </article>
+
+                <article class="company-card">
+                    <h3>Web Horizon</h3>
+                    <p>Agence digitale orientée UX, développement et transformation numérique.</p>
+                    <a href="entreprise-detail.html" class="card-link">Voir la fiche</a>
+                </article>
+            </div>
+        </section>
+
+        <section class="cta section-container">
+            <h2>Prêt à commencer ?</h2>
+            <p>
+                Connectez-vous pour accéder à votre espace personnel, suivre vos candidatures
+                et gérer vos informations.
+            </p>
+            <a href="login.html" class="btn btn-primary">Accéder à mon espace</a>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 StageForMe - Tous droits réservés.</p>
+            <div class="footer-links">
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="login.html">Connexion</a>
+                <a href="recherche.html">Recherche</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/scripts.js"></script>
 </body>
 </html>

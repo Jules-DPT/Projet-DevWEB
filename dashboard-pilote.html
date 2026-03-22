@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StageForMe - Dashboard Pilote</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <img src="assets/image/logo.png" alt="Logo StageForMe">
+        </a>
+
+        <div class="nav-links">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="recherche.html">Recherche</a></li>
+                <li class="active"><a href="dashboard-pilote.html">Espace pilote</a></li>
+                <li><a href="login.html">Déconnexion</a></li>
+            </ul>
+        </div>
+
+        <button id="theme-toggle" aria-label="Changer le thème">🌙</button>
+        <img src="assets/image/menu-btn.png" alt="Menu" class="menu-hamburger">
+    </nav>
+
+    <header class="page-banner">
+        <div class="page-banner-overlay"></div>
+        <div class="page-banner-content">
+            <h1>Espace pilote</h1>
+            <p>Gérez votre classe, suivez les étudiants et pilotez les publications de la plateforme.</p>
+        </div>
+    </header>
+
+    <main class="dashboard-page section-container">
+
+        <section class="dashboard-grid">
+
+            <aside class="dashboard-sidebar">
+                <div class="profile-mini-card">
+                    <img src="assets/image/logo.png" alt="Avatar pilote" class="profile-mini-avatar">
+                    <h2>Marie Dupont</h2>
+                    <p>Pilote pédagogique</p>
+                    <span class="badge-role">Pilote</span>
+                </div>
+
+                <div class="dashboard-menu">
+                    <a href="dashboard-pilote.html" class="dashboard-link active">Tableau de bord</a>
+                    <a href="profil-pilote.html" class="dashboard-link">Mon profil</a>
+                    <a href="gestion-classe.html" class="dashboard-link">Gestion de classe</a>
+                    <a href="gestion-posts.html" class="dashboard-link">Gestion des posts</a>
+                    <a href="gestion-fiches.html" class="dashboard-link">Fiches entreprise</a>
+                </div>
+            </aside>
+
+            <div class="dashboard-content">
+
+                <section class="dashboard-stats">
+                    <div class="dashboard-stat-card">
+                        <h3>28</h3>
+                        <p>Étudiants suivis</p>
+                    </div>
+
+                    <div class="dashboard-stat-card">
+                        <h3>14</h3>
+                        <p>Posts publiés</p>
+                    </div>
+
+                    <div class="dashboard-stat-card">
+                        <h3>9</h3>
+                        <p>Fiches entreprise actives</p>
+                    </div>
+
+                    <div class="dashboard-stat-card">
+                        <h3>6</h3>
+                        <p>Commentaires à relire</p>
+                    </div>
+                </section>
+
+                <section class="dashboard-section">
+                    <div class="section-header">
+                        <h2>Mon profil pilote</h2>
+                        <a href="profil-pilote.html" class="see-more">Modifier</a>
+                    </div>
+
+                    <div class="dashboard-panel">
+                        <p><strong>Nom :</strong> Marie Dupont</p>
+                        <p><strong>Rôle :</strong> Pilote pédagogique</p>
+                        <p><strong>Promotion suivie :</strong> A2 CPI Informatique</p>
+                        <p><strong>Campus :</strong> La Rochelle</p>
+                    </div>
+                </section>
+
+                <section class="dashboard-section">
+                    <div class="section-header">
+                        <h2>Actions rapides</h2>
+                    </div>
+
+                    <div class="results-grid">
+                        <article class="result-card">
+                            <span class="result-type">Classe</span>
+                            <h3>Gérer les étudiants</h3>
+                            <p>Consulter les profils étudiants et suivre leur avancement.</p>
+                            <a href="gestion-classe.html" class="card-link">Accéder</a>
+                        </article>
+
+                        <article class="result-card">
+                            <span class="result-type">Posts</span>
+                            <h3>Créer ou modifier un post</h3>
+                            <p>Publier une information importante ou éditer un contenu existant.</p>
+                            <a href="gestion-posts.html" class="card-link">Accéder</a>
+                        </article>
+
+                        <article class="result-card">
+                            <span class="result-type">Entreprise</span>
+                            <h3>Gérer les fiches</h3>
+                            <p>Créer ou modifier les fiches des entreprises partenaires.</p>
+                            <a href="gestion-fiches.html" class="card-link">Accéder</a>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="dashboard-section">
+                    <div class="section-header">
+                        <h2>Étudiants récemment suivis</h2>
+                        <a href="gestion-classe.html" class="see-more">Voir la classe</a>
+                    </div>
+
+                    <div class="dashboard-list">
+                        <article class="dashboard-item">
+                            <div>
+                                <h3>Julie WAFO</h3>
+                                <p>Recherche un stage en réseaux et cybersécurité</p>
+                            </div>
+                            <a href="gestion-classe.html" class="card-link">Voir profil</a>
+                        </article>
+
+                        <article class="dashboard-item">
+                            <div>
+                                <h3>Lucas Martin</h3>
+                                <p>3 candidatures envoyées cette semaine</p>
+                            </div>
+                            <a href="gestion-classe.html" class="card-link">Voir profil</a>
+                        </article>
+
+                        <article class="dashboard-item">
+                            <div>
+                                <h3>Sarah Bernard</h3>
+                                <p>Profil complété à 90%</p>
+                            </div>
+                            <a href="gestion-classe.html" class="card-link">Voir profil</a>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="dashboard-section">
+                    <div class="section-header">
+                        <h2>Publications récentes</h2>
+                        <a href="gestion-posts.html" class="see-more">Voir tout</a>
+                    </div>
+
+                    <div class="dashboard-list">
+                        <article class="dashboard-item">
+                            <div>
+                                <h3>Forum alternance 2026</h3>
+                                <p>Publié le 12 mars 2026</p>
+                            </div>
+                            <a href="gestion-posts.html" class="card-link">Modifier</a>
+                        </article>
+
+                        <article class="dashboard-item">
+                            <div>
+                                <h3>Atelier CV et LinkedIn</h3>
+                                <p>Publié le 8 mars 2026</p>
+                            </div>
+                            <a href="gestion-posts.html" class="card-link">Modifier</a>
+                        </article>
+                    </div>
+                </section>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 StageForMe - Tous droits réservés.</p>
+            <div class="footer-links">
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="recherche.html">Recherche</a>
+                <a href="login.html">Déconnexion</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/scripts.js"></script>
+</body>
+</html>

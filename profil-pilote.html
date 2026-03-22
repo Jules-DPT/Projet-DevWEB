@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StageForMe - Profil Pilote</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <img src="assets/image/logo.png" alt="Logo StageForMe">
+        </a>
+
+        <div class="nav-links">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="recherche.html">Recherche</a></li>
+                <li class="active"><a href="dashboard-pilote.html">Espace pilote</a></li>
+                <li><a href="login.html">Déconnexion</a></li>
+            </ul>
+        </div>
+
+        <button id="theme-toggle" aria-label="Changer le thème">🌙</button>
+        <img src="assets/image/menu-btn.png" alt="Menu" class="menu-hamburger">
+    </nav>
+
+    <header class="page-banner">
+        <div class="page-banner-overlay"></div>
+        <div class="page-banner-content">
+            <h1>Mon profil pilote</h1>
+            <p>Consultez et modifiez vos informations de pilote pédagogique.</p>
+        </div>
+    </header>
+
+    <main class="section-container profile-page">
+
+        <div class="profile-grid">
+
+            <aside class="profile-sidebar">
+                <img src="assets/image/logo.png" alt="Avatar pilote" class="profile-avatar">
+
+                <h2>Marie Dupont</h2>
+                <p class="profile-role">Pilote pédagogique</p>
+
+                <div class="profile-actions">
+                    <a href="dashboard-pilote.html" class="dashboard-link">Tableau de bord</a>
+                    <a href="gestion-classe.html" class="dashboard-link">Gestion de classe</a>
+                    <a href="gestion-posts.html" class="dashboard-link">Gestion des posts</a>
+                    <a href="gestion-fiches.html" class="dashboard-link">Fiches entreprise</a>
+                </div>
+            </aside>
+
+            <section class="profile-content">
+                <h2>Informations du pilote</h2>
+
+                <form class="profile-form">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nom">Nom</label>
+                            <input type="text" id="nom" value="Dupont">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="prenom">Prénom</label>
+                            <input type="text" id="prenom" value="Marie">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" value="marie.dupont@email.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="telephone">Téléphone</label>
+                            <input type="text" id="telephone" placeholder="Votre numéro">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="campus">Campus</label>
+                            <input type="text" id="campus" value="La Rochelle">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="promotion">Promotion suivie</label>
+                            <input type="text" id="promotion" value="A2 CPI Informatique">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="role">Fonction</label>
+                        <input type="text" id="role" value="Pilote pédagogique">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Présentation</label>
+                        <textarea id="description" rows="5">J’accompagne les étudiants dans leur suivi pédagogique, leurs candidatures et leur progression professionnelle.</textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+                </form>
+            </section>
+
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 StageForMe - Tous droits réservés.</p>
+            <div class="footer-links">
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="recherche.html">Recherche</a>
+                <a href="login.html">Déconnexion</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/scripts.js"></script>
+</body>
+</html>

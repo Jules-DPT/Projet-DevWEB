@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StageForMe - Recherche</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <img src="assets/image/logo.png" alt="Logo StageForMe">
+        </a>
+
+        <div class="nav-links">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li class="active"><a href="recherche.html">Recherche</a></li>
+                <li><a href="login.html">Connexion</a></li>
+                <li><a href="mentions-legales.html">Mentions légales</a></li>
+            </ul>
+        </div>
+
+        <button id="theme-toggle" aria-label="Changer le thème">🌙</button>
+        <img src="assets/image/menu-btn.png" alt="Menu" class="menu-hamburger">
+    </nav>
+
+    <header class="page-banner">
+        <div class="page-banner-overlay"></div>
+        <div class="page-banner-content">
+            <h1>Recherche</h1>
+            <p>Trouvez rapidement une offre, un compte ou une fiche entreprise.</p>
+        </div>
+    </header>
+
+    <main class="search-page">
+
+        <section class="search-box section-container">
+            <form class="search-form">
+                <div class="search-input-group">
+                    <input type="text" placeholder="Rechercher une offre, une entreprise ou un profil...">
+                    <button type="submit" class="btn btn-primary">Rechercher</button>
+                </div>
+
+                <div class="search-filters">
+                    <label>
+                        <input type="radio" name="search-type" value="compte" checked>
+                        Compte
+                    </label>
+
+                    <label>
+                        <input type="radio" name="search-type" value="offre">
+                        Offre
+                    </label>
+
+                    <label>
+                        <input type="radio" name="search-type" value="entreprise">
+                        Fiche entreprise
+                    </label>
+                </div>
+            </form>
+        </section>
+
+        <section class="search-results section-container">
+            <div class="section-header">
+                <h2>Résultats</h2>
+                <span class="results-count">12 résultats trouvés</span>
+            </div>
+
+            <div class="results-grid">
+
+                <article class="result-card">
+                    <span class="result-type">Compte étudiant</span>
+                    <h3>Julie WAFO</h3>
+                    <p>Étudiante en informatique - CESI A2 CPI INFO</p>
+                    <a href="profil-etudiant.html" class="card-link">Voir le profil</a>
+                </article>
+
+                <article class="result-card">
+                    <span class="result-type">Offre</span>
+                    <h3>Développeur Web Junior</h3>
+                    <p>TechNova - La Rochelle</p>
+                    <p>Participation au développement d’une application web interne.</p>
+                    <a href="offre-detail.html" class="card-link">Voir l’offre</a>
+                </article>
+
+                <article class="result-card">
+                    <span class="result-type">Fiche entreprise</span>
+                    <h3>SecureNet</h3>
+                    <p>Spécialiste réseaux, cybersécurité et supervision d’infrastructure.</p>
+                    <a href="entreprise-detail.html" class="card-link">Voir la fiche</a>
+                </article>
+
+                <article class="result-card">
+                    <span class="result-type">Compte pilote</span>
+                    <h3>Marie Dupont</h3>
+                    <p>Pilote pédagogique - suivi de promotion</p>
+                    <a href="dashboard-pilote.html" class="card-link">Voir le profil</a>
+                </article>
+
+                <article class="result-card">
+                    <span class="result-type">Offre</span>
+                    <h3>Assistant Réseau & Cybersécurité</h3>
+                    <p>SecureNet - Niort</p>
+                    <p>Support à l’administration réseau et à la sécurisation des accès.</p>
+                    <a href="offre-detail.html" class="card-link">Voir l’offre</a>
+                </article>
+
+                <article class="result-card">
+                    <span class="result-type">Fiche entreprise</span>
+                    <h3>Web Horizon</h3>
+                    <p>Agence digitale spécialisée UX, développement et solutions web.</p>
+                    <a href="entreprise-detail.html" class="card-link">Voir la fiche</a>
+                </article>
+
+            </div>
+
+            <div class="pagination">
+                <a href="#" class="page-btn active">1</a>
+                <a href="#" class="page-btn">2</a>
+                <a href="#" class="page-btn">3</a>
+                <a href="#" class="page-btn">Suivant</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 StageForMe - Tous droits réservés.</p>
+            <div class="footer-links">
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="login.html">Connexion</a>
+                <a href="recherche.html">Recherche</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/scripts.js"></script>
+</body>
+</html>

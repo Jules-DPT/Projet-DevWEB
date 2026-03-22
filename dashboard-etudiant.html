@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StageForMe - Dashboard Étudiant</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <img src="assets/image/logo.png" alt="Logo StageForMe">
+        </a>
+
+        <div class="nav-links">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="recherche.html">Recherche</a></li>
+                <li class="active"><a href="dashboard-etudiant.html">Mon espace</a></li>
+                <li><a href="login.html">Déconnexion</a></li>
+            </ul>
+        </div>
+
+        <button id="theme-toggle" aria-label="Changer le thème">🌙</button>
+        <img src="assets/image/menu-btn.png" alt="Menu" class="menu-hamburger">
+    </nav>
+
+    <header class="page-banner">
+        <div class="page-banner-overlay"></div>
+        <div class="page-banner-content">
+            <h1>Espace étudiant</h1>
+            <p>Bienvenue Julie, gérez votre profil, vos candidatures et vos favoris.</p>
+        </div>
+    </header>
+
+    <main class="dashboard-page section-container">
+
+        <section class="dashboard-grid">
+
+            <aside class="dashboard-sidebar">
+                <div class="profile-mini-card">
+                    <img src="assets/image/logo.png" alt="Avatar étudiant" class="profile-mini-avatar">
+                    <h2>Julie WAFO</h2>
+                    <p>Étudiante en informatique</p>
+                    <span class="badge-role">Étudiant</span>
+                </div>
+
+                <div class="dashboard-menu">
+                    <a href="dashboard-etudiant.html" class="dashboard-link active">Tableau de bord</a>
+                    <a href="profil-etudiant.html" class="dashboard-link">Mon profil</a>
+                    <a href="wishlist.html" class="dashboard-link">Wishlist</a>
+                    <a href="postulations.html" class="dashboard-link">Mes postulations</a>
+                </div>
+            </aside>
+
+            <div class="dashboard-content">
+
+                <section class="dashboard-stats">
+                    <div class="dashboard-stat-card">
+                        <h3>12</h3>
+                        <p>Offres consultées</p>
+                    </div>
+
+                    <div class="dashboard-stat-card">
+                        <h3>4</h3>
+                        <p>Postulations envoyées</p>
+                    </div>
+
+                    <div class="dashboard-stat-card">
+                        <h3>7</h3>
+                        <p>Offres en wishlist</p>
+                    </div>
+
+                    <div class="dashboard-stat-card">
+                        <h3>2</h3>
+                        <p>Entretiens à venir</p>
+                    </div>
+                </section>
+
+                <section class="dashboard-section">
+                    <div class="section-header">
+                        <h2>Mon profil</h2>
+                        <a href="profil-etudiant.html" class="see-more">Modifier</a>
+                    </div>
+
+                    <div class="dashboard-panel">
+                        <p><strong>Nom :</strong> Julie WAFO</p>
+                        <p><strong>Formation :</strong> CESI - CPI A2 Informatique</p>
+                        <p><strong>Spécialité visée :</strong> Réseaux, systèmes et cybersécurité</p>
+                        <p><strong>Ville :</strong> La Rochelle</p>
+                    </div>
+                </section>
+
+                <section class="dashboard-section">
+                    <div class="section-header">
+                        <h2>Mes dernières postulations</h2>
+                        <a href="postulations.html" class="see-more">Voir tout</a>
+                    </div>
+
+                    <div class="dashboard-list">
+                        <article class="dashboard-item">
+                            <div>
+                                <h3>Développeur Web Junior</h3>
+                                <p>TechNova - La Rochelle</p>
+                            </div>
+                            <span class="status-badge pending">En attente</span>
+                        </article>
+
+                        <article class="dashboard-item">
+                            <div>
+                                <h3>Assistant Réseau & Cybersécurité</h3>
+                                <p>SecureNet - Niort</p>
+                            </div>
+                            <span class="status-badge accepted">Entretien</span>
+                        </article>
+
+                        <article class="dashboard-item">
+                            <div>
+                                <h3>Stage Base de Données</h3>
+                                <p>DataFlow - Angoulême</p>
+                            </div>
+                            <span class="status-badge refused">Refusée</span>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="dashboard-section">
+                    <div class="section-header">
+                        <h2>Ma wishlist</h2>
+                        <a href="wishlist.html" class="see-more">Voir tout</a>
+                    </div>
+
+                    <div class="dashboard-list">
+                        <article class="dashboard-item">
+                            <div>
+                                <h3>Développeur Full Stack</h3>
+                                <p>Web Horizon - Bordeaux</p>
+                            </div>
+                            <a href="offre-detail.html" class="card-link">Voir</a>
+                        </article>
+
+                        <article class="dashboard-item">
+                            <div>
+                                <h3>Technicien Support Informatique</h3>
+                                <p>InfoService - Poitiers</p>
+                            </div>
+                            <a href="offre-detail.html" class="card-link">Voir</a>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="dashboard-section">
+                    <div class="section-header">
+                        <h2>Offres recommandées</h2>
+                        <a href="recherche.html" class="see-more">Explorer</a>
+                    </div>
+
+                    <div class="results-grid">
+                        <article class="result-card">
+                            <span class="result-type">Offre</span>
+                            <h3>Administrateur Réseau Junior</h3>
+                            <p>InfraLink - Nantes</p>
+                            <p>Participation à la configuration et à la supervision du réseau.</p>
+                            <a href="offre-detail.html" class="card-link">Voir l’offre</a>
+                        </article>
+
+                        <article class="result-card">
+                            <span class="result-type">Offre</span>
+                            <h3>Stage Cybersécurité</h3>
+                            <p>CyberNova - Bordeaux</p>
+                            <p>Découverte des audits de sécurité et gestion des incidents.</p>
+                            <a href="offre-detail.html" class="card-link">Voir l’offre</a>
+                        </article>
+                    </div>
+                </section>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 StageForMe - Tous droits réservés.</p>
+            <div class="footer-links">
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="recherche.html">Recherche</a>
+                <a href="login.html">Déconnexion</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/scripts.js"></script>
+</body>
+</html>
