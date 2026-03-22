@@ -19,22 +19,13 @@ public function setSQL($SQL_){
     $this->SQL = $SQL_;
 
 }
-abstract protected function getPrimaryData();
 
+abstract protected function DeleteDataByID($id_);//DELETE
 
+abstract protected function UpdateDataByID($id_,$contenant_);//UPDATE
 
-protected function getCountData($query_)
-{
-    $row =$this->SQL->prepare($query_);
-    $row->execute();
-    return $row->get_result();
-}
+abstract protected function InsertDataByID($id_,$contenant_); //CREATE
 
-protected function getDataByID($query_,$id_)
-{
-    $row =$this->SQL->prepare($query_);
-    $row->bind_param("i",$id_);
-    $row->execute();
-    return $row->get_result();
-}
+abstract protected function getDataByID($id_); //READ
+
 }
