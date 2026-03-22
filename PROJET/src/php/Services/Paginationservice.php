@@ -10,9 +10,8 @@ class Paginationservice extends Service
 
 
     }
-    public function getPrimaryData()
+    public function getPageData()
     {
-
     }
 
     public function getPath($get_){
