@@ -1,7 +1,7 @@
 <?php
 
 namespace App\php\Contenants;
-class Posts
+class Post
 {
     private $id;
     private $titre;

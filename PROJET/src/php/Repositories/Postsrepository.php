@@ -2,7 +2,7 @@
 
 namespace App\php\Repositories;
 
-use App\php\Contenants\Posts;
+use App\php\Contenants\Post;
 require_once 'Repository.php';
 
 
@@ -57,7 +57,7 @@ class Postsrepository extends Rechercherepository
         $posts=[];
         while ( $data = $result->fetch_assoc()) {
             $posts[] =
-                new Posts(
+                new Post(
                     (int)$data['id'],
                     $data['titre'],
                     $data['description_pointille'],

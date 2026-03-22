@@ -2,7 +2,7 @@
 
 namespace App\php\Repositories;
 
-use App\php\Contenants\Entreprises;
+use App\php\Contenants\Entreprise;
 use App\php\Repositories\Repository;
 require_once 'Repository.php';
 
@@ -50,7 +50,7 @@ class Entreprisesrepository extends Rechercherepository
         $result = $this->getSearchData($query,$this->limit,$this->offset);
         $Entreprises=[];
         while ($data = $result->fetch_assoc()) {
-            $Entreprises[]= new Entreprises(
+            $Entreprises[]= new Entreprise(
                 (int)$data['id'],
                 $data['nom'],
                 $data['ville'],

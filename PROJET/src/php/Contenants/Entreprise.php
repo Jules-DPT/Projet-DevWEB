@@ -1,7 +1,7 @@
 <?php
 namespace App\php\Contenants;
 
-class Entreprises
+class Entreprise
 {
     private $id;
     private $nom;

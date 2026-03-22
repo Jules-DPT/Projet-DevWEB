@@ -2,7 +2,7 @@
 
 namespace App\php\Repositories;
 
-use App\php\Contenants\Comptes;
+use App\php\Contenants\Compte;
 use App\php\Repositories\Repository;
 
 class Comptesrepository extends Rechercherepository
@@ -54,7 +54,7 @@ class Comptesrepository extends Rechercherepository
         $comptes = [];
         while ($data = $result->fetch_assoc()) {
             $comptes[] =
-                new Comptes(
+                new Compte(
                     (int)$data['id'],
                     $data['nom'],
                     $data['prenom'],

@@ -2,7 +2,7 @@
 
 namespace App\php\Contenants;
 
-class Comptes
+class Compte
 {
     private $id;
 
