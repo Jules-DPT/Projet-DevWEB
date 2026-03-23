@@ -15,14 +15,29 @@ class Comptesrepository extends Rechercherepository
     private $recherche;
 
 
-    public function __construct($page_, $limit_, $recherche_)
+    public function __construct()
     {
         $this->autoSQL();
+        $num = func_num_args();
+        switch ($num) {
+            case 1: $this->__construct1(); break;
+            case 3: $this->__construct2(func_get_arg(0), func_get_arg(1),func_get_arg(2)); break;
+        }
+
+    }
+
+    private function __construct1():void
+    {
+    }
+
+    private function __construct2($page_, $limit_, $recherche_):void
+    {
         $this->page = $page_;
         $this->limit = $limit_ >= 0 ? $limit_ : $this->limit;
         $this->offset = ($this->page - 1) * $this->limit;
         $this->recherche = $recherche_;
     }
+
 
     protected function getWhere()
     {

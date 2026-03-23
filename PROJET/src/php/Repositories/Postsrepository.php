@@ -13,9 +13,23 @@ class Postsrepository extends Rechercherepository
     private $offset;
 
     private $recherche;
-    public function __construct($page_, $limit_, $recherche_)
+    public function __construct()
     {
         $this->autoSQL();
+        $num = func_num_args();
+        switch ($num) {
+            case 1: $this->__construct1(); break;
+            case 3: $this->__construct2(func_get_arg(0), func_get_arg(1),func_get_arg(2)); break;
+        }
+
+    }
+
+    private function __construct1():void
+    {
+    }
+
+    private function __construct2($page_, $limit_, $recherche_):void
+    {
         $this->page = $page_;
         $this->limit = $limit_ >= 0 ? $limit_ : $this->limit;
         $this->offset = ($this->page - 1) * $this->limit;
@@ -124,18 +138,90 @@ class Postsrepository extends Rechercherepository
         return false;
     }
 
-    public function UpdateDataByID($id_,$contant_)
+    public function UpdateDataByID($id_,$contenant_)
     {
-        $query="UPDATE ";
+        $query="UPDATE posts
+                SET titre = ? , description = ?, id_email = ?, id_telephone = ?, nb_de_postulations = ?, id_entreprise= ?, id_adresse = ?,
+                    remuneration = ?, id_date_debut =?, id_date_fin = ?, nombre_wishlist = ?, id_contrat = ?, id_duree = ?, id_date_post =?
+                    WHERE $id_= ? ; ";
+
+        $row =$this->SQL->prepare($query);
+        $row->bind_param("ssiiiiisiiiiiii",$contenant_->getTitre(),$contenant_->getDescription(),$contenant_->getEmail(),
+            $contenant_->getTelephone(),$contenant_->getNbPostulations(),$contenant_->getEntreprise(),$contenant_->getAdresse(),
+            $contenant_->getRemuneration(),$contenant_->getDateDebut(),$contenant_->getDateFin(),$contenant_->getNbWhishlist(),
+            $contenant_->getContrat(),$contenant_->getDuree(),$contenant_->getDateCreation(),$id_);
+        $row->execute();
+
+        $result=$row->get_result();
+        if ($result->affected_rows ==1) {
+            $result->close();
+            return true;
+        }
+        $result->close();
+        return false;
     }
 
-    public function InsertDataByID($id_,$contant_)
+    public function InsertData($contenant_)
     {
-        $query="INSERT INTO bdd_web.posts";
+        $query="INSERT INTO bdd_web.posts (
+                    titre, description, id_email, id_telephone, nb_de_postulations, id_entreprise, id_adresse,
+                    remuneration, id_date_debut, id_date_fin, nombre_wishlist, id_contrat, id_duree, id_date_post)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); ";
+        $row =$this->SQL->prepare($query);
+        $row->bind_param("ssiiiiisiiiiii",$contenant_->getTitre(),$contenant_->getDescription(),$contenant_->getEmail(),
+            $contenant_->getTelephone(),$contenant_->getNbPostulations(),$contenant_->getEntreprise(),$contenant_->getAdresse(),
+            $contenant_->getRemuneration(),$contenant_->getDateDebut(),$contenant_->getDateFin(),$contenant_->getNbWhishlist(),
+            $contenant_->getContrat(),$contenant_->getDuree(),$contenant_->getDateCreation());
+        $row->execute();
+        $result=$row->get_result();
+        if ($result->affected_rows ==1) {
+            $result->close();
+            return true;
+        }
+        $result->close();
+        return false;
     }
 
     public function getDataByID($id_)
     {
-        $query="SELECT * FROM bdd_web.posts WHERE id=?";
+        $query="SELECT po.id as id,po.titre as titre ,po.description as description,e.email as email,t.numero as telephone,
+       po.nb_de_postulations,e2.nom as entreprise,a.adresse,v.nom as ville,v.code_postal as code_postal,p.nom as pays,po.remuneration,
+       d2.date as date_debut,d3.date as date_fin,po.nombre_wishlist,c.type as contrat,d.semaines as duree,d1.date as date_creation
+       FROM bdd_web.posts po
+         left join bdd_web.duree d on po.id_duree = d.id
+         left join bdd_web.date d1 on po.id_date_post = d1.id
+         left join bdd_web.date d2 on d2.id = po.id_date_debut
+         left join bdd_web.date d3 on d3.id = po.id_date_fin
+         left join bdd_web.email e on e.id = po.id_email
+         left join bdd_web.contrat c on po.id_contrat = c.id
+         left join bdd_web.telephone t on po.id_telephone = t.id
+         left join bdd_web.entreprise e2 on e2.id = po.id_entreprise
+         left join bdd_web.adresse a on po.id_adresse = a.id
+         left join bdd_web.ville v on v.id = a.id_ville
+         left join bdd_web.pays p on v.id_pays = p.id
+        WHERE po.id=?";
+        $result=$this->ExecuteQueryByID($query,$id_);
+        $data = $result->fetch_assoc();
+        $post = new Post(
+                    (int)$data['id'],
+                    $data['titre'],
+                    $data['description'],
+                    $data['date_creation'],
+                    $data['email'],
+                    $data['telephone'],
+                    $data['adresse'],
+                    $data['ville'],
+                    $data['code_postal'],
+                    $data['pays'],
+                    (int)$data['nb_de_postulations'],
+                    $data['entreprise'],
+                    $data['remuneration'],
+                    $data['date_debut'],
+                    $data['date_fin'],
+                    (int)$data['nombre_wishlist'],
+                    $data['contrat'],
+                    $data['duree'],
+                );
+        return $post;
     }
 }
