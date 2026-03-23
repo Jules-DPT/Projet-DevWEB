@@ -7,7 +7,7 @@ use App\php\Repositories\Repository;
 class Filerepository extends Repository
 {
 
-    protected function DeleteDataByID($id_)
+    public function DeleteDataByID($id_)
     {
         $query = "DELETE FROM file WHERE id = ?";
         $result = $this->ExecuteQueryByID($query, $id_);
@@ -19,7 +19,7 @@ class Filerepository extends Repository
         return false;
     }
 
-    protected function UpdateDataByID($id_, $contenant_)
+    public function UpdateDataByID($id_, $contenant_)
     {
         $query = "UPDATE file SET chemin=? WHERE id = ?";
         $row=$this->SQL->prepare($query);
@@ -33,7 +33,7 @@ class Filerepository extends Repository
         return false;
     }
 
-    protected function InsertData($contenant_)
+    public function InsertData($contenant_)
     {
         $query= "INSERT INTO file (chemin) VALUES(?)";
         $row =$this->SQL->prepare($query);
@@ -47,10 +47,25 @@ class Filerepository extends Repository
         return false;
     }
 
-    protected function getDataByID($id_)
+    public function getDataByID($id_)
     {
         $query = "SELECT chemin FROM file WHERE id = ?";
         $result = $this->ExecuteQueryByID($query, $id_);
         return $result->fetch_assoc();
+    }
+
+    public function getIDByData($contenant_)
+    {
+        $query = "SELECT id FROM file WHERE chemin = ?";
+        $row =$this->SQL->prepare($query);
+        $row->bind_param("s", $contenant_);
+        $row->execute();
+        $result = $row->get_result();
+        $data = $result->fetch_assoc();
+        if ($data === null) {
+            return false;
+        }
+        return (int)$data['id'];
+
     }
 }
