@@ -15,7 +15,7 @@ class PostsTest extends TestCase
         $this->post= new Post(1,"Stage web","nous cherchons un developpeur web",
             "2025-06-01","jsp@mail.com","0789097624","4 rue de la Poste",
             "Paris","75000","France",12,"Technova","600€",
-            "2025-09-01","2025-12-31",2,"STAGE","3 mois");
+            "2025-09-01","2025-12-31",2,"STAGE",36);
 
     }
 
@@ -101,7 +101,7 @@ class PostsTest extends TestCase
 
     public function testgetDuree()
     {
-        $this->assertSame("3 mois", $this->post->getDuree());
+        $this->assertSame(36, $this->post->getDuree());
     }
 
     //---------------set-methods---------------------------------------------------------------------------------------
@@ -205,7 +205,7 @@ class PostsTest extends TestCase
 
     public function testsetDuree()
     {
-        $this->post->setDuree("1 mois");
-        $this->assertSame("1 mois", $this->post->getDuree());
+        $this->post->setDuree(12);
+        $this->assertSame(12, $this->post->getDuree());
     }
 }
