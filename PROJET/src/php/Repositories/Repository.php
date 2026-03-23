@@ -24,7 +24,7 @@ abstract protected function DeleteDataByID($id_);//DELETE
 
 abstract protected function UpdateDataByID($id_,$contenant_);//UPDATE
 
-abstract protected function InsertDataByID($id_,$contenant_); //CREATE
+abstract protected function InsertData($contenant_); //CREATE
 
 abstract protected function getDataByID($id_); //READ
 
@@ -34,4 +34,5 @@ protected function ExecuteQueryByID($query_,$id_){
     $row->execute();
     return $row->get_result();
 }
+
 }

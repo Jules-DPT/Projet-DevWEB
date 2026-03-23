@@ -15,10 +15,10 @@ abstract class Rechercherepository extends Repository
     protected function getDataByID($id_)
     {}
 
-    protected function UpdateDataByID($id_, $row)
+    protected function UpdateDataByID($id_, $contenant_)
     {}
 
-    protected function InsertDataByID($id_, $row)
+    protected function InsertData($contenant_)
     {}
 
     abstract protected function getALLCount();
