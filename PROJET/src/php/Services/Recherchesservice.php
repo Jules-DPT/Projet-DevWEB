@@ -56,7 +56,7 @@ class Recherchesservice extends Service
 
     public function getPath($get_)
     {
-        return $this->pagination->getPath(htmlspecialchars($get_));
+        return $this->pagination->getPath($get_);
     }
     public function getPage()
     {

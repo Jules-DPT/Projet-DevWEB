@@ -36,7 +36,7 @@ class Recherchecontroller extends Controller
         $contenant = $this->service->getPageData();
         $totalpages= $this->service->getTotalPages();
         $page=$this->service->getPage();
-        $path=$this->service->getPath("?recherche=".$this->recherche);
+        $path=$this->service->getPath("?recherche=".$this->recherche."&type=".$this->type);
         header('Content-Type: text/html; charset=UTF-8');
         if (count($contenant) ==0 )
         {
