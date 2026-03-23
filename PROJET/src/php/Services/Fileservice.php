@@ -55,7 +55,9 @@ class Fileservice extends Service
     public function insertPNGBDD($file) {
         if ($this->repository->getIDByData($file)===false){
             $this->repository->insertData($file);
+            return true;
         }
+        return false;
     }
 
 }
