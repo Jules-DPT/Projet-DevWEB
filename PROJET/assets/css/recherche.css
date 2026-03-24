@@ -217,6 +217,11 @@ input[required]:user-invalid {
     margin-bottom: 10px;
 }
 
+
+#positif{
+    border: 1px solid rgb(60, 253, 0);
+}
+
 .offres .title {
     font-size: 16px;
     font-weight: 500;
