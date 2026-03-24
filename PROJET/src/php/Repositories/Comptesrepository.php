@@ -20,15 +20,12 @@ class Comptesrepository extends Rechercherepository
         $this->autoSQL();
         $num = func_num_args();
         switch ($num) {
-            case 1: $this->__construct1(); break;
             case 3: $this->__construct2(func_get_arg(0), func_get_arg(1),func_get_arg(2)); break;
         }
 
     }
 
-    private function __construct1():void
-    {
-    }
+
 
     private function __construct2($page_, $limit_, $recherche_):void
     {
