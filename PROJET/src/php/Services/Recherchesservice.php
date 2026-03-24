@@ -17,6 +17,8 @@ class Recherchesservice extends Service
     private $page;
 
     private $totalPages;
+
+    private $postulationservice;
     public function __construct($page_,$int,$recherche)
     {
         $page_=(int)$page_;
@@ -37,6 +39,7 @@ class Recherchesservice extends Service
                 break;
             case 3:
                 $this->repository = new PostsRepository($this->page,$this->limit,$recherche);
+                $this->postulationservice= new Postulationservice();
                 break;
         }
         $this->pagination= new Paginationservice();
@@ -53,13 +56,14 @@ class Recherchesservice extends Service
         return  $this->totalPages ;
     }
 
-
     public function getPath($get_)
     {
         return $this->pagination->getPath($get_);
     }
+
     public function getPage()
     {
         return $this->page;
     }
+
 }
