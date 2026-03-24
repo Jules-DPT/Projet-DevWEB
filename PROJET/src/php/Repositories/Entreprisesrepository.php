@@ -95,6 +95,7 @@ class Entreprisesrepository extends Rechercherepository
         $row->execute();
         $result = $row->get_result();
         $data = $result->fetch_assoc();
+        $result->close();
         if ($data==null){
             $data['nb']=1;
         }
@@ -116,6 +117,7 @@ class Entreprisesrepository extends Rechercherepository
         $query="select AVG(evaluation_entreprise.note) as note from evaluation_entreprise where id_entreprise=?;";
         $result = $this->ExecuteQueryByID($query,$id_entreprise);
         $data = $result->fetch_assoc();
+        $result->close();
         return (float)$data['note'];
     }
 
@@ -124,6 +126,7 @@ class Entreprisesrepository extends Rechercherepository
         $query="select count(id) as nb from posts where id_entreprise=?";
         $result = $this->ExecuteQueryByID($query,$id_entreprise);
         $data = $result->fetch_assoc();
+        $result->close();
         return (int)$data['nb'];
     }
 }

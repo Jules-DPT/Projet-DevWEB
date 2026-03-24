@@ -110,6 +110,7 @@ class Postsrepository extends Rechercherepository
         $row->execute();
         $result = $row->get_result();
         $data = $result->fetch_assoc();
+        $result->close();
         if ($data==null){
             $data['nb']=1;
         }
@@ -148,7 +149,6 @@ class Postsrepository extends Rechercherepository
             $contenant_->getRemuneration(),$contenant_->getDateDebut(),$contenant_->getDateFin(),$contenant_->getNbWhishlist(),
             $contenant_->getContrat(),$contenant_->getDuree(),$contenant_->getDateCreation(),$id_);
         $row->execute();
-
         $result=$row->get_result();
         if ($result->affected_rows ==1) {
             $result->close();
@@ -219,6 +219,7 @@ class Postsrepository extends Rechercherepository
                     $data['contrat'],
                     $data['duree'],
                 );
+        $result->close();
         return $post;
     }
 }
