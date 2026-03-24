@@ -69,7 +69,7 @@ class Entreprise
         return $this->nb_posts;
     }
 
-    //------------------------------getters------------------------------------------
+    //------------------------------setters------------------------------------------
 
     public function setId($id_)
     {
@@ -80,19 +80,17 @@ class Entreprise
         $this->nom = $nom_;
     }
 
-
-
     public function setAdresse($adresse_)
     {
-        return $this->adresse = $adresse_;
+         $this->adresse = $adresse_;
     }
     public function setDescription($description_)
     {
-        return $this->description = $description_;
+         $this->description = $description_;
     }
     public function setTelephone($telephone_)
     {
-        return $this->telephone = $telephone_;
+         $this->telephone = $telephone_;
     }
     public function setFile($file_)
     {
