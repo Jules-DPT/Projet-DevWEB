@@ -97,6 +97,7 @@ class Comptesrepository extends Rechercherepository
         $row->execute();
         $result = $row->get_result();
         $data = $result->fetch_assoc();
+        $result->close();
         if ($data==null){
             $data['nb']=1;
         }
@@ -105,6 +106,29 @@ class Comptesrepository extends Rechercherepository
 
     public function UpdateDataByID($id_, $Compte_)
     {
+
+    }
+
+    public function UpdatePassByID($id_, $Password_){
+        $query="update bdd_web.utilisateur set mot_de_passe=? where id=?";
+        $this->SQL->bind_param("si", $Password_, $id_);
+        $row=$this->SQL->prepare($query);
+        $row->execute();
+        $result=$row->get_result();
+        $data=$result->fetch_assoc();
+        $result->close();
+        if ($data==null){
+            return false;
+        }
+        return true;
+    }
+
+    public function getPassByID($id_){
+        $query="select mot_de_passe from bdd_web.utilisateur where id=?";
+        $result=$this->ExecuteQueryByID($query, $id_);
+        $data = $result->fetch_assoc();
+        $result->close();
+        return $data['mot_de_passe'];
 
     }
 }
