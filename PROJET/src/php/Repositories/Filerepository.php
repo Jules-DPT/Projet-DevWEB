@@ -7,6 +7,20 @@ use App\php\Repositories\Repository;
 class Filerepository extends Repository
 {
 
+//    private $id_file;
+//
+//    private $nom_file;
+//
+//    public function __construct($id_file_,$nom_file_)
+//    {
+//        $this->id_file = $id_file_;
+//        $this->nom_file = $nom_file_;
+//    }
+
+    public function __construct()
+    {
+        $this->autoSQL();
+    }
     public function DeleteDataByID($id_)
     {
         $query = "DELETE FROM file WHERE id = ?";
