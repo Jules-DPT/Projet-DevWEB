@@ -6,7 +6,7 @@ use App\php\Contenants\Post;
 use PHPUnit\Framework\TestCase;
 use function PHPUnit\Framework\assertSame;
 
-class PostsTest extends TestCase
+class PostTest extends TestCase
 {
     private $post;
 
