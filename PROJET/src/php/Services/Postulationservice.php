@@ -14,19 +14,30 @@ class Postulationservice extends Service
     private $id_utilisateur;
     private $Fileservice;
     private $Postsrepository;
-
     private $post;
-
     private $file;
     private $uploaddir;
+    public function __construct()
+    {
+        $this->repository = new Postulationrepository();
+        $num = func_num_args();
+        switch ($num) {
+            case 1: $this->__construct1(func_get_arg(0)); break;
+            case 4: $this->__construct2(func_get_arg(0), func_get_arg(1),func_get_arg(2),func_get_arg(3)); break;
+        }
+    }
 
-    public function __construct($id_post_,$id_utilisateur_,$file_,$uploaddir_)
+    private function __construct1($id_utilisateur_):void
+    {
+        $this->id_utilisateur = (int)$id_utilisateur_;
+    }
+
+    private function __construct2($id_post_,$id_utilisateur_,$file_,$uploaddir_):void
     {
         $this->id_post = (int)$id_post_;
         $this->id_utilisateur = (int)$id_utilisateur_;
-        $this->file = $file_;
+        $this->file = htmlspecialchars($file_);
         $this->uploaddir = $uploaddir_;
-        $this->repository = new Postulationrepository();
         $this->Fileservice = new Fileservice();
         $this->Postsrepository = new Postsrepository();
         $this->post =$this->Postsrepository->getDataByID($id_post_);
@@ -66,6 +77,19 @@ class Postulationservice extends Service
             return true;
         }
         return false;
+    }
+
+    public function getCheckPosts($array)
+    {
+        $check=[];
+        foreach ($array as $post) {
+            if ($this->repository->checkPostulation($post->getId(),$this->id_utilisateur))
+            {
+                $check[]=true;
+            }
+            $check[]=false;
+        }
+        return $check;
     }
 
 }
