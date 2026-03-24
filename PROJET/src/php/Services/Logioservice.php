@@ -10,9 +10,12 @@ class Logioservice extends Service
 
     private $id_user;
     private $role;
-    public function __construct($id_user_, $role_){
-        $this->id_user = (int)$id_user_;
-        $this->role = $role_;
+    private $loggedin = false;
+    public function __construct(){
+        session_start();
+        $this->id_user = (int)$_SESSION['id_user'];
+        $this->role = $_SESSION['role'];
+        $this->loggedin = $_SESSION['loggedin'];
         $this->repository= new Comptesrepository();
     }
     protected function getPageData()
@@ -25,9 +28,9 @@ class Logioservice extends Service
         $new_pass=trim($new_pass);
         $confirm_pass=trim($confirm_pass);
         if(empty($new_pass)){
-            return "Please enter the new password.";
+            return "Veuillez entrer le nouveau mot de passe.";
         } elseif(strlen($new_pass) < 8){
-            return "Password must have atleast 8 characters.";
+            return "Le mot de passe doit avoir au moins 8 caractères.";
         }
         else{
             $specialcarac=false;
@@ -38,23 +41,57 @@ class Logioservice extends Service
                 }
             }
             if(!$specialcarac){
-                return "Please enter a valid password with specials caracters such as : ".implode(", ", $list);
+                return "Veuillez entrer un mot de passe valide avec des caractères spéciaux tels que : ".implode(", ", $list);
             }
         }
         if($new_pass!=$confirm_pass){
-            return "your new Password and Confirm password do not match.";
+            return "votre nouveau mot de passe et le mot de passe de confirmation ne correspondent pas.";
         }
         $password=password_hash($new_pass, PASSWORD_ARGON2ID);
         if($this->repository->UpdatePassByID($this->id_user,$password)){
-            return "Password has been updated.";
+            return "Le mot de passe a été mis à jour.";
         }
         else{
-            return "Failed to update password.";
+            return "Échec de la mise à jour du mot de passe.";
         }
     }
 
-    public function LogIn()
+    public function LogIn($email,$password)
     {
+        $email = trim($email);
+        $password = trim($password);
+        if (empty($email) || empty($password)) {
+            return "champs non remplis";
+        }
+
+        $id=$this->repository->getIdByEmail($email);
+        if ($id==false) {
+            return "email non valide";
+        }
+
+        $passbyid=$this->repository->getPassByID($id);
+        if($passbyid!=null){
+            $hashed_password =$passbyid;
+            if (password_verify($password, $hashed_password)) {
+                $this->setIdUser($id);
+                $this->setRole($this->repository->getRoleByID($id));
+                session_start();
+
+                $_SESSION["loggedin"] = true;
+                $_SESSION["id_user"] = $this->id_user;
+                $_SESSION["role"] = $this->role;
+
+                return "mot de passe correct";
+            }
+            else{
+                return "mot de passe incorrect.";
+            }
+        }
+
+        else{
+            return "une erreur est survenue.";
+        }
+
 
     }
 
@@ -68,5 +105,13 @@ class Logioservice extends Service
         session_destroy();
         return true;
     }
+        private function setIdUser($id_user_)
+    {
+        $this->id_user = $id_user_;
+    }
 
+    private function setRole($role_)
+    {
+        $this->role = $role_;
+    }
 }
