@@ -64,7 +64,10 @@ class Entreprisesrepository extends Rechercherepository
             $Entreprises[]= new Entreprise(
                 (int)$data['id'],
                 $data['nom'],
+                "",
                 $data['ville'],
+                "",
+                "",
                 $data['description_pointille'],
                 '',
                 $data['file']==null ? "" : $data['file'],

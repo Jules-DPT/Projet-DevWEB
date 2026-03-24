@@ -6,6 +6,9 @@ class Entreprise
     private $id;
     private $nom;
     private $adresse;
+    private $ville;
+    private $code_postal;
+    private $pays;
     private $description;
     private $telephone;
     private $file;
@@ -17,11 +20,14 @@ class Entreprise
     private $nb_posts;
 
     //--------------------------Constructor----------------------------------------
-    public function __CONSTRUCT($id_,$nom_,$adresse_,$description_,$telephone_,$file,$email_,$note_,$nb_posts)
+    public function __CONSTRUCT($id_,$nom_,$adresse_, $ville_,$code_postal_,$pays_,$description_,$telephone_,$file,$email_,$note_,$nb_posts)
     {
         $this->id = $id_;
         $this->nom = $nom_;
         $this->adresse = $adresse_;
+        $this->ville = $ville_;
+        $this->code_postal = $code_postal_;
+        $this->pays = $pays_;
         $this->description = $description_;
         $this->telephone = $telephone_;
         $this->file = $file;
@@ -42,6 +48,16 @@ class Entreprise
     public function getAdresse()
     {
         return $this->adresse;
+    }
+
+    public function getVille(){
+        return $this->ville;
+    }
+    public function getCodePostal(){
+        return $this->code_postal;
+    }
+    public function getPays(){
+        return $this->pays;
     }
     public function getDescription()
     {
@@ -83,6 +99,15 @@ class Entreprise
     public function setAdresse($adresse_)
     {
          $this->adresse = $adresse_;
+    }
+    public function setVille($ville_){
+        $this->ville = $ville_;
+    }
+    public function setCodePostal($code_postal_){
+        $this->code_postal = $code_postal_;
+    }
+    public function setPays($pays_){
+        $this->pays = $pays_;
     }
     public function setDescription($description_)
     {
