@@ -57,7 +57,7 @@
                     {% include 'Entreprises.html.twig' with {'contenant':contenant} %}
                 {% endif %}
                 {% if (type==3) %}
-                    {% include 'Posts.html.twig' with {'contenant':contenant} %}
+                    {% include 'Posts.html.twig' with {'contenant':contenant,'check':check} %}
                 {% endif %}
             </div>
 
