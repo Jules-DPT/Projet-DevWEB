@@ -18,9 +18,32 @@ class Recherchesservice extends Service
 
     private $totalPages;
 
+    private $id_user;
+    private $role;
     private $postulationservice;
-    public function __construct($page_,$int,$recherche)
+    private $type;
+
+    private $recherche;
+    public function __construct($page_,$int,$recherche_,$role_,$id_user_)
     {
+        if($int===null){
+            $int=3;
+        }
+        elseif($int>3 or $int<1){
+            $int=3;
+        }
+        else{
+            $int=(int)$int;
+        }
+        echo $int;
+        $this->role=(string)$role_;
+        $this->id_user=(int)$id_user_;
+        if(($this->role=="ETUDIANT" or $this->role=="NO") ) {
+            if($int == 1) {
+                $int=3;
+            }
+        }
+        $this->type=$int;
         $page_=(int)$page_;
         if ($page_ < 1) {
             $this->page = 1;
@@ -28,17 +51,17 @@ class Recherchesservice extends Service
         else{
             $this->page=$page_;
         }
-        $recherche=htmlspecialchars($recherche);
-        $this->limit=12;
-        switch ($int){
+        $this->recherche=htmlspecialchars($recherche_);
+        $this->limit=1;
+        switch ($this->type){
             case 1:
-                $this->repository = new Comptesrepository($this->page,$this->limit,$recherche);
+                $this->repository = new Comptesrepository($this->page,$this->limit,$this->recherche,$this->role,$this->id_user);
                 break;
             case 2:
-                $this->repository = new EntreprisesRepository($this->page,$this->limit,$recherche);
+                $this->repository = new EntreprisesRepository($this->page,$this->limit,$this->recherche);
                 break;
             case 3:
-                $this->repository = new PostsRepository($this->page,$this->limit,$recherche);
+                $this->repository = new PostsRepository($this->page,$this->limit,$this->recherche);
                 $this->postulationservice= new Postulationservice();
                 break;
         }
@@ -66,4 +89,16 @@ class Recherchesservice extends Service
         return $this->page;
     }
 
+    public function getType()
+    {
+        return $this->type;
+    }
+    public function getLimit()
+    {
+        return $this->limit;
+    }
+    public function getRecherche()
+    {
+        return $this->recherche;
+    }
 }
