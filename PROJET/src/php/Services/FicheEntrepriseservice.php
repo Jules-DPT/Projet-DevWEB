@@ -22,7 +22,7 @@ class FicheEntrepriseservice extends Fiche
     }
     public function getPageData()
     {
-        return $this->repository->getEntreprisebyid($this->id_cible);
+        return $this->repository->getDatabyid($this->id_cible);
     }
 
     public function getCommentaire()
