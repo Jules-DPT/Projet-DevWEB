@@ -7,16 +7,20 @@ class Commentaire
     private $id;
     private $note;
     private $commentaire;
-    private $id_utilisateur;
-
+    private $utilisateur_nom;
+    private $utilisateur_prenom;
+    private $date;
     private $id_cible;
 
-    public function __construct($id_,$note_,$commentaire_,$id_utilisateur_,$id_cible_)
+
+    public function __construct($id_,$note_,$commentaire_,$utilisateur_nom_,$utilisateur_prenom_,$date_,$id_cible_)
     {
         $this->id = $id_;
         $this->note = $note_;
         $this->commentaire = $commentaire_;
-        $this->id_utilisateur = $id_utilisateur_;
+        $this->utilisateur_nom = $utilisateur_nom_;
+        $this->utilisateur_prenom = $utilisateur_prenom_;
+        $this->date = $date_;
         $this->id_cible = $id_cible_;
     }
 
@@ -37,9 +41,19 @@ class Commentaire
         return $this->commentaire;
     }
 
-    public function getIdUtilisateur()
+    public function getUtilisateurNom()
     {
-        return $this->id_utilisateur;
+        return $this->utilisateur_nom;
+    }
+
+    public function getUtilisateurPrenom()
+    {
+        return $this->utilisateur_prenom;
+    }
+
+    public function getDate()
+    {
+        return $this->date;
     }
 
     public function getIdCible()
@@ -64,9 +78,19 @@ class Commentaire
         $this->commentaire = $commentaire_;
     }
 
-    public function setIdUtilisateur($id_utilisateur_)
+    public function setUtilisateurNom($utilisateur_nom_)
     {
-        $this->id_utilisateur = $id_utilisateur_;
+        $this->utilisateur_nom = $utilisateur_nom_;
+    }
+
+    public function setUtilisateurPrenom($utilisateur_prenom_)
+    {
+        $this->utilisateur_prenom = $utilisateur_prenom_;
+    }
+
+    public function setDate($date_)
+    {
+        $this->date = $date_;
     }
 
     public function setIdCible($id_cible_)
