@@ -35,7 +35,6 @@ class Recherchesservice extends Service
         else{
             $int=(int)$int;
         }
-        echo $int;
         $this->role=(string)$role_;
         $this->id_user=(int)$id_user_;
         if(($this->role=="ETUDIANT" or $this->role=="NO") ) {
@@ -52,7 +51,7 @@ class Recherchesservice extends Service
             $this->page=$page_;
         }
         $this->recherche=htmlspecialchars($recherche_);
-        $this->limit=1;
+        $this->limit=12;
         switch ($this->type){
             case 1:
                 $this->repository = new Comptesrepository($this->page,$this->limit,$this->recherche,$this->role,$this->id_user);
