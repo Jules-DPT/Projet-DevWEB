@@ -109,7 +109,33 @@ class Entreprisesrepository extends Rechercherepository
 
     public function getEntreprisebyid($id_entreprise)
     {
-
+        $query="select entreprise.id ,entreprise.nom as nom,descritption,email,numero,chemin as file,a.adresse,v.nom as ville,v.code_postal,p.nom as pays 
+                from entreprise
+                left join bdd_web.file f on entreprise.id_logo = f.id
+                left join bdd_web.email e on entreprise.id_email = e.id
+                left join bdd_web.telephone t on entreprise.id_telephone = t.id
+                left join bdd_web.adresse a on entreprise.id_adresse = a.id
+                left join bdd_web.ville v on a.id_ville = v.id
+                left join bdd_web.pays p on v.id_pays = p.id
+                where entreprise.id=?";
+        $result=$this->ExecuteQueryByID($query,$id_entreprise);
+        $data=$result->fetch_assoc();
+        $entreprise= new Entreprise(
+            (int)$data['id'],
+            $data['nom'],
+            $data['adresse'],
+            $data['ville'],
+            $data['code_postal'],
+            $data['pays'],
+            $data['descritption'],
+            $data['numero'],
+            $data['file'],
+            $data['email'],
+            $this->getMoyNote((float)$data['id']),
+            $this->getNbPosts((int)$data['id'])
+        );
+        $result->close();
+        return $entreprise;
     }
 
     public function getMoyNote($id_entreprise)
@@ -129,4 +155,6 @@ class Entreprisesrepository extends Rechercherepository
         $result->close();
         return (int)$data['nb'];
     }
+
+
 }
