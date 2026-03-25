@@ -9,5 +9,9 @@ abstract class Controller
 
     protected $id_user;
 
+    protected $role;
+
+    protected $loggedin;
+
     abstract protected function getPageData();
 }
