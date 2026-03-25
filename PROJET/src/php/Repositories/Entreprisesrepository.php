@@ -107,7 +107,7 @@ class Entreprisesrepository extends Rechercherepository
 
     }
 
-    public function getEntreprisebyid($id_entreprise)
+    public function getDatabyid($id_entreprise)
     {
         $query="select entreprise.id ,entreprise.nom as nom,descritption,email,numero,chemin as file,a.adresse,v.nom as ville,v.code_postal,p.nom as pays 
                 from entreprise
