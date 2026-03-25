@@ -11,24 +11,23 @@ class Comptesrepository extends Rechercherepository
     private $limit = 12;
     private $page;
     private $offset;
-
     private $recherche;
-
-
+    private $role;
     public function __construct()
     {
         $this->autoSQL();
         $num = func_num_args();
         switch ($num) {
-            case 3: $this->__construct2(func_get_arg(0), func_get_arg(1),func_get_arg(2)); break;
+            case 4: $this->__construct2(func_get_arg(0), func_get_arg(1),func_get_arg(2),func_get_arg(3)); break;
         }
 
     }
 
 
 
-    private function __construct2($page_, $limit_, $recherche_):void
+    private function __construct2($page_, $limit_, $recherche_,$role_):void
     {
+        $this->role = $role_;
         $this->page = $page_;
         $this->limit = $limit_ >= 0 ? $limit_ : $this->limit;
         $this->offset = ($this->page - 1) * $this->limit;
@@ -45,7 +44,14 @@ class Comptesrepository extends Rechercherepository
             foreach ($words as $word) {
                 $rec[] = "CONCAT(utilisateur.id, ' ', utilisateur.nom, ' ', utilisateur.prenom,' ',t.type,' ',promo) LIKE '%".$word."%'";
             }
-            $where = "WHERE " . implode(" AND ", $rec);
+            if ($this->role=="PILOTE"){
+                $where = "WHERE " . implode(" AND ", $rec)." AND t.type!='ADMIN' and t.type!='PILOTE' ";
+            }
+            else
+            {
+                $where = "WHERE " . implode(" AND ", $rec);
+            }
+
         }
         return $where;
     }
@@ -130,5 +136,31 @@ class Comptesrepository extends Rechercherepository
         $result->close();
         return $data['mot_de_passe'];
 
+    }
+
+    public function getIdByEmail($email)
+    {
+        $query="select utilisateur.id as ID from bdd_web.utilisateur 
+                left join bdd_web.email e on e.id = utilisateur.id_email where e.email=?";
+        $this->SQL->bind_param("s", $email);
+        $row=$this->SQL->prepare($query);
+        $row->execute();
+        $data = $row->get_result();
+        $result=$data->fetch_assoc();
+        $result->close();
+        if ($data==null){
+            return false;
+        }
+        return (int)$result['ID'];
+    }
+
+    public function getRoleById($id_)
+    {
+        $query="select t.type from bdd_web.utilisateur 
+                left join type_utilisateur t on utilisateur.id_type = t.id where utilisateur.id=?";
+        $result=$this->ExecuteQueryByID($query, $id_);
+        $data = $result->fetch_assoc();
+        $result->close();
+        return $data['type'];
     }
 }
