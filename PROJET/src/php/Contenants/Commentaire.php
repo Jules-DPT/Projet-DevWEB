@@ -9,17 +9,19 @@ class Commentaire
     private $commentaire;
     private $nom;
     private $prenom;
+    private $id_user;
     private $date;
     private $id_cible;
 
 
-    public function __construct($id_,$note_,$commentaire_,$nom_,$prenom_,$date_,$id_cible_)
+    public function __construct($id_,$note_,$commentaire_,$nom_,$prenom_,$id_user,$date_,$id_cible_)
     {
         $this->id = $id_;
         $this->note = $note_;
         $this->commentaire = $commentaire_;
         $this->nom = $nom_;
         $this->prenom = $prenom_;
+        $this->id_user = $id_user;
         $this->date = $date_;
         $this->id_cible = $id_cible_;
     }
@@ -51,6 +53,10 @@ class Commentaire
         return $this->prenom;
     }
 
+    public function getIdUser()
+    {
+        return $this->id_user;
+    }
     public function getDate()
     {
         return $this->date;
@@ -88,6 +94,10 @@ class Commentaire
         $this->prenom = $prenom_;
     }
 
+    public function setIdUser($id_user): void
+    {
+        $this->id_user = $id_user;
+    }
     public function setDate($date_)
     {
         $this->date = $date_;
