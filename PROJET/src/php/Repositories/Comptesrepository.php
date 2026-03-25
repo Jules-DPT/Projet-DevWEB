@@ -13,32 +13,40 @@ class Comptesrepository extends Rechercherepository
     private $offset;
     private $recherche;
     private $role;
+    private $id_user;
     public function __construct()
     {
         $this->autoSQL();
         $num = func_num_args();
         switch ($num) {
-            case 4: $this->__construct2(func_get_arg(0), func_get_arg(1),func_get_arg(2),func_get_arg(3)); break;
+            case 5: $this->__construct2(func_get_arg(0), func_get_arg(1),func_get_arg(2),func_get_arg(3),func_get_arg(4)); break;
         }
 
     }
 
 
 
-    private function __construct2($page_, $limit_, $recherche_,$role_):void
+    private function __construct2($page_, $limit_, $recherche_,$role_,$id_user_):void
     {
         $this->role = $role_;
+        $this->id_user = $id_user_;
         $this->page = $page_;
         $this->limit = $limit_ >= 0 ? $limit_ : $this->limit;
         $this->offset = ($this->page - 1) * $this->limit;
         $this->recherche = $recherche_;
+
     }
 
 
     protected function getWhere()
     {
         $words=explode(" ",trim($this->recherche));
-        $where = "";
+        if ($this->role=="PILOTE"){
+            $where=" WHERE t.type!='ADMIN' and t.type!='PILOTE' and id_pilote='$this->id_user'";
+        }
+        else{
+            $where = "";
+        }
         if (!empty($words) && $words[0] !== "") {
             $rec = [];
             foreach ($words as $word) {
