@@ -22,17 +22,23 @@
 
                     <div class="conteneur">
                         {% if type==1 %}
-                            <label class="liquid_box_mini" ><input type="radio" id="etudiants" name="type" value=1 checked  > Comptes</label>
+                            {% if (role=="PILOTE" or role=="ADMIN") %}
+                                <label class="liquid_box_mini" ><input type="radio" id="etudiants" name="type" value=1 checked  > Comptes</label>
+                            {% endif %}
                             <label class="liquid_box_mini" ><input type="radio" id="entreprises" name="type" value=2   > Fiches entreprises</label>
                             <label class="liquid_box_mini" ><input type="radio" id="offres" name="type" value=3   > Offres</label>
                         {% endif %}
                         {% if type==2 %}
-                            <label class="liquid_box_mini" ><input type="radio" id="etudiants" name="type" value=1   > Comptes</label>
+                            {% if (role=="PILOTE" or role=="ADMIN") %}
+                                <label class="liquid_box_mini" ><input type="radio" id="etudiants" name="type" value=1   > Comptes</label>
+                            {% endif %}
                             <label class="liquid_box_mini" ><input type="radio" id="entreprises" name="type" value=2 checked  > Fiches entreprises</label>
                             <label class="liquid_box_mini" ><input type="radio" id="offres" name="type" value=3   > Offres</label>
                         {% endif %}
                         {% if type==3 %}
-                            <label class="liquid_box_mini" ><input type="radio" id="etudiants" name="type" value=1   > Comptes</label>
+                            {% if (role=="PILOTE" or role=="ADMIN") %}
+                                <label class="liquid_box_mini" ><input type="radio" id="etudiants" name="type" value=1   > Comptes</label>
+                            {% endif %}
                             <label class="liquid_box_mini" ><input type="radio" id="entreprises" name="type" value=2   > Fiches entreprises</label>
                             <label class="liquid_box_mini" ><input type="radio" id="offres" name="type" value=3  checked > Offres</label>
                         {% endif %}
