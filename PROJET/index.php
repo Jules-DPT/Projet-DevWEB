@@ -12,6 +12,32 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 
+session_set_cookie_params([
+    'lifetime' => 0, // expire à la fermeture du navigateur
+    'path' => '/',
+    'secure' => true,     // HTTPS obligatoire
+    'httponly' => true,   // pas accessible JS
+    'samesite' => 'Strict'
+]);
+session_start(['id_user','role','loggedin']);
+
+if ( !isset($_SESSION['loggedin'])) {
+    $_SESSION['loggedin'] = false;
+}
+if (!isset($_SESSION['role'])) {
+    $_SESSION['role']='NO';
+}
+if (!isset($_SESSION['id_user'])) {
+    $_SESSION['id_user']=-1;
+}
+
+//$id_user = (int)$_SESSION['id_user'];
+//$role = $_SESSION['role'];
+$loggedin = $_SESSION['loggedin'];
+
+$id_user=3;
+$role = "PILOTE";
+
 $loader = new \Twig\Loader\FilesystemLoader('src/Templates');
 $twig = new \Twig\Environment($loader, [
     'debug' => true
@@ -27,12 +53,14 @@ switch ($uri) {
         $Page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
         $recherche = isset($_GET['recherche']) ? (string)$_GET['recherche'] : '';
         $int =isset($_GET['type']) ? (int)$_GET['type'] : 3;
+        $recherchecontroller = new Recherchecontroller($int,$Page,$recherche,$twig,$id_user,$role);
 
-        $recherchecontroller = new Recherchecontroller($int,$Page,$recherche,$twig);
+        $recherchecontroller->getPageData();
 
-        $recherchecontroller->getPrimaryData();
         break;
-
+    case '/Postuler':
+        echo "nope";
+        break;
     default:
         // TODO : return a 404 error
         echo '404 Not Found';
