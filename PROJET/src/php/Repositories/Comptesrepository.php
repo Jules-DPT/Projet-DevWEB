@@ -171,4 +171,17 @@ class Comptesrepository extends Rechercherepository
         $result->close();
         return $data['type'];
     }
+
+    public function UpdateTypeById($id_,$id_Type)
+    {
+        $query="update bdd_web.utilisateur set id_type=? where id=?";
+        $this->SQL->bind_param("ii", $id_Type, $id_);
+        $row=$this->SQL->prepare($query);
+        $row->execute();
+        $result=$row->get_result();
+        if($result->num_rows==1){
+            return true;
+        }
+        return false;
+    }
 }
