@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails de l'offre - StageForMe</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <header class="header-minimal">
+        <a href="recherche.html" class="back-button" title="Retour à la recherche">
+            <img src="assets/images/back-arrow.png" alt="Retour">
+        </a>
+    </header>
+
+    <main class="container-offre">
+        <section class="card form-card">
+            <div class="card-info title">
+                <div class="tag-container">
+                    <span class="tag">Stage</span>
+                    <span class="tag">Remote</span>
+                </div>
+                <h1 class="title">Développeur Web Fullstack (H/F)</h1>
+                <p>TechCorp Industries • Lyon, France</p>
+            </div>
+
+            <div class=" job-content card-info">
+                <h3>Description du poste</h3>
+                <p>
+                    Nous recherchons un stagiaire passionné par le développement web pour rejoindre notre équipe agile. 
+                    Vous participerez à la conception et au déploiement de nouvelles fonctionnalités sur notre plateforme principale.
+                </p>
+
+                <h3>Missions</h3>
+                <ul>
+                    <li>Développement de composants UI avec React</li>
+                    <li>Maintenance de l'API Node.js</li>
+                    <li>Participation aux revues de code</li>
+                </ul>
+
+                <h3>Profil recherché</h3>
+                <p class="muted">Étudiant en Bac+3/5 en informatique, curieux et autonome.</p>
+            </div>
+        </section>
+        <br>
+        <section class="card form-card">
+            <form action="#" method="POST" enctype="multipart/form-data">
+                <div class="form-grid">
+                    <div class="field">
+                        <label for="cv">Curriculum Vitae (CV)</label>
+                        <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx" required>
+                        <span class="hint">Format PDF de préférence</span>
+                    </div>
+                    <div class="field">
+                        <label for="lm">Lettre de motivation</label>
+                        <input type="text" id="lm" name="lm">
+                        <span class="hint">Optionnel</span>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button type="submit" class="btn-primary">Envoyer ma candidature</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <section class="footer-inner">
+        <span>© StageForMe</span>
+        <a class="link" href="mentions-legales.html">Mentions légales</a>
+    </section>
+
+</body>
+</html>
