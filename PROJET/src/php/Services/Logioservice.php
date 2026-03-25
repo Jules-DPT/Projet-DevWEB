@@ -11,16 +11,16 @@ class Logioservice extends Service
     private $id_user;
     private $role;
     private $loggedin = false;
-    public function __construct(){
+    public function __construct($id_user_,$role_,$loggedin_){
         session_start();
-        $this->id_user = (int)$_SESSION['id_user'];
-        $this->role = $_SESSION['role'];
-        $this->loggedin = $_SESSION['loggedin'];
+        $this->id_user = $id_user_;
+        $this->role = $role_;
+        $this->loggedin = $loggedin_;
         $this->repository= new Comptesrepository();
     }
     protected function getPageData()
     {
-        return ["user"=>$this->id_user, "role"=>$this->role];
+        return ["user"=>$this->id_user, "role"=>$this->role, "loggedin"=>$this->loggedin];
     }
 
     public function RESET($new_pass,$confirm_pass)
@@ -113,5 +113,27 @@ class Logioservice extends Service
     private function setRole($role_)
     {
         $this->role = $role_;
+    }
+
+    public function SignIn($Compte_,$confirm_pass_)
+    {
+        $confirm_pass=trim($confirm_pass_);
+        if(empty($new_pass)){
+            return "Veuillez entrer le nouveau mot de passe.";
+        } elseif(strlen($new_pass) < 8){
+            return "Le mot de passe doit avoir au moins 8 caractères.";
+        }
+        else {
+            $specialcarac = false;
+            $list = [",", "?", ".", "!", "$", "&", "@"];
+            for ($i = 0; $i < strlen($new_pass); $i++) {
+                if (in_array($new_pass[$i], $list)) {
+                    $specialcarac = true;
+                }
+            }
+            if (!$specialcarac) {
+                return "Veuillez entrer un mot de passe valide avec des caractères spéciaux tels que : " . implode(", ", $list);
+            }
+        }
     }
 }
