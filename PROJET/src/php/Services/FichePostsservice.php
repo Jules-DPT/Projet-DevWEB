@@ -2,8 +2,9 @@
 
 namespace App\php\Services;
 
-use App\php\Repositories\Comptesrepository;
+
 use App\php\Repositories\EvaluationPostsrepository;
+use App\php\Repositories\Postsrepository;
 use App\php\Services\Fiche;
 
 class FichePostsservice extends Fiche
@@ -13,12 +14,12 @@ class FichePostsservice extends Fiche
         $this->id_user=$id_user_;
         $this->role=$role_;
         $this->id_cible = $id_post_;
-        $this->repository=new Comptesrepository();
+        $this->repository=new Postsrepository();
         $this->Evaluationrepository=new EvaluationPostsrepository();
     }
     public function getPageData()
     {
-        return $this->repository->getEntreprisebyid($this->id_cible);
+        return $this->repository->getDataByID($this->id_cible);
     }
 
     public function getCommentaire()
