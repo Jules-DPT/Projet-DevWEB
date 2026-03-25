@@ -13,7 +13,6 @@ abstract class Fiche extends Service
     private $id_cible;
     protected function getPageData()
     {
-        // TODO: Implement getPageData() method.
     }
 
     protected function getCommentaire()
