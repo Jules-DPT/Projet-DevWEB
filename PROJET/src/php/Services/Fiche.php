@@ -7,10 +7,11 @@ use App\php\Services\Service;
 
 abstract class Fiche extends Service
 {
-    private $Evaluationrepository;
-    private $role;
-    private $id_user;
-    private $id_cible;
+    protected $Evaluationrepository;
+    protected $role;
+    protected $id_user;
+    protected $id_cible;
+
     protected function getPageData()
     {
     }
@@ -47,5 +48,10 @@ abstract class Fiche extends Service
             $id_cible
         );
         return $this->Evaluationrepository->InsertData($com);
+    }
+
+    protected function getTotal($contenant_,$limit_)
+    {
+        return ceil(count($contenant_)/$limit_);
     }
 }
