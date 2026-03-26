@@ -156,9 +156,9 @@ class Entreprisesrepository extends Rechercherepository
         return (int)$data['nb'];
     }
 
-    public function getNbPosts()
+    public function getNbEntreprises()
     {
-        $query="select count(id) as nb from posts";
+        $query="select count(id) as nb from entreprise";
         $row =$this->SQL->prepare($query);
         $row->execute();
         $result = $row->fetch_assoc();
