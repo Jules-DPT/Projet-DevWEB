@@ -6,13 +6,6 @@ namespace App\php\Controllers;
 use App\php\Services\Postulationservice;
 use App\php\Services\Recherchesservice;
 
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-header('Content-Type: application/json');
-
-
-
-
 
 class Recherchecontroller extends Controller
 {
@@ -24,14 +17,14 @@ class Recherchecontroller extends Controller
 
     private $postulationservice;
 
-    public function __construct($int,$page_,$recherche_,$template_,$id_user_,$role_)
+    public function __construct($type,$page_,$recherche_,$template_,$id_user_,$role_)
     {
         $this->id_user=$id_user_;
         $this->role=$role_;
         $this->template=$template_;
         $this->Page = $page_;
         $this->recherche = $recherche_;
-        $this->service = new Recherchesservice($this->Page,$int,$this->recherche,$this->role,$this->id_user);
+        $this->service = new Recherchesservice($this->Page,$type,$this->recherche,$this->role,$this->id_user);
         $this->postulationservice = new Postulationservice($this->id_user);
     }
 
