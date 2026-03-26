@@ -73,7 +73,7 @@ class Entreprisesrepository extends Rechercherepository
                 $data['file']==null ? "" : $data['file'],
                 '',
                 $this->getMoyNote((float)$data['id']),
-                $this->getNbPosts((int)$data['id'])
+                $this->getNbPostsById((int)$data['id'])
             );
 
         }
@@ -132,7 +132,7 @@ class Entreprisesrepository extends Rechercherepository
             $data['file'],
             $data['email'],
             $this->getMoyNote((float)$data['id']),
-            $this->getNbPosts((int)$data['id'])
+            $this->getNbPostsById((int)$data['id'])
         );
         $result->close();
         return $entreprise;
@@ -147,13 +147,23 @@ class Entreprisesrepository extends Rechercherepository
         return (float)$data['note'];
     }
 
-    public function getNbPosts($id_entreprise)
+    public function getNbPostsById($id_entreprise)
     {
         $query="select count(id) as nb from posts where id_entreprise=?";
         $result = $this->ExecuteQueryByID($query,$id_entreprise);
         $data = $result->fetch_assoc();
         $result->close();
         return (int)$data['nb'];
+    }
+
+    public function getNbPosts()
+    {
+        $query="select count(id) as nb from posts";
+        $row =$this->SQL->prepare($query);
+        $row->execute();
+        $result = $row->fetch_assoc();
+        $result->close();
+        return (int)$result['nb'];
     }
 
 
