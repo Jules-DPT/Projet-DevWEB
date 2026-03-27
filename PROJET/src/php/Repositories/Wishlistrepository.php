@@ -11,8 +11,27 @@ class Wishlistrepository extends Repository
 
     private $id_post;
 
-    public function __construct($id_user_,$id_post_){
+    public function __construct(){
         $this->autoSQL();
+        $num=func_num_args();
+        switch($num){
+            case 1:
+                $this->__construct1(func_get_arg(0));
+                break;
+            case 2:
+                $this->__construct2(func_get_arg(0),func_get_arg(1));
+                break;
+        }
+    }
+
+    private function __construct1($id_user_)
+    {
+        $this->id_user = $id_user_;
+
+    }
+
+    private function __construct2($id_user_,$id_post_)
+    {
         $this->id_user = $id_user_;
         $this->id_post = $id_post_;
     }
@@ -54,7 +73,14 @@ class Wishlistrepository extends Repository
 
     public function getDataByID($id_)
     {
-        // TODO: Implement getDataByID() method.
+        $query="SELECT id_posts FROM whishlist WHERE id_utilisateur=?";
+        $result=$this->ExecuteQueryByID($query,$id_);
+        $id_posts=[];
+        while($data=$result->fetch_assoc()){
+            $id_posts[]=$data['id_posts'];
+        }
+        return $id_posts;
+
     }
 
     public function DeleteWish()
@@ -81,5 +107,13 @@ class Wishlistrepository extends Repository
             return true;
         }
         return false;
+    }
+
+    public function getNbWishes()
+    {
+        $query="SELECT COUNT(id_posts) as nb FROM whishlist WHERE id_utilisateur=?";
+        $result=$this->ExecuteQueryByID($query,$this->id_user);
+        $data=$result->fetch_assoc();
+        return (int)$data['nb'];
     }
 }
