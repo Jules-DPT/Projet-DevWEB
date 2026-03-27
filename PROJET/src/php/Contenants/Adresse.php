@@ -10,13 +10,16 @@ class Adresse
     private $code_postal;
     private $pays;
 
-    public function __construct($id_,$adresse_, $ville_, $code_postal_, $pays_)
+    private $prefix_tel;
+
+    public function __construct($id_,$adresse_, $ville_, $code_postal_, $pays_,$prefix_tel_)
     {
         $this->id = $id_;
         $this->adresse = $adresse_;
         $this->ville = $ville_;
         $this->code_postal = $code_postal_;
         $this->pays = $pays_;
+        $this->prefix_tel = $prefix_tel_;
     }
 
     #--------------------------------------------------getters--------------------------------------------------------
@@ -45,6 +48,11 @@ class Adresse
         return $this->pays;
     }
 
+    public function getPrefixTel()
+    {
+        return $this->prefix_tel;
+    }
+
     #-----------------------------------------------------setters--------------------------------------------------
 
     public function setId($id_)
@@ -70,6 +78,11 @@ class Adresse
     public function setPays($pays_)
     {
         $this->pays = $pays_;
+    }
+
+    public function setPrefixTel($prefix_tel_)
+    {
+        $this->prefix_tel = $prefix_tel_;
     }
 
 }
