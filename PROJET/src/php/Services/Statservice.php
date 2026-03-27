@@ -11,6 +11,10 @@ class Statservice
 {
 
     private $limit;
+
+    private $id_user;
+
+    private $role;
     private $Compterepository;
 
     private $Entrepriserepository;
@@ -18,12 +22,27 @@ class Statservice
     private $Postrepository;
 
 
-    public function __construct($limit)
+    public function __construct()
     {
-        $this->limit = $limit;
-        $this->Compterepository=new Comptesrepository();
         $this->Entrepriserepository= new Entreprisesrepository();
         $this->Postrepository= new Postsrepository();
+        $num=func_num_args();
+        switch ($num){
+            case 3:
+                $this->__construct2(func_get_arg(0),func_get_arg(1),func_get_arg(2));
+                break;
+            default:
+                $this->Compterepository= new Comptesrepository();
+                break;
+        }
+    }
+
+    private function __construct2($limit, $role_,$id_user_)
+    {
+        $this->limit=$this->limit <=0?5:(int)$limit;
+        $this->id_user=(int)$id_user_;
+        $this->role=(string)$role_;
+        $this->Compterepository=new Comptesrepository($this->role,$this->id_user,$this->limit);
     }
 
     public function getTrendingPosts()
@@ -54,5 +73,17 @@ class Statservice
     public function getNbUsers()
     {
         return $this->Compterepository->getNbComptes();
+    }
+
+    public function getStudentByPostulation()
+    {
+        if($this->role=="PILOTE")
+        {
+            return $this->Compterepository->getStudentByPostulation();
+        }
+        else
+        {
+            return ["ACCES PILOTE UNIQUEMENT"];
+        }
     }
 }
