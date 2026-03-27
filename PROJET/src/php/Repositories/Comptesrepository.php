@@ -213,7 +213,7 @@ class Comptesrepository extends Rechercherepository
                 where u.id_pilote=?
                 group by u.id order by nb DESC LIMIT ?";
         $row =$this->SQL->prepare($query);
-        $row->bind_param("i",$this->limit);
+        $row->bind_param("ii",$this->id_user,$this->limit);
         $row->execute();
         $result = $row->get_result();
         $stat=[];
