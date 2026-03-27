@@ -5,6 +5,7 @@ namespace App\php\Services;
 use App\php\Repositories\Comptesrepository;
 use App\php\Repositories\Entreprisesrepository;
 use App\php\Repositories\Postsrepository;
+use App\php\Repositories\Wishlistrepository;
 
 
 class Statservice
@@ -20,6 +21,8 @@ class Statservice
     private $Entrepriserepository;
 
     private $Postrepository;
+
+    private $Wishlistrepository;
 
 
     public function __construct()
@@ -42,6 +45,7 @@ class Statservice
         $this->limit=$this->limit <=0?5:(int)$limit;
         $this->id_user=(int)$id_user_;
         $this->role=(string)$role_;
+        $this->Wishlistrepository= new Wishlistrepository($this->id_user,);
         $this->Compterepository=new Comptesrepository($this->role,$this->id_user,$this->limit);
     }
 
@@ -85,5 +89,14 @@ class Statservice
         {
             return ["ACCES PILOTE UNIQUEMENT"];
         }
+    }
+
+    public function getNbWishes()
+    {
+        if($this->role=="ETUDIANT")
+        {
+            return $this->Wishlistrepository->getNbWishes();
+        }
+        return ["ACCES ETUDIANT UNIQUEMENT"];
     }
 }
