@@ -184,4 +184,14 @@ class Comptesrepository extends Rechercherepository
         }
         return false;
     }
+
+    public function getNbComptes()
+    {
+        $query="select count(utilisateur.id) as nb from bdd_web.utilisateur";
+        $row=$this->SQL->prepare($query);
+        $row->execute();
+        $result = $row->fetch_assoc();
+        $result->close();
+        return (int)$result['nb'];
+    }
 }
