@@ -206,16 +206,11 @@ a.link:hover{ color: var(--c-warm); }
 
     
   box-shadow: inset 0 1px 1px rgba(255,255,255,0.2), 0 8px 24px rgba(0,0,0,0.15);
-
+  margin-bottom: 20px;
     
   justify-content: center;
-    
   align-items: center;
-
-    
   transition: all 0.35s ease;
-
-   
 }
 
 .field option {
@@ -723,13 +718,6 @@ input:focus, select:focus{
   color:var(--apple-white);
 }
 
-
-
-
-
-
-
-
 .header-minimal {
   display: flex;
   align-items: center;
@@ -810,6 +798,74 @@ input[type="file"] {
 input[type="file"]::file-selector-button {
   display: none; 
 }
+
+.radio-group {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.radio-group input[type="radio"] {
+  display: none;
+}
+
+.radio-group input[type="radio"] + label {
+  position: relative;
+  padding-left: 40px;
+  cursor: pointer;
+  display: inline-block;
+  color: #ffffff;
+  font-family: sans-serif;
+  line-height: 25px;
+}
+
+.radio-group input[type="radio"] + label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 24px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.1); 
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.radio-group input[type="radio"] + label::after {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+  box-shadow: 0 0 10px rgba(79, 172, 254, 0.8);
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.radio-group input[type="radio"] + label:hover::before {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.radio-group input[type="radio"]:checked + label::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.radio-group input[type="radio"]:checked + label::before {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #4facfe;
+  box-shadow: 0 0 15px rgba(79, 172, 254, 0.3);
+}
+
 @media (min-width: 900px){
   .auth-layout{
     grid-template-columns: 1.05fr .95fr;
@@ -823,7 +879,6 @@ input[type="file"]::file-selector-button {
   .grid-2{ grid-template-columns: 1fr 1fr; }
   .info{ grid-template-columns: 1fr 1fr; align-items: start; }
 }
-
 
 @media screen and (max-width: 700px) {
 
@@ -846,36 +901,31 @@ input[type="file"]::file-selector-button {
   }
 
   .nav-links {
-      position: fixed;
-      top: 0;
-      left: 0;
-
-      width: 100%;
-      height: 100vh;
-
-      background: rgba(255, 255, 255, 0.18);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      transform: translateX(100%);
-      transition: transform 0.4s ease;
-
-      border-radius: 0;
-      padding: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(100%);
+    transition: transform 0.4s ease;
+    border-radius: 0;
+    padding: 0;
   }
 
   .nav-links.mobile-menu {
-      transform: translateX(0%);
+    transform: translateX(0%);
   }
 
 
   .nav-links ul {
-      flex-direction: column;
-      gap:60px;
+    flex-direction: column;
+    gap:60px;
   }
 
   .nav-links ul li {
@@ -887,8 +937,8 @@ input[type="file"]::file-selector-button {
   }
 
   .nav-links.mobile-menu ul li {
-      opacity: 1;
-      transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .nav-links.mobile-menu ul li:nth-child(1) { transition-delay: 0.1s; }
@@ -899,10 +949,10 @@ input[type="file"]::file-selector-button {
 
 
   .navbar .logo {
-      position: absolute;
-      top: 50px;
-      left: 25px;
-      z-index: 1001;
+    position: absolute;
+    top: 50px;
+    left: 25px;
+    z-index: 1001;
   }
 }
 

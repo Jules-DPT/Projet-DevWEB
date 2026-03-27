@@ -9,16 +9,17 @@
 </head>
 <body>
   <nav class="navbar">
-    <a href="index.html" class="logo">StageForMe</a>
+    <a href="#" class="logo">StageForMe</a>
     <div class="nav-links">
-      <ul>
-        <li><a href="offres.html">Offres</a></li>
-        <li><a href="entreprises.html">Entreprises</a></li>
-        <li><a href="admin-dashboard.html">Admin</a></li>
-    </ul>
+        <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li class="active"><a href="recherche-entreprise.html">Recherche</a></li>
+            <li><a href="mentions-legales.html">Mentions légales</a></li>
+            <li><a href="login.html">Connexion</a></li>
+        </ul>
     </div>
-    <img src="/assets/image/menu-btn.png" alt="menu hamburger" class="menu-hamburger">
-  </nav>
+    <img src="assets/images/menu-btn.png" alt="menu hamburger" class="menu-hamburger">
+</nav>
 
   <main id="main" class="container page search">
     <div class="page-head">
@@ -34,6 +35,14 @@
           <input id="email" name="email" type="email" required autocomplete="email" placeholder="ex: Stage ingénieur..." />
         </div>
         <div class="actions">
+          <div class="radio-group">
+            <input type="radio" id="étudiants" name="type" value="utilisateur">
+            <label for="étudiants">Comptes</label>
+            <input type="radio" id="offres" name="type" value="posts" checked>
+            <label for="offres">Offres</label>
+            <input type="radio" id="entreprises" name="type" value="entreprise">
+            <label for="entreprises">Fiches entreprises</label>
+          </div>
           <button type="reset" class="btn-primary">Effacer</button>
           <button class="btn-primary" type="submit">Rechercher</button>
         </div>
