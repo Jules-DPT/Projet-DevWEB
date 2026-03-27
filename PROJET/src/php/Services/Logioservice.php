@@ -103,7 +103,15 @@ class Logioservice extends Service
         session_unset();
         // Destroy the session.
         session_destroy();
-        return true;
+        if(isset($_SESSION))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+
     }
         private function setIdUser($id_user_)
     {
@@ -117,11 +125,15 @@ class Logioservice extends Service
 
     public function SignIn($Compte_,$confirm_pass_)
     {
+        $new_pass=trim($Compte_->getPassword());
         $confirm_pass=trim($confirm_pass_);
-        if(empty($new_pass)){
-            return "Veuillez entrer le nouveau mot de passe.";
+        if(empty($new_pass) or empty($confirm_pass)){
+            return "Veuillez entrer les mots de passes.";
         } elseif(strlen($new_pass) < 8){
             return "Le mot de passe doit avoir au moins 8 caractères.";
+        }
+        elseif ($new_pass!=$confirm_pass){
+            return "Les mots de passe ne correspondent pas.";
         }
         else {
             $specialcarac = false;
@@ -134,6 +146,8 @@ class Logioservice extends Service
             if (!$specialcarac) {
                 return "Veuillez entrer un mot de passe valide avec des caractères spéciaux tels que : " . implode(", ", $list);
             }
+
+
         }
     }
 }
