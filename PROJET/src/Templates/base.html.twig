@@ -1,0 +1,22 @@
+<nav class="navbar">
+    <a href="{# mettre le lien pour amener à l'accueil #}" class="logo">StageForMe</a>
+    
+    <div class="nav-links">
+        <ul>
+            <li class="{{ app.request.get('_route') == 'app_home' ? 'active' }}">
+                <a href="{{ path('app_home') }}">Accueil</a>
+            </li>
+            <li class="{{ app.request.get('_route') == 'app_recherche' ? 'active' }}">
+                <a href="{{ path('app_recherche') }}">Recherche</a>
+            </li>
+            <li class="{{ app.request.get('_route') == 'app_legal' ? 'active' }}">
+                <a href="{{ path('app_legal') }}">Mentions légales</a>
+            </li>
+            <li>
+                <a href="{{ path('app_login') }}">Connexion</a>
+            </li>
+        </ul>
+    </div>
+    
+    <img src="{{ asset('assets/images/menu-btn.png') }}" alt="menu hamburger" class="menu-hamburger">
+</nav>

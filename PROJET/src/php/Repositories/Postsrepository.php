@@ -232,4 +232,58 @@ class Postsrepository extends Rechercherepository
         $result->close();
         return $post;
     }
+
+    public function getTrendingPosts(){
+        $query="select posts.id,posts.titre,count(id_utilisateur) as nb
+                from posts
+                    left join postulation p on posts.id = p.id_post
+                group by posts.id order by nb DESC LIMIT ?";
+        $row=$this->SQL->prepare($query);
+        $row->bind_param("i",$this->limit);
+        $row->execute();
+        $result=$row->get_result();
+        $stat=[];
+        while ($data = $result->fetch_assoc()) {
+            $stat = [(int)$data['id'], $data['titre'],$data['nb']];
+        }
+        $result->close();
+        return $stat;
+
+    }
+
+    public function getNbMoyCandidature()
+    {
+        $query="select posts.id,posts.titre,AVG(id_utilisateur) as moy
+                from posts
+                        left join postulation p on posts.id = p.id_post
+                group by posts.id order by moy DESC LIMIT ?";
+        $row=$this->SQL->prepare($query);
+        $row->bind_param("i",$this->limit);
+        $row->execute();
+        $result=$row->get_result();
+        $stat=[];
+        while ($data = $result->fetch_assoc()) {
+            $stat = [(int)$data['id'], $data['titre'],$data['moy']];
+        }
+        $result->close();
+        return $stat;
+    }
+
+    public function getMostWishPosts()
+    {
+        $query="select posts.id,posts.titre,count(id_utilisateur) as nb
+                    from posts
+                        left join whishlist w on posts.id = w.id_posts
+                    group by posts.id order by nb DESC LIMIT ?";
+        $row=$this->SQL->prepare($query);
+        $row->bind_param("i",$this->limit);
+        $row->execute();
+        $result=$row->get_result();
+        $stat=[];
+        while ($data = $result->fetch_assoc()) {
+            $stat = [(int)$data['id'], $data['titre'],$data['nb']];
+        }
+        $result->close();
+        return $stat;
+    }
 }
