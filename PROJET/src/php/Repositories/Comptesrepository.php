@@ -19,19 +19,29 @@ class Comptesrepository extends Rechercherepository
         $this->autoSQL();
         $num = func_num_args();
         switch ($num) {
-            case 5: $this->__construct2(func_get_arg(0), func_get_arg(1),func_get_arg(2),func_get_arg(3),func_get_arg(4)); break;
+            case 2:
+                $this->__construct1(func_get_arg(0),func_get_arg(1),func_get_arg(2));
+                break;
+            case 5:
+                $this->__construct2(func_get_arg(0), func_get_arg(1),func_get_arg(2),func_get_arg(3),func_get_arg(4));
+                break;
         }
 
     }
 
-
+    private function __construct1($role,$id_user,$limit_)
+    {
+        $this->role = $role;
+        $this->id_user = $id_user;
+        $this->limit = $limit_ >= 0 ? (int)$limit_ : $this->limit;
+    }
 
     private function __construct2($page_, $limit_, $recherche_,$role_,$id_user_):void
     {
         $this->role = $role_;
         $this->id_user = $id_user_;
         $this->page = $page_;
-        $this->limit = $limit_ >= 0 ? $limit_ : $this->limit;
+        $this->limit = $limit_ >= 0 ? (int)$limit_ : $this->limit;
         $this->offset = ($this->page - 1) * $this->limit;
         $this->recherche = $recherche_;
 
@@ -193,5 +203,24 @@ class Comptesrepository extends Rechercherepository
         $result = $row->fetch_assoc();
         $result->close();
         return (int)$result['nb'];
+    }
+
+    public function getStudentByPostulation()
+    {
+        $query="select count(p.id) as nb,u.id ,u.nom,u.prenom,U.promo
+                from postulation p
+                         left join utilisateur u on u.id = p.id_utilisateur
+                where u.id_pilote=?
+                group by u.id order by nb DESC LIMIT ?";
+        $row =$this->SQL->prepare($query);
+        $row->bind_param("i",$this->limit);
+        $row->execute();
+        $result = $row->get_result();
+        $stat=[];
+        while ($data = $result->fetch_assoc()) {
+            $stat=[$data["id"],$data["nom"],$data["prenom"],$data["promo"],$data["nb"]];
+        }
+        $result->close();
+        return $stat;
     }
 }

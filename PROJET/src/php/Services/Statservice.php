@@ -45,4 +45,14 @@ class Statservice
     {
         return $this->Postrepository->getMostWishPosts();
     }
+
+    public function getNbEntreprises()
+    {
+        return $this->Entrepriserepository->getNbEntreprises();
+    }
+
+    public function getNbUsers()
+    {
+        return $this->Compterepository->getNbComptes();
+    }
 }
