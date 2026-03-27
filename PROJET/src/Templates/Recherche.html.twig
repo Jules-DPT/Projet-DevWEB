@@ -1,9 +1,11 @@
 
 
 <html lang="en">
-
+{% block head %}
+    {% include "base.html.twig" %}
+{% endblock %}
 <body>
-{# {% extends "base.html.twig" %} #}
+
 <link rel="stylesheet" href="../../assets/css/recherche.css">
 <link rel="stylesheet" href="../../assets/css/style.css">
 {% block body %}
