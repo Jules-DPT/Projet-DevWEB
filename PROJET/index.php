@@ -14,6 +14,19 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 header('Content-Type: application/json');
 
+$theme="light-mode";
+setcookie(
+    'theme',
+    $theme,
+    [
+        'path' => '/',
+        'secure' => false,      // HTTPS non obligatoire
+        'httponly' => false,    //  accessible en JS
+        'samesite' => 'Lax' // ou Strict
+    ]
+);
+
+
 session_set_cookie_params([
     'lifetime' => 0, // expire à la fermeture du navigateur
     'path' => '/',
