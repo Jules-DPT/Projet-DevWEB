@@ -7,6 +7,7 @@
 require "vendor/autoload.php";
 
 use App\php\Controllers\Fichecontroller;
+use App\php\Controllers\Indexcontroller;
 use App\php\Controllers\Recherchecontroller;
 
 
@@ -62,7 +63,8 @@ $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 switch ($uri) {
     case '/':
-        // TODO : call the welcomePage method of the controller
+        $Indexcontroller=new Indexcontroller($twig);
+        $Indexcontroller->getPageData();
         break;
 
     case '/recherche':
