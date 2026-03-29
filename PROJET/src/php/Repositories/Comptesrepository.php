@@ -133,6 +133,34 @@ class Comptesrepository extends Rechercherepository
 
     }
 
+    public function InsertData($Compte_)
+    {
+        $nom=$Compte_->getNom();
+        $prenom=$Compte_->getPrenom();
+        $type=$Compte_->getType();
+        $file=4;
+        $mdp=$Compte_->getPassword();
+        $idpilote=$Compte_->getIdPilote();
+        $promo=$Compte_->getPromo();
+        $email=$Compte_->getEmail();
+        $telephone=$Compte_->getTelephone();
+        $snake=$Compte_->getSnakeScore();
+
+        $query = "insert into bdd_web.utilisateur 
+        (nom, prenom, mot_de_passe, id_type, id_chemin, id_pilote, promo, id_email, id_telephone, snake_score)
+        VALUES(?,?,?,?,?,?,?,?,?,?)";
+        $row=$this->SQL->prepare($query);
+        $row->bind_param("sssiiisiii",$nom,$prenom,$mdp,$type,$file,$idpilote,$promo,$email,$telephone,$snake);
+        $row->execute();
+        if($row->affected_rows>0){
+            $row->close();
+            return true;
+        }
+        $row->close();
+        return false;
+
+    }
+
     public function UpdatePassByID($id_, $Password_){
         $query="update bdd_web.utilisateur set mot_de_passe=? where id=?";
         $this->SQL->bind_param("si", $Password_, $id_);
