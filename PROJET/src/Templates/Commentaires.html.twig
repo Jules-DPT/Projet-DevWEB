@@ -1,0 +1,10 @@
+{% block affichage %}
+    {% for com in commentaires %}
+        {{ com.note }}
+        {{ com.nom }}
+        {{ com.prenom }}
+        {{ com.commentaire }}
+        {{ com.date }}
+    {% endfor %}
+
+{% endblock %}
