@@ -15,14 +15,13 @@ class Adresseservice extends Service
     }
     public function addAdresse(Adresse $Adresse)
     {
-        $id=$Adresse->getId();
         $adresse=$Adresse->getAdresse();
         $ville=$Adresse->getVille();
         $code_postal=$Adresse->getCodePostal();
         $pays=$Adresse->getPays();
         $prefix_tel=$Adresse->getPrefixTel();
 
-        foreach([$id,$adresse,$ville,$code_postal,$pays,$prefix_tel] as $data)
+        foreach([$adresse,$ville,$code_postal,$pays,$prefix_tel] as $data)
         {
             if (empty($data))
             {
