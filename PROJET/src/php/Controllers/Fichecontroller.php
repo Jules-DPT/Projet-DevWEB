@@ -37,10 +37,10 @@ class Fichecontroller extends Controller
     {
         $contenant=$this->service->getPageData();
         $totalpages=$this->service->getTotalPages();
-        $path=$this->service->getPath("?id_cible=".$this->id_cible."&page=".$this->page);
+        $path=$this->service->getPath("?id_cible=".$this->id_cible."&type=".$this->type."&page=".$this->page);
         $commentaires=$this->service->getCommentaire();
         header('Content-Type: text/html; charset=UTF-8');
-        echo $this->template->render('Fiche.html.twig',["path"=>$path,"totalPages"=>$totalpages,"contenant"=>$contenant,"type"=>$this->type,"id_cible"=>$this->id_cible,"role"=>$this->role,"commentaires"=>$commentaires]);
+        echo $this->template->render('Fiche.html.twig',["page"=>$this->page ,"path"=>$path,"totalPages"=>$totalpages,"contenant"=>$contenant,"type"=>$this->type,"id_cible"=>$this->id_cible,"role"=>$this->role,"commentaires"=>$commentaires]);
 
     }
 }
