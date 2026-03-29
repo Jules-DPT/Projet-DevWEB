@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+        {% if contenant ==null %}
+            <h1> OOPS il n'y a pas grand chose</h1>
+        {% else %}
+            {% if type==2 %}
+                {% include 'Entreprise.html.twig' with {'entreprise':contenant} %}
+            {% endif %}
+            {% if type==3 %}
+            {% endif %}
+        {% endif %}
+</body>
+</html>
