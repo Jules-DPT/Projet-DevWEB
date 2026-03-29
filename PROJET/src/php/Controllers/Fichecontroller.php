@@ -29,15 +29,10 @@ class Fichecontroller extends Controller
     public function getPageData()
     {
         $contenant=$this->service->getPageData();
-        $nb=count($contenant);
         $totalpages=$this->service->getTotalPages();
-
         $path=$this->service->getPath("?id_cible=".$this->id_cible."&page=".$this->page);
         header('Content-Type: text/html; charset=UTF-8');
-        if ($nb==0)
-        {
-            echo $this->template->render('File');
-        }
+        echo $this->template->render('Fiche.html.twig',["path"=>$path,"totalPages"=>$totalpages,"contenant"=>$contenant,"type"=>$this->type,"id_cible"=>$this->id_cible,"role"=>$this->role]);
 
     }
 }
