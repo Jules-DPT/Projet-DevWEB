@@ -28,13 +28,14 @@ class Ficheservice extends Fiche
             case 6:
                 $this->__construct2(func_get_arg(0),func_get_arg(1),func_get_arg(2),func_get_arg(3),func_get_arg(4),func_get_arg(5));
         }
+        $this->__constructrep3();
 
     }
 
     private function __constructrep3()
     {
         switch ($this->type) {
-            case 1:
+            case 3:
                 $this->repository=new Postsrepository();
                 $this->Evaluationrepository=new EvaluationPostsrepository($this->page,$this->limit);
                 break;
@@ -51,7 +52,7 @@ class Ficheservice extends Fiche
         $this->role=(string)$role_;
         $this->id_cible = (int)$id_cible_;
         $this->type=(int)$type_;
-        $this->__constructrep3();
+
 
 
     }
@@ -71,7 +72,7 @@ class Ficheservice extends Fiche
             $this->page=$page_;
         }
         $this->pagination= new Paginationservice();
-        $this->__constructrep3();
+
 
     }
     public function getPageData()
@@ -81,12 +82,21 @@ class Ficheservice extends Fiche
 
     public function getCommentaire()
     {
-        return $this->getCommentaire();
+        if ($this->Evaluationrepository!=null)
+        {
+            return $this->Evaluationrepository->getCommentaire($this->id_cible);
+        }
+        return null;
+
     }
 
     public function setCommentaire($commentaire)
     {
-        return $this->setCommentaire($commentaire);
+        if ($this->Evaluationrepository!=null)
+        {
+            return $this->Evaluationrepository->setCommentaire($commentaire);
+        }
+        return null;
     }
 
     public function getTotalPages()
