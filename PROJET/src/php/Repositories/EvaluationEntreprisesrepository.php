@@ -19,7 +19,7 @@ class EvaluationEntreprisesrepository extends Repository
             case 0:
                 break;
             case 2:
-                $this->__construct1(func_num_args(0),func_get_arg(1));
+                $this->__construct1(func_get_arg(0),func_get_arg(1));
                 break;
         }
     }
