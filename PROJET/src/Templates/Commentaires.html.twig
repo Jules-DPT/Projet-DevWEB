@@ -6,5 +6,5 @@
         {{ com.commentaire }}
         {{ com.date }}
     {% endfor %}
-
+    {% include 'Pagination.html.twig' with {'totalPages':totalPages , 'path':path,'page':page} %}
 {% endblock %}
