@@ -41,7 +41,7 @@ class Recherchecontroller extends Controller
         header('Content-Type: text/html; charset=UTF-8');
         if ($nb==0 )
         {
-            echo $this->template->render('Recherche.html.twig',["res"=>null,"totalPages"=>$totalpages,"path"=>$path,"page"=>$page,"type"=>$this->type,"role"=>$this->role]);
+            echo $this->template->render('Recherche.html.twig',["res"=>null,"totalPages"=>$totalpages,"path"=>$path,"page"=>$page,"type"=>$this->type,"role"=>$this->role ]);
         }
         else
         {
