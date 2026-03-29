@@ -1,18 +1,19 @@
 <nav class="navbar">
     <a href="/" class="logo">StageForMe</a>
-    
+    <p>{{app.request.uri  }}</p>
+    {{ app.request.pathinfo }}
     <div class="nav-links">
         <ul>
-            <li class="{{ app.request.uri  == '/' ? 'active' }}">
+            <li class="{{  '/ ' in path ? 'active' }}">
                 <a href="/">Accueil</a>
             </li>
-            <li class="{{ app.request.uri == '/recherche' ? 'active' }}">
+            <li class="{{  '/recherche' in path ? 'active' }}">
                 <a href="/recherche">Recherche</a>
             </li>
-            <li class="{{ app.request.uri == '/legal' ? 'active' }}">
+            <li class="{{  '/legal' in path ? 'active' }}">
                 <a href="/legal">Mentions légales</a>
             </li>
-            <li>
+            <li class="{{  '/login' in path ? 'active' }}">
                 <a href="/login">Connexion</a>
             </li>
         </ul>
