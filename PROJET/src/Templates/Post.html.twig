@@ -1,4 +1,6 @@
 {% block affichage %}
+    <link rel="stylesheet" href="../../assets/css/recherche.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
     <span class="offres title">{{ post.titre }}</span>
     <div class="bottom">
         <span class="nb-post">Rémunération:{{ post.remuneration }}</span>
@@ -9,6 +11,7 @@
     <span class="lieu">{{ post.ville }}</span>
     <span class="lieu">{{ post.codepostal }}</span>
     <span class="lieu">{{ post.pays }}</span>
+    <span> {{ post.competences }}</span>
     <div class="bottom">
         <span class="date">Du {{ post.datedebut}} au {{ post.datefin }}</span> <span class="nb-post">{{ post.nb_postulation }}</span>
     </div>
