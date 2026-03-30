@@ -23,8 +23,10 @@ class Post
     private $contrat;
     private $duree;
 
+    private $competences;
+
     public function __construct($id_, $titre_, $description_, $date_creation_, $email_, $telephone_, $adresse_, $ville_,$code_postal_,$pays_, $nb_postulations_
-        ,                       $entreprise_, $remuneration_, $date_debut_, $date_fin_, $nb_whishlist_, $contrat_, $duree_)
+        ,                       $entreprise_, $remuneration_, $date_debut_, $date_fin_, $nb_whishlist_, $contrat_, $duree_, $competences_)
     {
         $this->id = $id_;
         $this->titre = $titre_;
@@ -44,6 +46,7 @@ class Post
         $this->nb_whishlist = $nb_whishlist_;
         $this->contrat = $contrat_;
         $this->duree = $duree_;
+        $this->competences = $competences_;
     }
 
     //---------------get-methods---------------------------------------------------------------------------------------
@@ -132,6 +135,12 @@ class Post
         return $this->duree;
     }
 
+
+    public function getCompetences()
+    {
+        return $this->competences;
+    }
+
     //---------------set-methods---------------------------------------------------------------------------------------
 
     public function setId($id)
@@ -217,6 +226,11 @@ class Post
     public function setDuree($duree_)
     {
         $this->duree = $duree_;
+    }
+
+    public function setCompetences($competences_)
+    {
+        $this->competences = $competences_;
     }
 
 }

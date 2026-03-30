@@ -85,6 +85,7 @@ class Postsrepository extends Rechercherepository
                     $data['date_fin'],
                     (int)$data['nombre_wishlist'],
                     $data['contrat'],
+                    "",
                     ""
                 )
             ;
@@ -228,6 +229,7 @@ class Postsrepository extends Rechercherepository
                     (int)$data['nombre_wishlist'],
                     $data['contrat'],
                     $data['duree'],
+                    $this->getCompetencesByID((int)$data['id'])
                 );
         $result->close();
         return $post;
@@ -285,5 +287,22 @@ class Postsrepository extends Rechercherepository
         }
         $result->close();
         return $stat;
+    }
+
+    public function getCompetencesByID($id_)
+    {
+        $query="select  competence from posts_competence
+         left join competence c on c.id = id_competence
+         where id_posts=?";
+        $row=$this->SQL->prepare($query);
+        $row->bind_param("i",$id_);
+        $row->execute();
+        $result=$row->get_result();
+        $competences="";
+        while ($data = $result->fetch_assoc()) {
+            $competences.=$data['competence']." ";
+        }
+        $result->close();
+        return $competences;
     }
 }
