@@ -7,7 +7,7 @@ use App\php\Repositories\Repository;
 
 class Adresserepository extends Repository
 {
-
+    private $lastInsertId;
     public function __construct()
     {
         $this->autoSQL();
@@ -30,7 +30,7 @@ class Adresserepository extends Repository
 
     protected function getDataByID($id_)
     {
-        $query="Select a.id, adresse, v.nom as ville, v.code_postal as code_postal ,p.nom as pays
+        $query="Select a.id, adresse, v.nom as ville, v.code_postal as code_postal ,p.nom as pays,prefix_tel
                     from adresse a
                     left join bdd_web.ville v on v.id = a.id_ville
                     left join bdd_web.pays p on p.id = v.id_pays
@@ -42,7 +42,8 @@ class Adresserepository extends Repository
             $data['adresse'],
             $data['ville'],
             $data['code_postal'],
-            $data['pays']
+            $data['pays'],
+            $data['prefix_tel']
         );
         return $contenant;
     }
@@ -68,6 +69,7 @@ class Adresserepository extends Repository
         $row->bind_param("ss",$pays,$prefix_tel);
         $row->execute();
         $result=$row->fetch_assoc();
+        $this->lastInsertId=$row->insert_id;
         if($result->affected_rows==1)
         {
             return true;
@@ -95,6 +97,7 @@ class Adresserepository extends Repository
         $row=$this->SQL->prepare($query);
         $row->bind_param("sss",$ville,$pays,$code_postal);
         $row->execute();
+        $this->lastInsertId=$row->insert_id;
         $result=$row->fetch_assoc();
         if($result->affected_rows==1)
         {
@@ -123,6 +126,7 @@ class Adresserepository extends Repository
         $row=$this->SQL->prepare($query);
         $row->bind_param("ss",$adresse,$ville);
         $row->execute();
+        $this->lastInsertId=$row->insert_id;
         $result=$row->fetch_assoc();
         if($result->affected_rows==1)
         {
@@ -139,4 +143,53 @@ class Adresserepository extends Repository
         }
         return false;
     }
+
+    public function getLastInsertId()
+    {
+        return $this->lastInsertId;
+    }
+
+    public function checkPrefixe($prefixe)
+    {
+        $query="Select prefix_tel from pays where prefix_tel=?";
+        $row=$this->SQL->prepare($query);
+        $row->bind_param("s", $prefixe);
+        $row->execute();
+        $result=$row->fetch_assoc();
+        if($result->affected_rows==1)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public function getIdByPrefixe($prefixe)
+    {
+        $query="Select id from pays where prefix_tel=?";
+        $row=$this->SQL->prepare($query);
+        $row->bind_param("s", $prefixe);
+        $row->execute();
+        $result=$row->fetch_assoc();
+        return (int)$result['id'];
+
+    }
+
+    public function getIdByAdresse($Adresse)
+    {
+        $adresse=$Adresse->getAdresse();
+        $ville=$Adresse->getVille();
+        $code_postal=$Adresse->getCodePostal();
+        $pays=$Adresse->getPays();
+        $query="Select a.id as id from adresse a
+          left join bdd_web.ville v on v.id = a.id_ville
+          left join bdd_web.pays p on p.id = v.id_pays
+          where adresse=? and v.nom=? and p.nom=? and v.code_postal=?";
+        $row=$this->SQL->prepare($query);
+        $row->bind_param("ssss",$adresse,$ville,$code_postal,$pays);
+        $row->execute();
+        $result=$row->fetch_assoc();
+        return (int)$result['id'];
+
+    }
+
 }
