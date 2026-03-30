@@ -25,7 +25,7 @@ class Adresseservice extends Service
         {
             if (empty($data))
             {
-                return "empty Adresse";
+                return false;
             }
         }
 
@@ -42,5 +42,10 @@ class Adresseservice extends Service
             $this->repository->addAdresse($adresse,$ville);
         }
         return $this->repository->Checkall($adresse,$ville,$pays);
+    }
+
+    public function getIdByAdresse(Adresse $Adresse)
+    {
+        return $this->repository->getIdByAdresse($Adresse);
     }
 }
