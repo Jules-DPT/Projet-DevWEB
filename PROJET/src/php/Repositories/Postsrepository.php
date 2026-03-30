@@ -305,4 +305,9 @@ class Postsrepository extends Rechercherepository
         $result->close();
         return $competences;
     }
+
+    public function getLimit(): int
+    {
+        return $this->limit;
+    }
 }
