@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Connexion • StageForMe</title>
+  <meta name="description" content="Connectez-vous à StageForMe pour gérer vos candidatures, offres et accès selon votre rôle." />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <a href="#" class="logo">StageForMe</a>
+    <div class="nav-links">
+        <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="recherche-entreprise.html">Recherche</a></li>
+            <li><a href="mentions-legales.html">Mentions légales</a></li>
+            <li class="active"><a href="login.html">Connexion</a></li>
+        </ul>
+    </div>
+    <img src="assets/images/menu-btn.png" alt="menu hamburger" class="menu-hamburger">
+</nav>
+
+  <main id="main" class="container auth-layout">
+    <section class="auth-side" aria-label="Présentation">
+      <h1>Trouve ton stage plus vite.</h1>
+      <p>Centralise les offres, sauvegarde tes favoris et suis tes candidatures. Un accès différent selon ton rôle.</p>
+      <ul class="auth-points">
+        <li>Offres filtrées par compétences</li>
+        <li>Wish-list et suivi des candidatures</li>
+        <li>Accès sécurisé</li>
+      </ul>
+    </section>
+
+    <section class="card form-card" aria-label="Formulaire de connexion">
+      <h1 class="title">Connexion</h1>
+      <p class="muted">Renseigne tes identifiants pour accéder à ton espace.</p>
+
+      <form action="#" method="post" novalidate>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" inputmode="email"
+                 placeholder="ex: prenom.nom@cesi.fr" required />
+          <small class="hint">Format : nom@domaine</small>
+        </div>
+
+        <div class="field">
+          <label for="password">Mot de passe</label>
+          <div class="password-wrap">
+            <input id="password" name="password" type="password" autocomplete="current-password"
+                   placeholder="••••••••" minlength="8" required />
+            <button class="icon-btn" type="button" id="togglePwd" aria-label="Afficher le mot de passe">👁️</button>
+          </div>
+          <small class="hint">Minimum 8 caractères.</small>
+        </div>
+
+        <div class="row">
+          <label class="checkbox">
+            <input type="checkbox" name="remember" />
+            <span>Se souvenir de moi</span>
+          </label>
+
+          <!-- Pas de reset mail : on met une page info si besoin -->
+          <a class="link" href="mentions-legales.html">Aide</a>
+        </div>
+
+        <button class="btn-primary" type="submit" style="width:100%">Se connecter</button>
+
+        <p class="legal">
+          En te connectant, tu acceptes les <a class="link" href="mentions-legales.html">mentions légales</a>.
+        </p>
+      </form>
+    </section>
+  </main>
+
+    <div class="container footer-inner">
+      <span>© StageForMe</span>
+      <a class="link" href="mentions-legales.html">Mentions légales</a>
+    </div>
+
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/menu.js"></script>
+</body>
+</html>
