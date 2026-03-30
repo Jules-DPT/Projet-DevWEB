@@ -17,16 +17,36 @@ class Fichecontroller extends Controller
 
     private $Commentaire;
 
-    public function __construct($id_cible_,$page,$type,$id_user_,$role_,$Commentaire_,$template_)
+    public function __construct()
     {
 
-        $this->template=$template_;
-        $this->service=new Ficheservice($id_cible_,$role_,$id_user_,$page,4,$type);
+        $num=func_num_args();
+        switch ($num) {
+            case 5:
+                $this->__construct1(func_get_arg(0),func_get_arg(1),func_get_arg(2),func_get_arg(3),func_get_arg(4));
+                break;
+            case 7:
+                $this->__construct2(func_get_arg(0),func_get_arg(1),func_get_arg(2),func_get_arg(3),func_get_arg(4),func_get_arg(5),func_get_arg(6));
+        }
+
         $this->id_cible=$this->service->getIdCible();
-        $this->page = $this->service->getPage();
         $this->type = $this->service->getType();
+
+    }
+
+    private function __construct1($id_cible_,$type_,$id_user_,$role_,$template_)
+    {
+        $this->template=$template_;
+        $this->service=new Ficheservice($id_cible_,$role_,$id_user_,$type_);
         $this->id_user=$this->service->getIdUser();
         $this->role=$this->service->getRole();
+    }
+
+    private function __construct2($id_cible_,$page,$type,$id_user_,$role_,$Commentaire_,$template_)
+    {
+        $this->template=$template_;
+        $this->service=new Ficheservice($id_cible_,$role_,$id_user_,$page,4,$type);
+        $this->page = $this->service->getPage();
         $this->Commentaire=trim((string)$Commentaire_);
         if (strlen($this->Commentaire)!=0)
         {
@@ -36,11 +56,21 @@ class Fichecontroller extends Controller
     public function getPageData()
     {
         $contenant=$this->service->getPageData();
-        $totalpages=$this->service->getTotalPages();
-        $path=$this->service->getPath("?id_cible=".$this->id_cible."&type=".$this->type."&page=".$this->page);
-        $commentaires=$this->service->getCommentaire();
         header('Content-Type: text/html; charset=UTF-8');
-        echo $this->template->render('Fiche.html.twig',["page"=>$this->page ,"path"=>$path,"totalPages"=>$totalpages,"contenant"=>$contenant,"type"=>$this->type,"id_cible"=>$this->id_cible,"role"=>$this->role,"commentaires"=>$commentaires]);
+        if ($this->type==1)
+        {
+            $path=$this->service->getPath("?id_cible=".$this->id_cible."&type=".$this->type);
+            echo $this->template->render('Fiche.html.twig',["path"=>$path,"contenant"=>$contenant,"type"=>$this->type,"id_cible"=>$this->id_cible,"role"=>$this->role]);
+        }
+        else{
+            $totalpages=$this->service->getTotalPages();
+            $path=$this->service->getPath("?id_cible=".$this->id_cible."&type=".$this->type."&page=".$this->page);
+            $commentaires=$this->service->getCommentaire();
+            echo $this->template->render('Fiche.html.twig',["page"=>$this->page ,"path"=>$path,"totalPages"=>$totalpages,"contenant"=>$contenant,"type"=>$this->type,"id_cible"=>$this->id_cible,"role"=>$this->role,"commentaires"=>$commentaires]);
+        }
+
+
+
 
     }
 }
