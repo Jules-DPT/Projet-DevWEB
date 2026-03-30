@@ -78,11 +78,16 @@ switch ($uri) {
         break;
 
     case '/recherche/fiche':
-        $id_cible=isset($_GET['id_cible']) ? (int)$_GET['id_cible'] : -1;
-        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
         $type =isset($_GET['type']) ? (int)$_GET['type'] : 3;
-        $commentaire=isset($_POST['commentaire']) ? (string)$_POST['commentaire'] : '';
-        $fichecontroller = new Fichecontroller($id_cible,$page,$type,$id_user,$role,$commentaire,$twig);
+        $id_cible=isset($_GET['id_cible']) ? (int)$_GET['id_cible'] : -1;
+        if($type==1){
+            $fichecontroller = new Fichecontroller($id_cible,$type,$id_user,$role,$twig);
+        }
+        else{
+            $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+            $commentaire=isset($_POST['commentaire']) ? (string)$_POST['commentaire'] : '';
+            $fichecontroller = new Fichecontroller($id_cible,$page,$type,$id_user,$role,$commentaire,$twig);
+        }
         $fichecontroller->getPageData();
         break;
 
