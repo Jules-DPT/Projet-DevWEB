@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="fr">
+
+<head>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="#" class="logo">StageForMe</a>
+        <div class="nav-links">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="recherche-entreprise.html">Recherche</a></li>
+                <li><a href="mentions-legales.html">Mentions légales</a></li>
+                <li class="active"><a href="dashboard.html">Pilote</a></li>
+            </ul>
+        </div>
+        <img src="assets/images/menu-btn.png" alt="menu hamburger" class="menu-hamburger">
+    </nav>
+    <main id="main">
+        <section class="board-head">
+        <h1>Dashboard</h1>
+        <p class="muted">conçu pour simplifier votre expérience.</p>
+        </section>
+        <section class="card side-board form-card" aria-label="Formulaire de création de compte">
+        <a href="dashboard.html"><div class="nav-links">
+            <img src="assets/images/stats-icon.png" alt="dashboard icon" class="stats-icon">
+        </div></a>
+        <a href="dashboard-1.html"><div class="nav-links">
+            <img src="assets/images/profile-icon.png" alt="dashboard icon" class="profile-icon">
+        </div></a>
+        </section>
+        <section class="card board form-card">
+            <form>
+
+                <div class="grid-2">
+                    <div class="field">
+                        <label for="nom">Nom</label>
+                        <input type="text" id="nom" value="Dupont">
+                    </div>
+
+                    <div>
+                        <label for="prenom">Prénom</label>
+                        <input type="text" id="prenom" value="Marie">
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="field">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" value="marie.dupont@email.com">
+                    </div>
+
+                    <div>
+                        <label for="telephone">Téléphone</label>
+                        <input type="text" id="telephone" placeholder="Votre numéro">
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="field">
+                        <label for="campus">Campus</label>
+                        <input type="text" id="campus" value="La Rochelle">
+                    </div>
+
+                    <div>
+                        <label for="promotion">Promotion suivie</label>
+                        <input type="text" id="promotion" value="A2 CPI Informatique">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="role">Fonction</label>
+                    <input type="text" id="role" value="Pilote pédagogique">
+                </div>
+
+                <div class="field">
+                    <label for="description">Présentation</label>
+                    <textarea class="board-textarea" id="description" rows="5">J’accompagne les étudiants dans leur suivi pédagogique, leurs candidatures et leur progression professionnelle.</textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+            </form>
+        </section>
+    </main>
+  <section class="board-footer">
+    <span>© StageForMe</span>
+    <a class="link" href="mentions-legales.html">Mentions légales</a>
+  </section>
+<script src="assets/js/menu.js"></script>
+</body>
+</html>

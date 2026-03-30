@@ -40,6 +40,10 @@ a{ color: inherit; text-decoration: none; }
 a.link{ color: var(--c-dark); text-decoration: underline; text-underline-offset: 3px; }
 a.link:hover{ color: var(--c-warm); } 
 
+textarea {
+  resize: none;
+}
+
 .container{
   position: relative;
   top: 10%;
@@ -223,7 +227,7 @@ a.link:hover{ color: var(--c-warm); }
 
 .muted{ color: var(--c-muted); }
 
-.field{ margin-bottom: 14px; }
+.field{ margin-bottom: 14px;}
 label{
   color: #F5F2ED;
   display: block;
@@ -439,7 +443,7 @@ input:focus, select:focus{
 .board-head {
   position: absolute;
   top: 15vh;
-  left: 2vw;
+  left: 3vw;
 }
 .board-head h1{font-size: 1.8rem; color: #F5F2ED; }
 
@@ -525,11 +529,18 @@ input:focus, select:focus{
   height: 11%;
 }
 
-.side-board .nav-links img {
+.side-board .nav-links .stats-icon {
   align-items: center;
   justify-content: center;
   width: auto;
   height: 500%;
+}
+
+.side-board .nav-links .profile-icon {
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: 450%;
 }
 
 .board {
@@ -815,7 +826,6 @@ input[type="file"]::file-selector-button {
   cursor: pointer;
   display: inline-block;
   color: #ffffff;
-  font-family: sans-serif;
   line-height: 25px;
 }
 
@@ -864,6 +874,42 @@ input[type="file"]::file-selector-button {
   background: rgba(255, 255, 255, 0.15);
   border-color: #4facfe;
   box-shadow: 0 0 15px rgba(79, 172, 254, 0.3);
+}
+
+.board-textarea {
+  width: 100%;
+  height: 50px;
+  padding: 1em 24px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow:
+      inset 0 1px 1px rgba(255,255,255,0.2),
+      0 8px 24px rgba(0,0,0,0.15);
+  transition: all 0.35s ease;
+  cursor: pointer;
+  text-align: left;
+  color: #F5F2ED;
+}
+
+.post-textarea {
+  width: 100%;
+  height: 300px;
+  padding: 1em 24px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow:
+      inset 0 1px 1px rgba(255,255,255,0.2),
+      0 8px 24px rgba(0,0,0,0.15);
+  transition: all 0.35s ease;
+  cursor: pointer;
+  text-align: left;
+  color: #F5F2ED;
 }
 
 @media (min-width: 900px){
@@ -953,6 +999,29 @@ input[type="file"]::file-selector-button {
     top: 50px;
     left: 25px;
     z-index: 1001;
+  }
+
+  .side-text {
+    top: 35%;
+    left: 10vw;
+    width: 80vw;
+  }
+  
+  .side-text h1 {
+    font-size: 2rem;
+  }
+  
+  .side-text h2 {
+    font-size: 1rem; 
+  }
+
+  .radio-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .actions {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
