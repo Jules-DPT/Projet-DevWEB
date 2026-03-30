@@ -29,6 +29,7 @@ class Statservice
     {
         $this->Entrepriserepository= new Entreprisesrepository();
         $this->Postrepository= new Postsrepository();
+        $this->limit=$this->Postrepository->getLimit();
         $num=func_num_args();
         switch ($num){
             case 3:
@@ -98,5 +99,10 @@ class Statservice
             return $this->Wishlistrepository->getNbWishes();
         }
         return ["ACCES ETUDIANT UNIQUEMENT"];
+    }
+
+    public function getLimit()
+    {
+        return $this->limit;
     }
 }
