@@ -1,3 +1,5 @@
+{% block affichage %}
+
 <nav class="navbar">
     <a href="/" class="logo">StageForMe</a>
     <div class="nav-links">
@@ -11,10 +13,19 @@
             <li class="{{  '/legal' in path ? 'active' }}">
                 <a href="/legal">Mentions légales</a>
             </li>
-            <li class="{{  '/login' in path ? 'active' }}">
-                <a href="/login">Connexion</a>
-            </li>
+            {% if (role=="NO) %}
+                <li class="{{  '/login' in path ? 'active' }}">
+                    <a href="/login">Connexion</a>
+                </li>
+            {% else %}
+                <li class="{{  '/dashboard' in path ? 'active' }}">
+                    <a href="/dashboard">Tableau de bord</a>
+                </li>
+            {% endif %}
+
+            
         </ul>
     </div>
     <img src="../../assets/images/menu-btn.png" alt="menu hamburger" class="menu-hamburger">
 </nav>
+{% endblock %}

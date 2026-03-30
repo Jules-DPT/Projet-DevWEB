@@ -30,7 +30,7 @@ class Logiocontroller extends Controller
     public function __construct()
     {
         session_start();
-        $this->service = new Logioservice($this->id_user, $this->role, $this->loggedin);
+
         $num=func_num_args();
         switch ($num) {
             case 3:
@@ -39,10 +39,20 @@ class Logiocontroller extends Controller
                 $this->__construct2(func_get_arg(0), func_get_arg(1),func_get_arg(2),
                     func_get_arg(3),func_get_arg(4)); break;
         }
+        $this->service = new Logioservice($this->id_user, $this->role, $this->loggedin);
+        $this->id_user=$this->service->getIdUser();
+        $this->role=$this->service->getRole();
     }
-    protected function getPageData()
+    public function getPageData()
     {
+        if ($this->loggedin)
+        {
+            echo $this->template->render('dashboard.html.twig',['role'=>$this->role,]);
+        }
+        else
+        {
+            echo $this->template->render('/connexion.html.twig', []);
+        }
 
-       echo $this->template->render('pages/logio.twig', []);
     }
 }
