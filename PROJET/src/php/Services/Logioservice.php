@@ -18,8 +18,8 @@ class Logioservice extends Service
     private $loggedin = false;
     public function __construct($id_user_,$role_,$loggedin_){
         session_start();
-        $this->id_user = $id_user_;
-        $this->role = $role_;
+        $this->id_user = (int)$id_user_;
+        $this->role =trim((string)$role_);
         $this->loggedin = $loggedin_;
         $this->repository= new Comptesrepository();
     }
@@ -229,4 +229,16 @@ class Logioservice extends Service
         }
 
     }
+
+
+    public function getIdUser()
+    {
+        return $this->id_user;
+    }
+
+    public function getRole()
+    {
+        return $this->role;
+    }
+
 }
