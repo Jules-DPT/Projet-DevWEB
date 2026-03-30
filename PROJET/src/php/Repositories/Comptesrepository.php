@@ -282,4 +282,38 @@ class Comptesrepository extends Rechercherepository
         );
         return $compte;
     }
+
+    public function getDataByRole($Role)
+    {
+        $query="select u.id as id,u.nom as nom,u.prenom as prenom,t.type as type,promo,f.chemin as file,
+                       t2.numero,p.prefix_tel,email,snake_score
+                from bdd_web.utilisateur u
+                         left join bdd_web.file f on f.id = u.id_chemin
+                         left join bdd_web.type_utilisateur t on u.id_type = t.id
+                         left join bdd_web.email on u.id_email = email.id
+                         left join bdd_web.telephone t2 on u.id_telephone = t2.id
+                         left join bdd_web.pays p on t2.id_pays = p.id
+                where t.type=?";
+        $row =$this->SQL->prepare($query);
+        $row->bind_param("s",$Role);
+        $row->execute();
+        $result=$row->get_result();
+        $comptes=[];
+        while ($data = $result->fetch_assoc()) {
+            $compte=new Compte(
+                (int)$data["id"],
+                $data["nom"],
+                $data["prenom"],
+                "",
+                $data["type"],
+                $data["file"],
+                "",
+                $data["promo"],
+                $data["email"],
+                $data["numero"],
+                $data["snake_score"]
+            );
+        }
+
+    }
 }
