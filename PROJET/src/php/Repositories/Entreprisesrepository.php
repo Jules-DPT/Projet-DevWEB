@@ -2,8 +2,11 @@
 
 namespace App\php\Repositories;
 
+use App\php\Contenants\Adresse;
 use App\php\Contenants\Entreprise;
 use App\php\Repositories\Repository;
+use App\php\Services\Adresseservice;
+
 require_once 'Repository.php';
 
 class Entreprisesrepository extends Rechercherepository
@@ -13,9 +16,12 @@ class Entreprisesrepository extends Rechercherepository
     private $offset;
 
     private $recherche;
+
+    private $lastInsertId;
     public function __construct()
     {
         $this->autoSQL();
+
         $num = func_num_args();
         switch ($num) {
             case 3: $this->__construct2(func_get_arg(0), func_get_arg(1),func_get_arg(2)); break;
@@ -81,6 +87,32 @@ class Entreprisesrepository extends Rechercherepository
         return $Entreprises;
     }
 
+    public function DeleteDataByID($id_)
+    {}
+    public function UpdateDataByID($id_, $contenant_)
+    {}
+
+    public function InsertData($contenant_)
+    {
+        $nom=$contenant_->getNom();
+        $description=$contenant_->getDescription();
+        $logo=$contenant_->getFile();
+        $adresse=$contenant_->getAdresse();
+        $email=$contenant_->getEmail();
+        $telephone=$contenant_->getTelephone();
+
+        $query="Insert into entreprise(nom,descritption,id_logo,id_adresse,id_telephone,id_email) values(?,?,?,?,?,?)";
+        $row=$this->SQL->prepare($query);
+        $row->bind_param("ssiiii",$nom,$description,$logo,$adresse,$telephone,$email);
+        $row->execute();
+        $this->lastInsertId=$row->insert_id;
+        if($row->affected_rows>0){
+            return true;
+        }
+        return false;
+
+    }
+
     public function getALLCount()
     {
         $where = $this->getWhere();
@@ -107,7 +139,7 @@ class Entreprisesrepository extends Rechercherepository
 
     }
 
-    public function getDatabyid($id_entreprise)
+    public function getDataByID($id_entreprise)
     {
         $query="select entreprise.id ,entreprise.nom as nom,descritption,email,numero,chemin as file,a.adresse,v.nom as ville,v.code_postal,p.nom as pays 
                 from entreprise
