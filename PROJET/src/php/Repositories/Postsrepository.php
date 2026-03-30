@@ -310,4 +310,49 @@ class Postsrepository extends Rechercherepository
     {
         return $this->limit;
     }
+
+
+    public function getPostsNew()
+    {
+        $query="select posts.id AS id,titre, CONCAT(SUBSTRING_INDEX(description,' ',30), '...') AS description_pointille
+                    ,d.date as date_post,
+                       e.nom as entreprise
+                FROM bdd_web.posts
+                         left JOIN bdd_web.date d ON d.id = posts.id_date_post
+                         left JOIN bdd_web.entreprise e ON posts.id_entreprise = e.id
+                order by date_post DESC LIMIT ?";
+        $row=$this->SQL->prepare($query);
+        $row->bind_param("i",$this->limit);
+        $row->execute();
+        $result=$row->get_result();
+        $stat=[];
+        while ($data = $result->fetch_assoc()) {
+            $stat = [(int)$data['id'], $data['titre'],$data['description_pointille'],$data['date_post'],$data['entreprise']];
+        }
+        $result->close();
+        return $stat;
+    }
+
+    public function getPostsOld()
+    {
+        $query="select posts.id AS id,titre, CONCAT(SUBSTRING_INDEX(description,' ',30), '...') AS description_pointille,
+                d2.date as date_debut,
+                   e.nom as entreprise
+            FROM bdd_web.posts
+                     left join bdd_web.date d2 ON d2.id = posts.id_date_debut
+                     left JOIN bdd_web.entreprise e ON posts.id_entreprise = e.id
+                     
+            
+            order by date_debut LIMIT ?";
+        $row=$this->SQL->prepare($query);
+        $row->bind_param("i",$this->limit);
+        $row->execute();
+        $result=$row->get_result();
+        $stat=[];
+        while ($data = $result->fetch_assoc()) {
+            $stat=[(int)$data['id'],$data['titre'],$data['description_pointille'],$data['date_debut'],$data['entreprise'],];
+        }
+        $result->close();
+        return $stat;
+    }
 }

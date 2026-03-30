@@ -316,6 +316,5 @@ class Comptesrepository extends Rechercherepository
         }
         $result->close();
         return $comptes;
-
     }
 }

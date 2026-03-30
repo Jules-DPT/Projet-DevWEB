@@ -6,8 +6,11 @@ use App\php\Contenants\Compte;
 use App\php\Contenants\Telephone;
 use App\php\Repositories\Comptesrepository;
 use App\php\Repositories\Emailrepository;
+use App\php\Repositories\Entreprisesrepository;
+use App\php\Repositories\Postsrepository;
 use App\php\Repositories\Telephonerepository;
 use App\php\Repositories\TypeUtilisateurrepository;
+use App\php\Repositories\Wishlistrepository;
 use App\php\Services\Service;
 
 class Logioservice extends Service
@@ -16,16 +19,44 @@ class Logioservice extends Service
     private $id_user;
     private $role;
     private $loggedin = false;
+    private $Postsrepository;
+    private $Wishlistsrepository;
+
+    private $Entreprisesrepository;
     public function __construct($id_user_,$role_,$loggedin_){
         session_start();
         $this->id_user = (int)$id_user_;
         $this->role =trim((string)$role_);
         $this->loggedin = $loggedin_;
-        $this->repository= new Comptesrepository();
+        $this->repository= new Comptesrepository($this->role,$this->id_user,12);
+        $this->Postsrepository = new Postsrepository();
+        $this->Wishlistsrepository= new Wishlistrepository($this->id_user);
+        $this->Entreprisesrepository = new Entreprisesrepository();
+
     }
-    protected function getPageData()
+    public function getPageData()
     {
-        return ["user"=>$this->id_user, "role"=>$this->role, "loggedin"=>$this->loggedin];
+        if($this->role == 'ETUDIANT')
+        {
+           $contenant= $this->Wishlistsrepository->getNbWishes();
+        }
+        elseif ($this->role == 'ADMIN')
+        {
+            $contenant=[
+                "NbUsers"=>$this->repository->getNbComptes(),
+                "NbPosts"=>$this->Postsrepository->getNbPosts(),
+                "NbEntreprises"=>$this->Entreprisesrepository->getNbEntreprises(),
+
+            ];
+        }
+        elseif ($this->role == 'PILOTE')
+        {
+            $contenant=$this->repository->getStudentByPostulation();
+        }
+        else{
+            $contenant=["user"=>$this->id_user, "role"=>$this->role, "loggedin"=>$this->loggedin];
+        }
+        return $contenant;
     }
 
     public function RESET($new_pass,$confirm_pass)

@@ -3,6 +3,7 @@
 namespace App\php\Controllers;
 
 use App\php\Controllers\Controller;
+use App\php\Repositories\Postsrepository;
 use App\php\Services\Logioservice;
 
 class Logiocontroller extends Controller
@@ -47,7 +48,8 @@ class Logiocontroller extends Controller
     {
         if ($this->loggedin)
         {
-            echo $this->template->render('dashboard.html.twig',['role'=>$this->role,]);
+            $contenant=$this->service->getPageData();
+            echo $this->template->render('dashboard.html.twig',['role'=>$this->role,"contenant"=>$contenant]);
         }
         else
         {
