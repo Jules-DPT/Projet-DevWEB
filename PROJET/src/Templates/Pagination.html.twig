@@ -1,0 +1,49 @@
+
+<nav class="nav_barre" aria-label="pagination">
+    <link href="../../assets/css/Pagination.css" rel="stylesheet">
+    <ul class="pagination">
+        <li class="ad">
+            <a class="pagination_padding" href={{ path }}1>
+                <span aria-hidden="true">&laquo;</span>
+                <span class="visuallyhidden">ensemble de pages précédentes</span>
+            </a>
+        </li>
+        <li class="ad">
+            {% set previous_page = (page - 1 > 1) ? (page - 1) : 1 %}
+            <a class="pagination_padding" href={{ path }}{{ previous_page }}>
+                <span class="visuallyhidden">page précédente </span><span>&lt</span>
+            </a>
+        </li>
+        {% for PAGE in (page<3?1:page-2)..(page<totalPages-1?page+2:((page+1)>totalPages)?page:page+1) %}
+            {% if  ((PAGE)==page)   %}
+                <li class="ac">
+                    <label >
+                    <a class="pagination_padding" href={{ path }}{{ (PAGE) }}>
+                        <span class="visuallyhidden">page </span><span>{{ (PAGE) }} </span>
+                    </a>
+                    </label>
+                </li>
+            {% else %}
+                <li class="ad">
+                    <label >
+                        <a class="pagination_padding" href={{ path }}{{ (PAGE) }}>
+                            <span class="visuallyhidden">page </span><span>{{ (PAGE) }}</span>
+                        </a>
+                    </label>
+                </li>
+            {% endif %}
+        {% endfor %}
+        <li class="ad">
+            {% set next_page = (page + 1 < totalPages) ? (page + 1) : (totalPages) %}
+            <a class="pagination_padding" href={{ path }}{{ next_page }}>
+                <span class="visuallyhidden">page suivante  </span><span>&gt</span>
+            </a>
+        </li>
+        <li class="ad">
+            <a class="pagination_padding" href={{ path }}{{ totalPages }}>
+        <span class="visuallyhidden">ensemble de pages suivantes</span
+        ><span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>

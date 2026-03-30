@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fiche</title>
+</head>
+<body>
+
+        {% if contenant ==null %}
+            <h1> OOPS il n'y a pas grand chose</h1>
+        {% else %}
+            {% if type==1 %}
+                {% include 'Compte.html.twig' with {'compte':contenant} %}
+            {% endif %}
+            {% if type==2 %}
+                {% include 'Entreprise.html.twig' with {'entreprise':contenant} %}
+                {% include 'Commentaires.html.twig' with {'commentaires':commentaires, 'totalPages':totalPages , 'path':path,'page':page} %}
+            {% endif %}
+            {% if type==3 %}
+                {% include 'Post.html.twig' with {'post':contenant} %}
+                {% include 'Commentaires.html.twig' with {'commentaires':commentaires, 'totalPages':totalPages , 'path':path,'page':page} %}
+            {% endif %}
+        {% endif %}
+</body>
+</html>

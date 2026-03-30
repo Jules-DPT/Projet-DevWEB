@@ -1,7 +1,7 @@
 <?php
 
-namespace php\Contenants;
-class Posts
+namespace App\php\Contenants;
+class Post
 {
     private $id;
     private $titre;
@@ -10,6 +10,10 @@ class Posts
     private $email;
     private $telephone;
     private $adresse;
+
+    private $ville;
+    private $code_postal;
+    private $pays;
     private $nb_postulations;
     private $entreprise;
     private $remuneration;
@@ -19,8 +23,10 @@ class Posts
     private $contrat;
     private $duree;
 
-    public function __construct($id_, $titre_, $description_, $date_creation_, $email_, $telephone_, $adresse_, $nb_postulations_
-        ,                       $entreprise_, $remuneration_, $date_debut_, $date_fin_, $nb_whishlist_, $contrat_, $duree_)
+    private $competences;
+
+    public function __construct($id_, $titre_, $description_, $date_creation_, $email_, $telephone_, $adresse_, $ville_,$code_postal_,$pays_, $nb_postulations_
+        ,                       $entreprise_, $remuneration_, $date_debut_, $date_fin_, $nb_whishlist_, $contrat_, $duree_, $competences_)
     {
         $this->id = $id_;
         $this->titre = $titre_;
@@ -29,6 +35,9 @@ class Posts
         $this->email = $email_;
         $this->telephone = $telephone_;
         $this->adresse = $adresse_;
+        $this->ville = $ville_;
+        $this->code_postal = $code_postal_;
+        $this->pays = $pays_;
         $this->nb_postulations = $nb_postulations_;
         $this->entreprise = $entreprise_;
         $this->remuneration = $remuneration_;
@@ -37,6 +46,7 @@ class Posts
         $this->nb_whishlist = $nb_whishlist_;
         $this->contrat = $contrat_;
         $this->duree = $duree_;
+        $this->competences = $competences_;
     }
 
     //---------------get-methods---------------------------------------------------------------------------------------
@@ -73,6 +83,16 @@ class Posts
     public function getAdresse()
     {
         return $this->adresse;
+    }
+
+    public function getVille(){
+        return $this->ville;
+    }
+    public function getCodePostal(){
+        return $this->code_postal;
+    }
+    public function getPays(){
+        return $this->pays;
     }
 
     public function getNbPostulations()
@@ -115,6 +135,12 @@ class Posts
         return $this->duree;
     }
 
+
+    public function getCompetences()
+    {
+        return $this->competences;
+    }
+
     //---------------set-methods---------------------------------------------------------------------------------------
 
     public function setId($id)
@@ -150,6 +176,16 @@ class Posts
     public function setAdresse($adresse_)
     {
         $this->adresse = $adresse_;
+    }
+
+    public function setVille($ville_){
+        $this->ville = $ville_;
+    }
+    public function setCodePostal($code_postal_){
+        $this->code_postal = $code_postal_;
+    }
+    public function setPays($pays_){
+        $this->pays = $pays_;
     }
 
     public function setNbPostulations($nb_postulations_)
@@ -190,6 +226,11 @@ class Posts
     public function setDuree($duree_)
     {
         $this->duree = $duree_;
+    }
+
+    public function setCompetences($competences_)
+    {
+        $this->competences = $competences_;
     }
 
 }

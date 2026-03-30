@@ -1,0 +1,10 @@
+{% block affichage %}
+    {% for com in commentaires %}
+        {{ com.note }}
+        {{ com.nom }}
+        {{ com.prenom }}
+        {{ com.commentaire }}
+        {{ com.date }}
+    {% endfor %}
+    {% include 'Pagination.html.twig' with {'totalPages':totalPages , 'path':path,'page':page} %}
+{% endblock %}

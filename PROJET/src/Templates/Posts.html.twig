@@ -1,0 +1,39 @@
+{% block affichage %}
+    {%  if check!=null %}
+    {% for post in contenant  %}
+        <a href="/recherche/fiche?id_cible={{ post.id }}&page=1&type=3">
+        <div class="offres" id={{check[loop.index0]==true? "positif":""}} >
+            <span class="offres title">{{ post.titre }}</span>
+            <div class="bottom" >
+                <span class="nb-post">Rémunération:{{ post.remuneration }}</span>
+                <span class="date">{{ post.entreprise }}</span>
+            </div>
+            <span class="offres desc">{{ post.description }}</span>
+            <span class="lieu">{{ post.ville }}</span>
+            <div class="bottom">
+                <span class="date">Du {{ post.datedebut}} au {{ post.datefin }}</span> <span class="nb-post">{{ post.nb_postulation }}</span>
+            </div>
+        </div>
+        </a>
+    {% endfor %}
+    {% endif %}
+
+    {% if check==null %}
+    {% for post in contenant  %}
+        <a href="/recherche/fiche?id_cible={{ post.id }}&page=1&type=3">
+        <div class="offres">
+            <span class="offres title">{{ post.titre }}</span>
+            <div class="bottom">
+                <span class="nb-post">Rémunération:{{ post.remuneration }}</span>
+                <span class="date">{{ post.entreprise }}</span>
+            </div>
+            <span class="offres desc">{{ post.description }}</span>
+            <span class="lieu">{{ post.ville }}</span>
+            <div class="bottom">
+                <span class="date">Du {{ post.datedebut}} au {{ post.datefin }}</span> <span class="nb-post">{{ post.nb_postulation }}</span>
+            </div>
+        </div>
+        </a>
+    {% endfor %}
+    {% endif %}
+{% endblock %}

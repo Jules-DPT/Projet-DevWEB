@@ -142,53 +142,6 @@ input[required]:user-invalid {
 
 
 
-/*--------------------------------------------------------------------------------------------------------------------*/
-
-
-.visuallyhidden {
-    border: 0;
-    clip: rect(0 0 0 0);
-    height: auto;
-    margin: 0;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-    white-space: nowrap;
-}
-
-.nav_barre {
-    margin-top: 1em;
-    padding-top: 0.5em;
-    font-size: 1.2em;
-    display: flex;
-    justify-content: center;
-}
-
-.pagination {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
-
-.pagination li {
-    margin: 0 2px;
-}
-
-.pagination .ad {
-    display: block;
-    padding: 0.5em 0.5em;
-    border: 2px solid #00353F;
-    border-radius: 10px;
-    text-decoration: none;
-
-}
-
-.pagination .ad[aria-current="page"] {
-    background-color: #333333;
-    color: white;
-}
 
 
 .liquid_box{
@@ -237,7 +190,7 @@ input[required]:user-invalid {
     color: white;
     text-align: center;
     margin: 10px;
-    padding: 14px 32px;
+    padding: 7px 16px;
     border-radius: 15px;
     background: rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(12px);
@@ -250,13 +203,81 @@ input[required]:user-invalid {
     position: relative;
     overflow: hidden;
 
-    max-height: 60%;
-    max-width: 60%;
-    min-height: 40%;
-    min-width: 40%;
+
+}
+
+.offres {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    padding: 20px;
+    margin-bottom: 10px;
 }
 
 
+#positif{
+    border: 1px solid rgb(60, 253, 0);
+}
+
+.offres .title {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 15px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.offres .desc {
+    font-size: 12px;
+    margin-bottom: 15px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.date {
+    font-size: 10px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    margin-left: 10px;
+}
+
+.lieu {
+    font-size: 10px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    margin-left: 10px;
+    margin-bottom : 10px;
+}
+
+.nb-post {
+    font-size: 10px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: right;
+    margin-right: 10px;
+}
+
+.bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
 .transparent {
     opacity: 0;

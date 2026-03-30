@@ -1,0 +1,14 @@
+{% block affichage %}
+    <link rel="stylesheet" href="../../assets/css/recherche.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <div class="offres" >
+        <span class="offres title"><img src="../../Files/Utilisateurs/logo/{{ compte.file }}" alt="PNG" width="130" height="70"></span>
+        <span class="offres title">{{ compte.prenom}} {{ compte.nom }}</span>
+        <span class="offres title">PILOTE: {{ compte.idpilote}}</span>
+        <span class="offres desc">Email: {{ compte.email }} Telephone: {{ compte.telephone }}</span>
+        <span class="lieu">Role: {{ compte.type }}</span>
+        <span class="lieu">PROMO: {{ compte.promo }}</span>
+        <span class="lieu">Score snake: {{ compte.snakescore}} </span>
+    </div>
+
+{% endblock %}
