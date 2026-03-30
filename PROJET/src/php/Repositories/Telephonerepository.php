@@ -64,4 +64,14 @@ class Telephonerepository extends Repository
     {
         return $this->lastInsertId;
     }
+
+    public function getIdByTelephone($Telephone)
+    {
+        $query="SELECT id FROM telephone WHERE numero=?";
+        $row=$this->SQL->prepare($query);
+        $row->bind_param('s',$Telephone);
+        $row->execute();
+        $result=$row->fetch_assoc();
+        return (int)$result["id"];
+    }
 }
