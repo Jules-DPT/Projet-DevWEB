@@ -3,6 +3,7 @@
 namespace App\php\Services;
 
 
+use App\php\Repositories\Comptesrepository;
 use App\php\Repositories\Entreprisesrepository;
 use App\php\Repositories\EvaluationEntreprisesrepository;
 use App\php\Repositories\EvaluationPostsrepository;
@@ -43,7 +44,11 @@ class Ficheservice extends Fiche
                 $this->repository=new Entreprisesrepository();
                 $this->Evaluationrepository=new EvaluationEntreprisesrepository($this->page,$this->limit);
                 break;
+            case 1:
+                $this->repository=new Comptesrepository();
+                break;
         }
+        $this->pagination= new Paginationservice();
     }
 
     private function __construct1($id_cible_,$role_,$id_user_,$type_)
@@ -52,7 +57,6 @@ class Ficheservice extends Fiche
         $this->role=(string)$role_;
         $this->id_cible = (int)$id_cible_;
         $this->type=(int)$type_;
-
 
 
     }
@@ -71,7 +75,7 @@ class Ficheservice extends Fiche
         else{
             $this->page=$page_;
         }
-        $this->pagination= new Paginationservice();
+
 
 
     }
