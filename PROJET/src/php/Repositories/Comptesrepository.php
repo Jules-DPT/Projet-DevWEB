@@ -314,6 +314,8 @@ class Comptesrepository extends Rechercherepository
                 $data["snake_score"]
             );
         }
+        $result->close();
+        return $comptes;
 
     }
 }
