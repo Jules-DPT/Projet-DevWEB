@@ -9,6 +9,7 @@ require "vendor/autoload.php";
 use App\php\Controllers\Fichecontroller;
 use App\php\Controllers\Indexcontroller;
 use App\php\Controllers\Recherchecontroller;
+use App\php\Controllers\Errorcontroller;
 
 
 error_reporting(E_ALL);
@@ -71,9 +72,9 @@ switch ($uri) {
         $Page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
         $recherche = isset($_GET['recherche']) ? (string)$_GET['recherche'] : '';
         $int =isset($_GET['type']) ? (int)$_GET['type'] : 3;
-        $recherchecontroller = new Recherchecontroller($int,$Page,$recherche,$twig,$id_user,$role);
+        $Recherchecontroller = new Recherchecontroller($int,$Page,$recherche,$twig,$id_user,$role);
 
-        $recherchecontroller->getPageData();
+        $Recherchecontroller->getPageData();
 
         break;
 
@@ -81,14 +82,14 @@ switch ($uri) {
         $type =(isset($_GET['type']) and ($role!="ETUDIANT" or $role!="NO")) ? (int)$_GET['type'] : 3;
         $id_cible=isset($_GET['id_cible']) ? (int)$_GET['id_cible'] : -1;
         if($type==1){
-            $fichecontroller = new Fichecontroller($id_cible,$type,$id_user,$role,$twig);
+            $Fichecontroller = new Fichecontroller($id_cible,$type,$id_user,$role,$twig);
         }
         else{
             $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
             $commentaire=isset($_POST['commentaire']) ? (string)$_POST['commentaire'] : '';
-            $fichecontroller = new Fichecontroller($id_cible,$page,$type,$id_user,$role,$commentaire,$twig);
+            $Fichecontroller = new Fichecontroller($id_cible,$page,$type,$id_user,$role,$commentaire,$twig);
         }
-        $fichecontroller->getPageData();
+        $Fichecontroller->getPageData();
         break;
 
     case '/recherche/Fiche/Postuler':
@@ -104,8 +105,8 @@ switch ($uri) {
         break;
 
     default:
-        // TODO : return a 404 error
-        echo '404 Not Found';
+        $Errorcontroller =new Errorcontroller($twig,"404");
+        $Errorcontroller->getPageData();
         break;
 }
 
