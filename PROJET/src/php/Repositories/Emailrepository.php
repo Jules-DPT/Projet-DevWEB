@@ -39,7 +39,10 @@ class Emailrepository extends Repository
 
     public function getDataByID($id_)
     {
-        // TODO: Implement getDataByID() method.
+         $query="SELECT email FROM `email` WHERE `id`=?";
+         $result=$this->ExecuteQueryByID($query,$id_);
+         $data=$result->fetch_assoc();
+         return $data["email"];
     }
 
     public function checkEmail($email)
@@ -58,5 +61,15 @@ class Emailrepository extends Repository
     public function getLastInsertId()
     {
         return $this->lastInsertId;
+    }
+
+    public function getIdByEmail($email)
+    {
+        $query="SELECT id FROM `email` WHERE `email`=?";
+        $row=$this->SQL->prepare($query);
+        $row->bind_param('s',$email);
+        $row->execute();
+        $result=$row->fetch_assoc();
+        return (int)$result["id"];
     }
 }
