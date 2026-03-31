@@ -3,12 +3,14 @@
 namespace App\php\Services;
 
 
+use App\php\Contenants\Commentaire;
 use App\php\Repositories\Comptesrepository;
 use App\php\Repositories\Entreprisesrepository;
 use App\php\Repositories\EvaluationEntreprisesrepository;
 use App\php\Repositories\EvaluationPostsrepository;
 use App\php\Repositories\Postsrepository;
 use App\php\Services\Fiche;
+use Cassandra\Time;
 
 class Ficheservice extends Fiche
 {
@@ -102,11 +104,27 @@ class Ficheservice extends Fiche
 
     }
 
-    public function setCommentaire($commentaire)
+    public function setCommentaire($Commentaire)
     {
         if ($this->Evaluationrepository!=null)
         {
-            return $this->Evaluationrepository->setCommentaire($commentaire);
+            $compterepo=new Comptesrepository();
+            $nom=$compterepo->getNom($this->id_user);
+            $prenom=$compterepo->getPrenom($this->id_user);
+            $com=$Commentaire->getCommentaire();
+            $note=$Commentaire->getNote();
+            $current_datetime = date('Y-m-d');
+            $commentaire= new commentaire(
+                "",
+                $note,
+                $com,
+                $nom,
+                $prenom,
+                $this->id_user,
+                $current_datetime,
+                $this->id_cible
+            );
+            return $this->Evaluationrepository->InsertData($commentaire);
         }
         return null;
     }

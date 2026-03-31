@@ -86,8 +86,18 @@ switch ($uri) {
         }
         else{
             $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-            $commentaire=isset($_POST['commentaire']) ? (string)$_POST['commentaire'] : '';
-            $Fichecontroller = new Fichecontroller($id_cible,$page,$type,$id_user,$role,$commentaire,$twig);
+            $commentaire=isset($_POST['comment']) ? (string)$_POST['comment'] : '';
+            $note=isset($_POST['note']) ? (int)$_POST['note'] : 0;
+            if ($commentaire!="" and $note!=0)
+            {
+                $Fichecontroller = new Fichecontroller($id_cible,$page,$type,$id_user,$role,$commentaire,$note,$twig);
+                $Fichecontroller->setcommentaire();
+            }
+            else
+            {
+                $Fichecontroller = new Fichecontroller($id_cible,$page,$type,$id_user,$role,$twig);
+            }
+
         }
         $Fichecontroller->getPageData();
         break;

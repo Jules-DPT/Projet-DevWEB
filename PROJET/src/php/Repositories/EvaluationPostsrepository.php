@@ -50,8 +50,9 @@ class EvaluationPostsrepository extends Repository
         $id_cible=$contenant_->getIdCible();
         $query="Insert into evaluation_posts( note, commentaire, id_utilisateur, id_post, id_date) 
                 values(?,?,?,?,?)";
-        $this->SQL->bind_param("dsiis",$note,$commentaire,$id_user,$id_cible,$date);
-        $row=$this->SQL->execute($query);
+        $row=$this->SQL->prepare($query);
+        $row->bind_param("dsiis",$note,$commentaire,$id_user,$id_cible,$date);
+        $row->execute($query);
         $result=$row->get_result();
         if ($result->affected_rows ==1) {
             $result->close();

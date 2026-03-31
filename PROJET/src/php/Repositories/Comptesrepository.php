@@ -320,4 +320,22 @@ class Comptesrepository extends Rechercherepository
         $result->close();
         return $comptes;
     }
+
+    public function getNom($id)
+    {
+        $query="select nom from bdd_web.utilisateur where id=?";
+        $result = $this->executeQueryByID($query, $id);
+        $data = $result->fetch_assoc();
+        $result->close();
+        return (string)$data["nom"];
+    }
+
+    public function getPrenom($id)
+    {
+        $query="select prenom from bdd_web.utilisateur where id=?";
+        $result = $this->executeQueryByID($query, $id);
+        $data = $result->fetch_assoc();
+        $result->close();
+        return (string)$data["prenom"];
+    }
 }
