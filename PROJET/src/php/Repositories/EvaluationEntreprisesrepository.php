@@ -110,5 +110,14 @@ class EvaluationEntreprisesrepository extends Repository
         return $commentaire;
     }
 
+    public function getALLCount($id_)
+    {
+        $query="select count(ee.id_entreprise) as nb from evaluation_entreprise ee
+                left join bdd_web.date d on d.id = ee.id_date
+                where id_entreprise=? ORDER BY date";
+        $result=$this->ExecuteQueryByID($query,$id_);
+        $data=$result->fetch_assoc();
+        return (int)$data["nb"];
+    }
 
 }
