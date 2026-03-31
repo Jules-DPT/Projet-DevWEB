@@ -81,7 +81,15 @@ class Ficheservice extends Fiche
     }
     public function getPageData()
     {
-        return $this->repository->getDataByID($this->id_cible);
+        $data=$this->repository->getDataByID($this->id_cible);
+        if (get_class($this->repository)=="App\php\Repositories\Comptesrepository")
+        {
+            if(($data->getType()=="ADMIN" and $this->role=="PILOTE" ) or ($data->getType()=="PILOTE" and $this->role=="PILOTE"))
+            {
+                $data=null;
+            }
+        }
+        return $data;
     }
 
     public function getCommentaire()
