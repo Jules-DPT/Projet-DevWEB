@@ -125,7 +125,6 @@ class Postsrepository extends Rechercherepository
         $row->execute();
         $result=$row->get_result();
         $data = $result->fetch_assoc();
-        $data->close();
         return (int)$data['nb'];
     }
 
