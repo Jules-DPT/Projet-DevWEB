@@ -1,10 +1,74 @@
 {% block affichage %}
+    <h1 class="title">Section commentaire</h1>
+    <section class="card form-card">
+    {% if (role=="PILOTE" or role=="ADMIN") %}
+        <div class="comm-content card-info">
+            <h1>Ajouter un commentaire</h1>
+            <form action="#" method="POST">
+                <textarea class="comment-textarea" name="comment" id="comment" placeholder="Votre commentaire..."></textarea>
+                <div class="rating-system">
+                    <fieldset class="rating">
+                        <legend>Donnez votre note :</legend>
+                        <input type="radio" id="f-star5" name="rating" value="5" /><label class="full" for="f-star5"></label>
+                        <input type="radio" id="f-star4half" name="rating" value="4.5" /><label class="half" for="f-star4half"></label>
+                        <input type="radio" id="f-star4" name="rating" value="4" /><label class="full" for="f-star4"></label>
+                        <input type="radio" id="f-star3half" name="rating" value="3.5" /><label class="half" for="f-star3half"></label>
+                        <input type="radio" id="f-star3" name="rating" value="3" /><label class="full" for="f-star3"></label>
+                        <input type="radio" id="f-star2half" name="rating" value="2.5" /><label class="half" for="f-star2half"></label>
+                        <input type="radio" id="f-star2" name="rating" value="2" /><label class="full" for="f-star2"></label>                            <input type="radio" id="f-star1half" name="rating" value="1.5" /><label class="half" for="f-star1half"></label>
+                        <input type="radio" id="f-star1" name="rating" value="1" /><label class="full" for="f-star1"></label>
+                        <input type="radio" id="f-starhalf" name="rating" value="0.5" /><label class="half" for="f-starhalf"></label>
+                    </fieldset>
+                </div>
+                <br><br><br>
+                <button type="submit" class="btn-primary">Envoyer</button>
+            </form>
+        </div>
+    {% endif %}
     {% for com in commentaires %}
-        {{ com.note }}
-        {{ com.nom }}
-        {{ com.prenom }}
-        {{ com.commentaire }}
-        {{ com.date }}
+        <div class="job-content card-info">
+                <h1>{{ com.prenom }} {{ com.nom }} </h1>
+                <span class="muted">{{ com.date }}</span>
+                <fieldset class="rating">
+                        {% set suffix = com.id %}
+                        {% set note = com.note %}
+
+                        <input type="radio" id="star5-{{ suffix }}" name="rating-{{ suffix }}" value="5" disabled {{ note == 5 ? 'checked' : '' }} />
+                        <label class="full" for="star5-{{ suffix }}"></label>
+
+                        <input type="radio" id="star4half-{{ suffix }}" name="rating-{{ suffix }}" value="4.5" disabled {{ note == 4.5 ? 'checked' : '' }} />
+                        <label class="half" for="star4half-{{ suffix }}"></label>
+
+                        <input type="radio" id="star4-{{ suffix }}" name="rating-{{ suffix }}" value="4" disabled {{ note == 4 ? 'checked' : '' }} />
+                        <label class="full" for="star4-{{ suffix }}"></label>
+
+                        <input type="radio" id="star3half-{{ suffix }}" name="rating-{{ suffix }}" value="3.5" disabled {{ note == 3.5 ? 'checked' : '' }} />
+                        <label class="half" for="star3half-{{ suffix }}"></label>
+
+                        <input type="radio" id="star3-{{ suffix }}" name="rating-{{ suffix }}" value="3" disabled {{ note == 3 ? 'checked' : '' }} />
+                        <label class="full" for="star3-{{ suffix }}"></label>
+
+                        <input type="radio" id="star2half-{{ suffix }}" name="rating-{{ suffix }}" value="2.5" disabled {{ note == 2.5 ? 'checked' : '' }} />
+                        <label class="half" for="star2half-{{ suffix }}"></label>
+
+                        <input type="radio" id="star2-{{ suffix }}" name="rating-{{ suffix }}" value="2" disabled {{ note == 2 ? 'checked' : '' }} />
+                        <label class="full" for="star2-{{ suffix }}"></label>
+
+                        <input type="radio" id="star1half-{{ suffix }}" name="rating-{{ suffix }}" value="1.5" disabled {{ note == 1.5 ? 'checked' : '' }} />
+                        <label class="half" for="star1half-{{ suffix }}"></label>
+
+                        <input type="radio" id="star1-{{ suffix }}" name="rating-{{ suffix }}" value="1" disabled {{ note == 1 ? 'checked' : '' }} />
+                        <label class="full" for="star1-{{ suffix }}"></label>
+
+                        <input type="radio" id="starhalf-{{ suffix }}" name="rating-{{ suffix }}" value="0.5" disabled {{ note == 0.5 ? 'checked' : '' }} />
+                        <label class="half" for="starhalf-{{ suffix }}"></label>
+                    </fieldset>
+                </div>
+                <p>{{ com.commentaire }}</p>
+            </div>
+            {% else %}
+                <p>Aucun commentaire pour le moment.</p>
     {% endfor %}
+    </section>
     {% include 'Pagination.html.twig' with {'totalPages':totalPages , 'path':path,'page':page} %}
 {% endblock %}
