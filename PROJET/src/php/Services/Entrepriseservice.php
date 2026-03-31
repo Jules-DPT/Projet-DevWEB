@@ -14,10 +14,15 @@ class Entrepriseservice extends Service
     private $Telephoneservice;
 
     private $Emailservice;
+
+    private $Postulationservice;
     public function __construct()
     {
         $this->Adresseservice = new Adresseservice();
         $this->repository = new Entreprisesrepository();
+        $this->Postsservice = new Postsservice();
+        $this->Telephoneservice = new Telephoneservice();
+        $this->Emailservice = new Emailservice();
     }
     public function addEntreprise($Entreprise)
     {
@@ -66,5 +71,24 @@ class Entrepriseservice extends Service
 
         );
         return $this->repository->InsertData($entreprise);
+    }
+
+    public function DeleteEntreprise($id_entreprise)
+    {
+        if($this->Postsservice)
+        {
+            return "Supprimez d'abord les posts.";
+        }
+        else
+        {
+            if($this->repository->DeleteDataByID($id_entreprise))
+            {
+                return "Entreprise supprimée.";
+            }
+            else
+            {
+                return "Echec de suppression.";
+            }
+        }
     }
 }

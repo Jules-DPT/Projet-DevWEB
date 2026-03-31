@@ -88,7 +88,16 @@ class Entreprisesrepository extends Rechercherepository
     }
 
     public function DeleteDataByID($id_)
-    {}
+    {
+        $query="DELETE FROM bdd_web.entreprise WHERE id = ?";
+        $result=$this->ExecuteQueryByID($query,$id_);
+        if($result->affected_rows > 0)
+        {
+            return true;
+        }
+        return false;
+
+    }
     public function UpdateDataByID($id_, $contenant_)
     {}
 
