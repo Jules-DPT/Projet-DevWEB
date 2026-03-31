@@ -17,14 +17,15 @@ class Recherchecontroller extends Controller
 
     private $postulationservice;
 
-    public function __construct($type,$page_,$recherche_,$template_,$id_user_,$role_)
+    public function __construct($type_,$page_,$recherche_,$template_,$id_user_,$role_)
     {
+        $this->type = $type_;
         $this->id_user=$id_user_;
         $this->role=$role_;
         $this->template=$template_;
         $this->Page = $page_;
         $this->recherche = $recherche_;
-        $this->service = new Recherchesservice($this->Page,$type,$this->recherche,$this->role,$this->id_user);
+        $this->service = new Recherchesservice($this->Page,$this->type,$this->recherche,$this->role,$this->id_user);
         $this->postulationservice = new Postulationservice($this->id_user);
     }
 
