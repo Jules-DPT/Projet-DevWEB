@@ -355,4 +355,12 @@ class Postsrepository extends Rechercherepository
         $result->close();
         return $stat;
     }
+
+    public function getNbpostByEntreprise($id_)
+    {
+        $query="select count(*) as nb from posts where id_entreprise=?";
+        $result=$this->ExecuteQueryByID($query,$id_);
+        $data=$result->fetch_assoc();
+        return (int)$data['nb'];
+    }
 }
