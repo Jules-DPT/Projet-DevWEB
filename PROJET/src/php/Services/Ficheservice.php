@@ -145,7 +145,7 @@ class Ficheservice extends Fiche
 
     public function getTotalPages()
     {
-        return $this->getTotal($this->Evaluationrepository->getCommentaire($this->id_cible), $this->limit);
+        return ceil($this->Evaluationrepository->getALLCount($this->id_cible)/$this->limit);
     }
 
     public function getType()
