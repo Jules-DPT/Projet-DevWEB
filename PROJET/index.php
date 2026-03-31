@@ -79,8 +79,8 @@ switch ($uri) {
         break;
 
     case '/recherche/fiche':
-        $type =(isset($_GET['type']) and ($role!="ETUDIANT" or $role!="NO")) ? (int)$_GET['type'] : 3;
-        $id_cible=isset($_GET['id_cible']) ? (int)$_GET['id_cible'] : -1;
+        $type =(isset($_GET['type']) and ($role!="ETUDIANT" and $role!="NO")) ? (int)$_GET['type'] : 3;
+        $id_cible=isset($_GET['id_cible'])? (int)$_GET['id_cible'] : -1;
         if($type==1){
             $Fichecontroller = new Fichecontroller($id_cible,$type,$id_user,$role,$twig);
         }
