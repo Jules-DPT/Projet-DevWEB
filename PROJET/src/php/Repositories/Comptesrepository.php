@@ -267,6 +267,9 @@ class Comptesrepository extends Rechercherepository
         $result=$this->ExecuteQueryByID($query, $id_);
         $data = $result->fetch_assoc();
         $result->close();
+        if ($data==null){
+            return null;
+        }
         $compte=new Compte(
             (int)$data["id"],
             $data["nom"],
