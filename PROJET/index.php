@@ -98,6 +98,7 @@ switch ($uri) {
                     $Fichecontroller->setcommentaire();
                     $commentaire="";
                     $note=0;
+                    header("Location: "  .'/recherche/fiche'."?type=$type&id_cible=$id_cible&page=$page");
 
                 }
 
