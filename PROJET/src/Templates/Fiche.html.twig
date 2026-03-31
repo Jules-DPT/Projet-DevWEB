@@ -6,8 +6,8 @@
 </head>
 <body>
 
-        {% if contenant ==null %}
-            <h1> OOPS il n'y a pas grand chose</h1>
+        {% if contenant==null %}
+            <h1> Oups il n'y a pas grand chose ici...</h1>
         {% else %}
             {% if type==1 %}
                 {% include 'Compte.html.twig' with {'compte':contenant} %}
