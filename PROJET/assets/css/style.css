@@ -1,3 +1,5 @@
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
 :root{
   --c-text: #0b1f24;
   --c-muted: #6397a5;
@@ -756,7 +758,7 @@ input:focus, select:focus{
 }
 .job-content {
   margin-top: 20px;
-  color: white;
+  color: var(--apple-white);
 }
 .tag-container {
   display: flex;
@@ -910,6 +912,112 @@ input[type="file"]::file-selector-button {
   cursor: pointer;
   text-align: left;
   color: #F5F2ED;
+}
+
+.review-rating {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.review-rating .rating { 
+  border: none;
+  float: left;
+}
+
+.review-rating .rating > input { display: none; } 
+
+.review-rating .rating > label:before { 
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005"; /* Code de l'étoile pleine */
+}
+
+.review-rating .rating > .half:before { 
+  content: "\f089"; /* Code de la demi-étoile */
+  position: absolute;
+}
+
+.review-rating .rating > label { 
+  color: #ddd; 
+  float: right; 
+}
+
+.review-rating .rating > input:checked ~ label { 
+  color: #FFD700;
+}
+
+.review-rating .rating > input:checked
+{ 
+  color: #FFED85;  
+}
+
+.rating-system .rating { 
+  border: none;
+  float: left;
+}
+
+.rating-system .rating > input { display: none; } 
+.rating-system .rating > label:before { 
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005"; /* Code de l'étoile pleine */
+}
+
+.rating-system .rating > .half:before { 
+  content: "\f089"; /* Code de la demi-étoile */
+  position: absolute;
+}
+
+.rating-system .rating > label { 
+  color: #ddd; 
+  float: right; 
+}
+
+
+.rating-system .rating > input:checked ~ label, 
+.rating-system .rating:not(:checked) > label:hover, 
+.rating-system .rating:not(:checked) > label:hover ~ label { 
+  color: #FFD700;
+}
+
+
+.rating-system .rating > input:checked + label:hover, 
+.rating-system .rating > input:checked ~ label:hover,
+.rating-system .rating > label:hover ~ input:checked ~ label, 
+.rating-system .rating > input:checked ~ label:hover ~ label { 
+  color: #FFED85;  
+}
+
+.comment-textarea {
+  width: 100%;
+  height: 100px;
+  padding: 1em 24px;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.002);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  text-align: left;
+  color: #F5F2ED;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.comment-textarea::placeholder {
+  color: #ffffff;
+}
+
+.comm-content {
+  margin-top: 20px;
+  color: var(--apple-white);
+}
+
+.comm-content p {
+  color: var(--apple-white);
 }
 
 @media (min-width: 900px){

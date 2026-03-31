@@ -58,10 +58,50 @@
         
         <h1 class="title">Section commentaire</h1>
         <section class="card form-card">
-            <div class=" job-content card-info">
-                <h2>Notes :</h2>
+            <div class="comm-content card-info">
+                <h1>Ajouter un commentaire</h1>
+                <form action="#" method="POST">
+                    <textarea class="comment-textarea" name="comment" id="comment" placeholder="Votre commentaire..."></textarea>
+                    
+                    <div class="rating-system">
+                        <fieldset class="rating">
+                            <legend>Donnez votre note :</legend>
+                            <input type="radio" id="f-star5" name="rating" value="5" /><label class="full" for="f-star5"></label>
+                            <input type="radio" id="f-star4half" name="rating" value="4.5" /><label class="half" for="f-star4half"></label>
+                            <input type="radio" id="f-star4" name="rating" value="4" /><label class="full" for="f-star4"></label>
+                            <input type="radio" id="f-star3half" name="rating" value="3.5" /><label class="half" for="f-star3half"></label>
+                            <input type="radio" id="f-star3" name="rating" value="3" /><label class="full" for="f-star3"></label>
+                            <input type="radio" id="f-star2half" name="rating" value="2.5" /><label class="half" for="f-star2half"></label>
+                            <input type="radio" id="f-star2" name="rating" value="2" /><label class="full" for="f-star2"></label>
+                            <input type="radio" id="f-star1half" name="rating" value="1.5" /><label class="half" for="f-star1half"></label>
+                            <input type="radio" id="f-star1" name="rating" value="1" /><label class="full" for="f-star1"></label>
+                            <input type="radio" id="f-starhalf" name="rating" value="0.5" /><label class="half" for="f-starhalf"></label>
+                        </fieldset>
+                    </div>
+                    <br><br><br>
+                    <button type="submit" class="btn-primary">Envoyer</button>
+                </form>
             </div>
-            </section>
+            <div class="job-content card-info">
+                <h1>Jean Jacques</h1>
+                <span class="muted">Il y a 2 jours</span>
+                <div class="review-rating">
+                    <fieldset class="rating">
+                        <input type="radio" id="star5" name="rating1" value="5" disabled checked/><label class="full" for="star5" title="5 étoiles"></label>
+                        <input type="radio" id="star4half" name="rating1" value="4.5" disabled/><label class="half" for="star4half" title="4.5 étoiles"></label>
+                        <input type="radio" id="star4" name="rating" value="4" disabled/><label class="full" for="star4"></label>
+                        <input type="radio" id="star3half" name="rating1" value="3.5" disabled/><label class="half" for="star3half"></label>
+                        <input type="radio" id="star3" name="rating1" value="3" disabled/><label class="full" for="star3"></label>
+                        <input type="radio" id="star2half" name="rating1" value="2.5" disabled checked/><label class="half" for="star2half"></label>
+                        <input type="radio" id="star2" name="rating1" value="2" disabled/><label class="full" for="star2"></label>
+                        <input type="radio" id="star1half" name="rating1" value="1.5" disabled/><label class="half" for="star1half"></label>
+                        <input type="radio" id="star1" name="rating1" value="1" disabled/><label class="full" for="star1"></label>
+                        <input type="radio" id="starhalf" name="rating1" value="0.5" disabled/><label class="half" for="starhalf"></label>
+                    </fieldset>
+                </div>
+                <p>Super offre, j'ai postulé et j'attends unnnnnjhhygvuhiunrgbiae rbgo!aerbg!rbagbaebrgioherbberhbghuearbghuerbghearboigbnre ghbaerhbguhrbgrbgehargbrebuherbguheraerbg ouerbgebuorhgberugaueorgbuohearbguehrgberugberuhgbeurhg bhuerabgueahrbghurbne réponse avec impatience !</p>
+            </div>
+        </section>
     </main>
 
     <div class="footer-inner">
@@ -69,5 +109,8 @@
         <a class="link" href="mentions-legales.html">Mentions légales</a>
     </div>
 
+
+<script src="assets/js/menu.js"></script>
+<script src="assets/js/rating.js"></script>
 </body>
 </html>
