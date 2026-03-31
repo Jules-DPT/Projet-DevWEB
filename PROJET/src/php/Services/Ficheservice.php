@@ -5,6 +5,7 @@ namespace App\php\Services;
 
 use App\php\Contenants\Commentaire;
 use App\php\Repositories\Comptesrepository;
+use App\php\Repositories\Daterepository;
 use App\php\Repositories\Entreprisesrepository;
 use App\php\Repositories\EvaluationEntreprisesrepository;
 use App\php\Repositories\EvaluationPostsrepository;
@@ -109,11 +110,24 @@ class Ficheservice extends Fiche
         if ($this->Evaluationrepository!=null)
         {
             $compterepo=new Comptesrepository();
+            $daterepo=new Daterepository();
             $nom=$compterepo->getNom($this->id_user);
             $prenom=$compterepo->getPrenom($this->id_user);
             $com=$Commentaire->getCommentaire();
             $note=$Commentaire->getNote();
             $current_datetime = date('Y-m-d');
+
+
+            if($daterepo->checkDate($current_datetime))
+            {
+                $iddate=$daterepo->getIdByDate($current_datetime);
+            }
+            else
+            {
+                $daterepo->InsertData($current_datetime);
+                $iddate=$daterepo->getLastInsertedId();
+            }
+
             $commentaire= new commentaire(
                 "",
                 $note,
@@ -121,7 +135,7 @@ class Ficheservice extends Fiche
                 $nom,
                 $prenom,
                 $this->id_user,
-                $current_datetime,
+                $iddate,
                 $this->id_cible
             );
             return $this->Evaluationrepository->InsertData($commentaire);

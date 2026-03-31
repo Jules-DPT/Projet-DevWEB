@@ -123,9 +123,10 @@ class Postsrepository extends Rechercherepository
         $query="select count(posts.id) as nb from bdd_web.posts";
         $row =$this->SQL->prepare($query);
         $row->execute();
-        $result = $row->fetch_assoc();
-        $result->close();
-        return (int)$result['nb'];
+        $result=$row->get_result();
+        $data = $row->fetch_assoc();
+        $data->close();
+        return (int)$data['nb'];
     }
 
 

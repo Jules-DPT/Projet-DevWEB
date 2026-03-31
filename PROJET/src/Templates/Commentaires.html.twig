@@ -9,15 +9,15 @@
                 <div class="rating-system">
                     <fieldset class="rating">
                         <legend>Donnez votre note :</legend>
-                        <input type="radio" id="f-star5" name="rating" value="5" /><label class="full" for="f-star5"></label>
-                        <input type="radio" id="f-star4half" name="rating" value="4.5" /><label class="half" for="f-star4half"></label>
-                        <input type="radio" id="f-star4" name="rating" value="4" /><label class="full" for="f-star4"></label>
-                        <input type="radio" id="f-star3half" name="rating" value="3.5" /><label class="half" for="f-star3half"></label>
-                        <input type="radio" id="f-star3" name="rating" value="3" /><label class="full" for="f-star3"></label>
-                        <input type="radio" id="f-star2half" name="rating" value="2.5" /><label class="half" for="f-star2half"></label>
-                        <input type="radio" id="f-star2" name="rating" value="2" /><label class="full" for="f-star2"></label>                            <input type="radio" id="f-star1half" name="rating" value="1.5" /><label class="half" for="f-star1half"></label>
-                        <input type="radio" id="f-star1" name="rating" value="1" /><label class="full" for="f-star1"></label>
-                        <input type="radio" id="f-starhalf" name="rating" value="0.5" /><label class="half" for="f-starhalf"></label>
+                        <input type="radio" id="f-star5" name="note" value="5" /><label class="full" for="f-star5"></label>
+                        <input type="radio" id="f-star4half" name="note" value="4.5" /><label class="half" for="f-star4half"></label>
+                        <input type="radio" id="f-star4" name="note" value="4" /><label class="full" for="f-star4"></label>
+                        <input type="radio" id="f-star3half" name="note" value="3.5" /><label class="half" for="f-star3half"></label>
+                        <input type="radio" id="f-star3" name="note" value="3" /><label class="full" for="f-star3"></label>
+                        <input type="radio" id="f-star2half" name="note" value="2.5" /><label class="half" for="f-star2half"></label>
+                        <input type="radio" id="f-star2" name="note" value="2" /><label class="full" for="f-star2"></label>                            <input type="radio" id="f-star1half" name="rating" value="1.5" /><label class="half" for="f-star1half"></label>
+                        <input type="radio" id="f-star1" name="note" value="1" /><label class="full" for="f-star1"></label>
+                        <input type="radio" id="f-starhalf" name="note" value="0.5" /><label class="half" for="f-starhalf"></label>
                     </fieldset>
                 </div>
                 <br><br><br>
@@ -70,5 +70,6 @@
                 <p>Aucun commentaire pour le moment.</p>
     {% endfor %}
     </section>
+    <script src="../../assets/js/rating.js"></script>
     {% include 'Pagination.html.twig' with {'totalPages':totalPages , 'path':path,'page':page} %}
 {% endblock %}

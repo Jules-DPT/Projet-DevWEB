@@ -9,9 +9,8 @@ class PostsreopositoryTest extends TestCase
 {
     private $postsrepo;
 
-    public function setUp()
+    public function setUp():void
     {
-        parent::setUp();
-        $this->postsrepo= new PostsRepository();
+
     }
 }

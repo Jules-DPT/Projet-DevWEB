@@ -53,8 +53,7 @@ class Fichecontroller extends Controller
         $this->service=new Ficheservice($id_cible_,$role_,$id_user_,$page,4,$type);
         $this->page = $this->service->getPage();
         $this->Commentaire=trim((string)$Commentaire_);
-        $this->note=(int)$note_;
-        $this->setcommentaire();
+        $this->note=(float)$note_;
     }
 
     private function __construct3($id_cible_,$page,$type,$id_user_,$role_,$template_)

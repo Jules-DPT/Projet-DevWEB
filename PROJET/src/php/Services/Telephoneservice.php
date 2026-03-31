@@ -20,6 +20,6 @@ class Telephoneservice extends Service
 
     public function getIdByTelephone($Telephone)
     {
-        $this->repository->getIdByTelephone($Telephone);
+        return $this->repository->getIdByTelephone($Telephone);
     }
 }

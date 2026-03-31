@@ -52,7 +52,7 @@ if (!isset($_SESSION['id_user'])) {
 //$role = $_SESSION['role'];
 $loggedin = $_SESSION['loggedin'];
 
-$id_user=3;
+$id_user=4;
 $role = "PILOTE";
 
 $loader = new \Twig\Loader\FilesystemLoader('src/Templates');
@@ -86,17 +86,29 @@ switch ($uri) {
         }
         else{
             $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-            $commentaire=isset($_POST['comment']) ? (string)$_POST['comment'] : '';
-            $note=isset($_POST['note']) ? (int)$_POST['note'] : 0;
-            if ($commentaire!="" and $note!=0)
+            if($_SERVER['REQUEST_METHOD'] === 'POST')
             {
-                $Fichecontroller = new Fichecontroller($id_cible,$page,$type,$id_user,$role,$commentaire,$note,$twig);
-                $Fichecontroller->setcommentaire();
+                $commentaire=isset($_POST['comment']) ? (string)$_POST['comment'] : '';
+                $note=isset($_POST['note']) ? (float)$_POST['note'] : 0;
+                if ($commentaire!="" and $note!=0)
+                {
+                    echo $commentaire;
+                    echo $note;
+                    $Fichecontroller = new Fichecontroller($id_cible,$page,$type,$id_user,$role,$commentaire,$note,$twig);
+                    $Fichecontroller->setcommentaire();
+                    $commentaire="";
+                    $note=0;
+
+                }
+
             }
             else
             {
                 $Fichecontroller = new Fichecontroller($id_cible,$page,$type,$id_user,$role,$twig);
             }
+            $commentaire="";
+            $note=0;
+
 
         }
         $Fichecontroller->getPageData();
