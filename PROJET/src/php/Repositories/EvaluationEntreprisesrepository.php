@@ -42,16 +42,17 @@ class EvaluationEntreprisesrepository extends Repository
 
     public function InsertData($contenant_)
     {
-        $id=$contenant_->getId();
+
         $note=$contenant_->getNote();
         $date=$contenant_->getDate();
         $commentaire=$contenant_->getCommentaire();
         $id_user=$contenant_->getIdUser();
         $id_cible=$contenant_->getIdCible();
-        $query="Insert into evaluation_entreprise(id, note, commentaire, id_utilisateur, id_entreprise, id_date) 
-                values(?,?,?,?,?,?)";
-        $this->SQL->bind_param("idsiis",$id,$note,$commentaire,$id_user,$id_cible,$date);
-        $row=$this->SQL->execute($query);
+        $query="Insert into evaluation_entreprise( note, commentaire, id_utilisateur, id_entreprise, id_date) 
+                values(?,?,?,?,?)";
+        $row=$this->SQL->prepare($query);
+        $row->bind_param("dsiis",$note,$commentaire,$id_user,$id_cible,$date);
+        $row->execute($query);
         $result=$row->get_result();
         if ($result->affected_rows ==1) {
             $result->close();
