@@ -20,7 +20,6 @@ class Recherchesservice extends Service
 
     private $id_user;
     private $role;
-    private $postulationservice;
     private $type;
 
     private $recherche;
@@ -61,7 +60,6 @@ class Recherchesservice extends Service
                 break;
             case 3:
                 $this->repository = new PostsRepository($this->page,$this->limit,$this->recherche);
-                $this->postulationservice= new Postulationservice();
                 break;
         }
         $this->pagination= new Paginationservice();
