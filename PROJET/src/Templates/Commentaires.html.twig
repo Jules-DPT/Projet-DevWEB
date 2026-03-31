@@ -29,10 +29,10 @@
         <div class="job-content card-info">
                 <h1>{{ com.prenom }} {{ com.nom }} </h1>
                 <span class="muted">{{ com.date }}</span>
+            <div class="review-rating">
                 <fieldset class="rating">
                         {% set suffix = com.id %}
                         {% set note = com.note %}
-
                         <input type="radio" id="star5-{{ suffix }}" name="rating-{{ suffix }}" value="5" disabled {{ note == 5 ? 'checked' : '' }} />
                         <label class="full" for="star5-{{ suffix }}"></label>
 
