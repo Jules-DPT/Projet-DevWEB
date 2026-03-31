@@ -56,7 +56,7 @@ class Ficheservice extends Fiche
         $this->id_user=(int)$id_user_;
         $this->role=(string)$role_;
         $this->id_cible = (int)$id_cible_;
-        $this->type=(int)$type_;
+        $this->type=((int)$type_<1 or (int)$type_>3)?3:(int)$type_;
 
 
     }
@@ -66,7 +66,7 @@ class Ficheservice extends Fiche
         $this->id_user=(int)$id_user_;
         $this->role=(string)$role_;
         $this->id_cible = (int)$id_cible_;
-        $this->type=(int)$type_;
+        $this->type=((int)$type_<1 or (int)$type_>3)?3:(int)$type_;
         $this->limit=(int)$limit_;
         $page_=(int)$page_;
         if ($page_ < 1) {
