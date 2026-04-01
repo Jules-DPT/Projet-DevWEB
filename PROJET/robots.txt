@@ -1,0 +1,32 @@
+# robots.txt — StageForMe
+# https://www.stageforme.fr/robots.txt
+
+User-agent: *
+
+# --- Pages publiques autorisées à l'indexation ---
+Allow: /$
+Allow: /connexion
+Allow: /recherche
+Allow: /mentions-legales
+
+# --- Zones privées / authentifiées ---
+Disallow: /dashboard
+Disallow: /admin
+Disallow: /pilote
+Disallow: /postulation
+Disallow: /change-password
+Disallow: /user-created
+
+# --- Ressources techniques ---
+Disallow: /vendor/
+Disallow: /src/
+Disallow: /.env
+Disallow: /composer.json
+Disallow: /composer.lock
+
+# --- Paramètres de recherche dynamiques (évite le duplicate content) ---
+Disallow: /recherche?*page=
+Allow: /recherche?*
+
+# Sitemap
+Sitemap: https://www.stageforme.fr/sitemap.xml
