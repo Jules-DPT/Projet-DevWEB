@@ -5,7 +5,9 @@
     <title>Fiche</title>
 </head>
 <body>
-        <a href="/recherche?type={{ type }}"><input></a>
+        <a href="/recherche?type={{ type }}" class="back-button" title="Retour à la recherche">
+            <img src="../../assets/images/back-arrow.png" alt="Retour">
+        </a>
         {% if contenant==null %}
             <h1> Oups il n'y a pas grand chose ici...</h1>
         {% else %}
