@@ -20,7 +20,10 @@
             <h1>Nos statistiques</h1>
         </div>
         <div class="card form-card">
-            {% include 'Recentpost.html.twig' with{"path":path,"contenant":contenant} %}
+            {% include 'Recentpost.html.twig' with{"contenant":contenant1} %}
+        </div>
+        <div class="card form-card">
+            {% include 'Recentpost.html.twig' with{"contenant":contenant2} %}
         </div>
     </section>
 </main>
