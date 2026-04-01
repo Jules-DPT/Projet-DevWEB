@@ -28,7 +28,7 @@ class Postsrepository extends Rechercherepository
     private function __construct2($page_, $limit_, $recherche_):void
     {
         $this->page = $page_;
-        $this->limit = $limit_ >= 0 ? $limit_ : $this->limit;
+        $this->limit = $limit_ >= 0 ? (int)$limit_ : $this->limit;
         $this->offset = ($this->page - 1) * $this->limit;
         $this->recherche = $recherche_;
     }
@@ -316,10 +316,12 @@ class Postsrepository extends Rechercherepository
     {
         $query="select posts.id AS id,titre, CONCAT(SUBSTRING_INDEX(description,' ',30), '...') AS description_pointille
                     ,d.date as date_post,
-                       e.nom as entreprise
+                       e.nom as entreprise,v.nom as ville
                 FROM bdd_web.posts
                          left JOIN bdd_web.date d ON d.id = posts.id_date_post
                          left JOIN bdd_web.entreprise e ON posts.id_entreprise = e.id
+                         left join bdd_web.adresse a on posts.id_adresse = a.id
+                         left join bdd_web.ville v on a.id_ville = v.id
                 order by date_post DESC LIMIT ?";
         $row=$this->SQL->prepare($query);
         $row->bind_param("i",$this->limit);
@@ -327,7 +329,29 @@ class Postsrepository extends Rechercherepository
         $result=$row->get_result();
         $stat=[];
         while ($data = $result->fetch_assoc()) {
-            $stat = [(int)$data['id'], $data['titre'],$data['description_pointille'],$data['date_post'],$data['entreprise']];
+            $stat[]=
+                new Post(
+                    (int)$data['id'],
+                    $data['titre'],
+                    $data['description_pointille'],
+                    "",
+                    "",
+                    "",
+                    "",
+                    $data["ville"],
+                    "",
+                    "",
+                    "",
+                    $data['entreprise'],
+                    "",
+                    $data['date_post'],
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+                )
+            ;
         }
         $result->close();
         return $stat;
@@ -336,11 +360,13 @@ class Postsrepository extends Rechercherepository
     public function getPostsOld()
     {
         $query="select posts.id AS id,titre, CONCAT(SUBSTRING_INDEX(description,' ',30), '...') AS description_pointille,
-                d2.date as date_debut,
+                d2.date as date_debut,v.nom as ville,
                    e.nom as entreprise
             FROM bdd_web.posts
                      left join bdd_web.date d2 ON d2.id = posts.id_date_debut
                      left JOIN bdd_web.entreprise e ON posts.id_entreprise = e.id
+                     left join bdd_web.adresse a on posts.id_adresse = a.id
+                     left join bdd_web.ville v on a.id_ville = v.id
                      
             
             order by date_debut LIMIT ?";
@@ -350,7 +376,29 @@ class Postsrepository extends Rechercherepository
         $result=$row->get_result();
         $stat=[];
         while ($data = $result->fetch_assoc()) {
-            $stat=[(int)$data['id'],$data['titre'],$data['description_pointille'],$data['date_debut'],$data['entreprise'],];
+            $stat[]=
+                new Post(
+                    (int)$data['id'],
+                    $data['titre'],
+                    $data['description_pointille'],
+                    "",
+                    "",
+                    "",
+                    "",
+                    $data["ville"],
+                    "",
+                    "",
+                    "",
+                    $data['entreprise'],
+                    "",
+                    $data['date_debut'],
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+                )
+            ;
         }
         $result->close();
         return $stat;
@@ -362,5 +410,10 @@ class Postsrepository extends Rechercherepository
         $result=$this->ExecuteQueryByID($query,$id_);
         $data=$result->fetch_assoc();
         return (int)$data['nb'];
+    }
+
+    public function setLimit($limit_)
+    {
+        $this->limit = $limit_ >= 0 ? (int)$limit_ : $this->limit;
     }
 }

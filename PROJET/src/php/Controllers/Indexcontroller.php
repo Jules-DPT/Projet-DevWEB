@@ -20,8 +20,10 @@ class Indexcontroller extends Controller
         $NbPosts=$this->service->getNbPosts();
         $NbMoyPosts=$this->service->getNbMoyCandidature();
         $limit=$this->service->getLimit();
+        $recentposts=$this->service->getPostsNew();
+        $olderposts=$this->service->getPostsOld();
         header('Content-Type: text/html; charset=UTF-8');
         $path="/ ";
-        echo $this->template->render('welcomepage.html.twig',["path"=>$path,"trendingPosts"=>$trendingPosts,"MostW"=>$MostW,"NbPosts"=>$NbPosts,"NbMoyPosts"=>$NbMoyPosts,"limit"=>$limit]);
+        echo $this->template->render('welcomepage.html.twig',["path"=>$path,"trendingPosts"=>$trendingPosts,"MostW"=>$MostW,"NbPosts"=>$NbPosts,"NbMoyPosts"=>$NbMoyPosts,"limit"=>$limit,"contenant1"=>$recentposts,"contenant2"=>$olderposts]);
     }
 }

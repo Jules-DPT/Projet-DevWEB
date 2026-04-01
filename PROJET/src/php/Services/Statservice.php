@@ -29,6 +29,7 @@ class Statservice
     {
         $this->Entrepriserepository= new Entreprisesrepository();
         $this->Postrepository= new Postsrepository();
+        $this->Postrepository->setLimit(5);
         $this->limit=$this->Postrepository->getLimit();
         $num=func_num_args();
         switch ($num){
@@ -104,5 +105,15 @@ class Statservice
     public function getLimit()
     {
         return $this->limit;
+    }
+
+    public function getPostsNew()
+    {
+        return $this->Postrepository->getPostsNew();
+    }
+
+    public function getPostsOld()
+    {
+        return $this->Postrepository->getPostsOld();
     }
 }
