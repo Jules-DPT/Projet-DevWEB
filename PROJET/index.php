@@ -8,6 +8,7 @@ require "vendor/autoload.php";
 
 use App\php\Controllers\Fichecontroller;
 use App\php\Controllers\Indexcontroller;
+use App\php\Controllers\Postulationcontroller;
 use App\php\Controllers\Recherchecontroller;
 use App\php\Controllers\Errorcontroller;
 
@@ -52,8 +53,8 @@ if (!isset($_SESSION['id_user'])) {
 //$role = $_SESSION['role'];
 $loggedin = $_SESSION['loggedin'];
 
-$id_user=4;
-$role = "PILOTE";
+$id_user=1;
+$role = "ETUDIANT";
 
 $loader = new \Twig\Loader\FilesystemLoader('src/Templates');
 $twig = new \Twig\Environment($loader, [
@@ -116,6 +117,19 @@ switch ($uri) {
         break;
 
     case '/recherche/Fiche/Postuler':
+        $id_cible=isset($_GET['id_cible'])? (int)$_GET['id_cible'] : -1;
+        //$CV=isset($_POST['CV']) ? $_POST['CV'] : '';
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $LM=isset($_POST['LM'])? (string)$_POST['LM'] : "";
+            if ($LM!="")
+            {
+                $Postulationcontroller = new Postulationcontroller($id_user,$role,$loggedin,'CV',$id_cible,$LM);
+                $Postulationcontroller->getPageData();
+                header('Location: ' .'recherche/fiche?type=3&id_cible='.$id_cible."&page=1");
+                $LM="";
+            }
+
+        }
         echo "postuler";
         break;
 
