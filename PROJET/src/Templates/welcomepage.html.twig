@@ -19,7 +19,9 @@
         <div class="title">
             <h1>Nos statistiques</h1>
         </div>
-        <div class="card form-card"></div>
+        <div class="card form-card">
+            {% include 'recentpost.html.twig' with{"path":path} %}
+        </div>
     </section>
 </main>
 </body>
