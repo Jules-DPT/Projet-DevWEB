@@ -82,4 +82,17 @@ class Filerepository extends Repository
         return (int)$data['id'];
 
     }
+
+    public function checkFile($filename)
+    {
+        $query="SELECT chemin FROM file WHERE chemin=?";
+        $row=$this->SQL->prepare($query);
+        $row->bind_param('s',$filename);
+        $row->execute();
+        $result=$row->affected_rows;
+        if($result==0){
+            return false;
+        }
+        return true;
+    }
 }
