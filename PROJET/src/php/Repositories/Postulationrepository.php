@@ -23,7 +23,18 @@ class Postulationrepository extends Repository
 
     public function InsertData($contenant_)
     {
-        // TODO: Implement InsertDataByID() method.
+        $id_user = $contenant_->getIdUtilisateur();
+        $id_post = $contenant_->getIdPost();
+        $LM= $contenant_->getLM();
+        $idfile=$contenant_->getFile();
+        $query="Insert into postulation (lm, id_cv, id_utilisateur, id_post) values (?,?,?,?)";
+        $row=$this->SQL->prepare($query);
+        $row->bind_param('siii',$LM,$idfile,$id_user,$id_post);
+        $row->execute();
+        if($row->affected_rows > 0){
+            return true;
+        }
+        return false;
     }
 
     public function getDataByID($id_)
