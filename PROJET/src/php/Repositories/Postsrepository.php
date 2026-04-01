@@ -18,14 +18,14 @@ class Postsrepository extends Rechercherepository
         $this->autoSQL();
         $num = func_num_args();
         switch ($num) {
-            case 3: $this->__construct2(func_get_arg(0), func_get_arg(1),func_get_arg(2)); break;
+            case 3: $this->__construct1(func_get_arg(0), func_get_arg(1),func_get_arg(2)); break;
         }
 
     }
 
 
 
-    private function __construct2($page_, $limit_, $recherche_):void
+    private function __construct1($page_, $limit_, $recherche_):void
     {
         $this->page = $page_;
         $this->limit = $limit_ >= 0 ? (int)$limit_ : $this->limit;
@@ -129,9 +129,52 @@ class Postsrepository extends Rechercherepository
     }
 
 
-    public function getPostsbyEntreprise($id_entreprise)
+    public function getPostsByIdEntreprise($id_entreprise)
     {
+        $query="SELECT po.id as id,po.titre as titre ,po.description as description,e.email as email,t.numero as telephone,
+                   po.nb_de_postulations,e2.nom as entreprise,a.adresse,v.nom as ville,v.code_postal as code_postal,p.nom as pays,po.remuneration,
+                   d2.date as date_debut,d3.date as date_fin,po.nombre_wishlist,c.type as contrat,d.semaines as duree,d1.date as date_creation
+                   FROM bdd_web.posts po
+                     left join bdd_web.duree d on po.id_duree = d.id
+                     left join bdd_web.date d1 on po.id_date_post = d1.id
+                     left join bdd_web.date d2 on d2.id = po.id_date_debut
+                     left join bdd_web.date d3 on d3.id = po.id_date_fin
+                     left join bdd_web.email e on e.id = po.id_email
+                     left join bdd_web.contrat c on po.id_contrat = c.id
+                     left join bdd_web.telephone t on po.id_telephone = t.id
+                     left join bdd_web.entreprise e2 on e2.id = po.id_entreprise
+                     left join bdd_web.adresse a on po.id_adresse = a.id
+                     left join bdd_web.ville v on v.id = a.id_ville
+                     left join bdd_web.pays p on v.id_pays = p.id
+                   where id_entreprise=?";
+        $result=$this->ExecuteQueryByID($query,$id_entreprise);
+        $posts=[];
+        while ($data = $result->fetch_assoc()) {
+            $posts[] = new Post(
+                (int)$data['id'],
+                $data['titre'],
+                $data['description'],
+                $data['date_creation'],
+                $data['email'],
+                $data['telephone'],
+                $data['adresse'],
+                $data['ville'],
+                $data['code_postal'],
+                $data['pays'],
+                (int)$data['nb_de_postulations'],
+                $data['entreprise'],
+                $data['remuneration'],
+                $data['date_debut'],
+                $data['date_fin'],
+                (int)$data['nombre_wishlist'],
+                $data['contrat'],
+                $data['duree'],
+                $this->getCompetencesByID((int)$data['id'])
+            );
 
+        }
+        $result->close();
+        return $posts;
     }
 
 
