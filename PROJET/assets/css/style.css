@@ -354,9 +354,8 @@ input:focus, select:focus{
 .side-text {
   position: absolute;
   top: 40%;
-  left: 25%;
+  left: 5%;
   width: 50vw;
-  text-align: center;
 }
 
 .side-text h1 {
@@ -1112,7 +1111,7 @@ input[type="file"]::file-selector-button {
   .side-text {
     top: 35%;
     left: 10vw;
-    width: 80vw;
+    width: 60vw;
   }
   
   .side-text h1 {
