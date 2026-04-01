@@ -15,5 +15,11 @@
     <div class="bottom">
         <span class="date">Du {{ post.datedebut}} au {{ post.datefin }}</span> <span class="nb-post">{{ post.nb_postulation }}</span>
     </div>
+    {% if role=="ETUDIANT" and (check==false) %}
+        <br>
+        <div class="conteneur">
+            <a href="/recherche/Fiche/Postuler?id_cible={{ post.id }}"><input class="liquid_box_mini" value="Postuler"></a>
+        </div>
+    {% endif %}
 
 {% endblock %}

@@ -23,7 +23,8 @@ class Postulationservice extends Service
         $num = func_num_args();
         switch ($num) {
             case 1: $this->__construct1(func_get_arg(0)); break;
-            case 4: $this->__construct2(func_get_arg(0), func_get_arg(1),func_get_arg(2),func_get_arg(3)); break;
+            case 2: $this->__construct2(func_get_arg(0),func_get_arg(1)); break;
+            case 4: $this->__construct3(func_get_arg(0), func_get_arg(1),func_get_arg(2),func_get_arg(3)); break;
         }
     }
 
@@ -32,7 +33,13 @@ class Postulationservice extends Service
         $this->id_utilisateur = (int)$id_utilisateur_;
     }
 
-    private function __construct2($id_post_,$id_utilisateur_,$file_,$uploaddir_):void
+    private function __construct2($id_utilisateur_,$id_cible_):void
+    {
+        $this->id_utilisateur = (int)$id_utilisateur_;
+        $this->id_post = $id_cible_;
+    }
+
+    private function __construct3($id_post_,$id_utilisateur_,$file_,$uploaddir_):void
     {
         $this->id_post = (int)$id_post_;
         $this->id_utilisateur = (int)$id_utilisateur_;
@@ -90,6 +97,11 @@ class Postulationservice extends Service
             $check[]=false;
         }
         return $check;
+    }
+
+    public function checkPostulation()
+    {
+        return $this->repository->checkPostulation($this->id_post,$this->id_utilisateur);
     }
 
 }

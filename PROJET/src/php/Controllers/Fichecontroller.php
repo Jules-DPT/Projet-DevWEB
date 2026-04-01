@@ -8,6 +8,7 @@ namespace App\php\Controllers;
 use App\php\Contenants\Commentaire;
 use App\php\Controllers\Controller;
 use App\php\Services\Ficheservice;
+use App\php\Services\Postulationservice;
 
 class Fichecontroller extends Controller
 {
@@ -18,6 +19,8 @@ class Fichecontroller extends Controller
 
     private $Commentaire;
     private $note;
+
+    private $Postulationservice;
 
     public function __construct()
     {
@@ -61,6 +64,7 @@ class Fichecontroller extends Controller
         $this->template=$template_;
         $this->service=new Ficheservice($id_cible_,$role_,$id_user_,$page,4,$type);
         $this->page = $this->service->getPage();
+        $this->Postulationservice=new Postulationservice($id_user_,$id_cible_);
     }
     public function getPageData()
     {
@@ -71,11 +75,20 @@ class Fichecontroller extends Controller
             $path=$this->service->getPath("?id_cible=".$this->id_cible."&type=".$this->type);
             echo $this->template->render('Fiche.html.twig',["path"=>$path,"contenant"=>$contenant,"type"=>$this->type,"id_cible"=>$this->id_cible,"role"=>$this->role]);
         }
-        else{
+        elseif ($this->type==2){
             $totalpages=$this->service->getTotalPages();
             $path=$this->service->getPath("?id_cible=".$this->id_cible."&type=".$this->type."&page=".$this->page);
             $commentaires=$this->service->getCommentaire();
             echo $this->template->render('Fiche.html.twig',["page"=>$this->page ,"path"=>$path,"totalPages"=>$totalpages,"contenant"=>$contenant,"type"=>$this->type,"id_cible"=>$this->id_cible,"role"=>$this->role,"commentaires"=>$commentaires]);
+        }
+        else
+        {
+            $totalpages=$this->service->getTotalPages();
+            $path=$this->service->getPath("?id_cible=".$this->id_cible."&type=".$this->type."&page=".$this->page);
+            $commentaires=$this->service->getCommentaire();
+            $check=$this->Postulationservice->checkPostulation();
+            echo $this->template->render('Fiche.html.twig',["page"=>$this->page ,"path"=>$path,"totalPages"=>$totalpages,"contenant"=>$contenant,"type"=>$this->type,"id_cible"=>$this->id_cible,"role"=>$this->role,"commentaires"=>$commentaires,"check"=>$check]);
+
         }
 
 
@@ -99,5 +112,10 @@ class Fichecontroller extends Controller
             return $this->service->setCommentaire($commentaire);
         }
         return false;
+    }
+
+    public function checkPostulation()
+    {
+        return $this->Postulationservice->checkPostulation();
     }
 }
