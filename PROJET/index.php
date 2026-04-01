@@ -119,27 +119,32 @@ switch ($uri) {
     case '/recherche/Fiche/Postuler':
         $id_cible=isset($_GET['id_cible'])? (int)$_GET['id_cible'] : -1;
         //$CV=isset($_POST['CV']) ? $_POST['CV'] : '';
+        $Postulationcontroller = new Postulationcontroller($id_user,$role,$loggedin,'',$id_cible,"",$twig);
+        $Postulationcontroller->getPageData();
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $LM=isset($_POST['LM'])? (string)$_POST['LM'] : "";
             if ($LM!="")
             {
-                $Postulationcontroller = new Postulationcontroller($id_user,$role,$loggedin,'CV',$id_cible,$LM);
-                $Postulationcontroller->getPageData();
+                $Postulationcontroller = new Postulationcontroller($id_user,$role,$loggedin,'CV',$id_cible,$LM,$twig);
+                $Postulationcontroller->getPostulationData();
                 header('Location: ' .'recherche/fiche?type=3&id_cible='.$id_cible."&page=1");
                 $LM="";
             }
 
         }
-        echo "postuler";
         break;
 
-    case '/connexion':
-        echo "connexion";
-        break;
+        case '/connexion':
+            echo "connexion";
+            break;
 
-    case '/dashboard':
-        echo "dashboard";//je ne sais pas si nous en avons vraiment besoin ou si nous ferons via connexion ?
-        break;
+        case '/mentions-legales':
+            echo "mentions-legales";
+            break;
+
+        case '/dashboard':
+            echo "dashboard";//je ne sais pas si nous en avons vraiment besoin ou si nous ferons via connexion ?
+            break;
 
     default:
         $Errorcontroller =new Errorcontroller($twig,"404");

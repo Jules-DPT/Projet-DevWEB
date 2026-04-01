@@ -9,8 +9,9 @@ use App\php\Services\Postulationservice;
 class Postulationcontroller extends Controller
 {
     private $dir_path;
-    public function __construct($id_user_, $role_, $loggedin_,$file_,$id_post_,$LM_)
+    public function __construct($id_user_, $role_, $loggedin_,$file_,$id_post_,$LM_,$template_)
     {
+        $this->template=$template_;
         $this->id_user = $id_user_;
         $this->role = $role_;
         $this->loggedin = $loggedin_;
@@ -20,15 +21,21 @@ class Postulationcontroller extends Controller
     }
     public function getPageData()
     {
-        $result=$this->service->getPageData();
+
         $check=$this->service->checkPostulation();
+        header('Content-Type: text/html; charset=UTF-8');
         switch ($this->role) {
             case "ETUDIANT" and $check==false:
-                echo $this->template->render('Postulation.html.twig',["result"=>$result]);
+                echo $this->template->render('Postulation.html.twig',["result"=>null]);
                 break;
             default:
                 header("Location: /");
                 break;
         }
+
+    }
+    public function getPostulationData(){
+        $result=$this->service->getPageData();
+        echo $this->template->render('Postulation.html.twig',["result"=>$result]);
     }
 }

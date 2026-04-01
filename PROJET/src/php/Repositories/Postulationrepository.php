@@ -2,6 +2,7 @@
 
 namespace App\php\Repositories;
 
+use App\php\Contenants\Postulation;
 use App\php\Repositories\Repository;
 
 class Postulationrepository extends Repository
@@ -39,7 +40,21 @@ class Postulationrepository extends Repository
 
     public function getDataByID($id_)
     {
-        // TODO: Implement getDataByID() method.
+        $query="Select po.id as id,LM, id_cv as CV, prenom,nom, titre 
+                from postulation po
+                left join utilisateur u on u.id=po.id_utilisateur
+                left join posts p on p.id=po.id_post
+                left join file f on f.id=po.id_cv
+                where id_utilisateur=?";
+        $result=$this->ExecuteQueryByID($query,$id_);
+        $postulation=new Postulation(
+            $result["id"],
+            $result["prenom"]." ".$result["nom"],
+            $result["titre"],
+            $result["CV"],
+            $result["LM"]
+        );
+        return $postulation;
     }
 
     public function checkPostulation($id_post,$id_user)
@@ -56,5 +71,23 @@ class Postulationrepository extends Repository
         }
         $result->close();
         return true;
+    }
+
+    public function getPostulationInfoById($id_)
+    {
+        $query="Select LM, prenom,nom, titre 
+                from postulation po
+                left join utilisateur u on u.id=po.id_utilisateur
+                left join posts p on p.id=po.id_post
+                where id_utilisateur=?";
+        $result=$this->ExecuteQueryByID($query,$id_);
+        $postulation=new Postulation(
+            "",
+            $result["prenom"]." ".$result["nom"],
+            $result["titre"],
+            "",
+            $result["LM"]
+        );
+        return $postulation;
     }
 }

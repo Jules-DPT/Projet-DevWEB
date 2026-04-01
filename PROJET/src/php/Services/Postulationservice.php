@@ -122,4 +122,9 @@ class Postulationservice extends Service
         return $this->repository->checkPostulation($this->id_post,$this->id_utilisateur);
     }
 
+    public function getPostulation($id_user)
+    {
+        return $this->repository->getDataByID($id_user);
+    }
+
 }
