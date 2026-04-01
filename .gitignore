@@ -1,3 +1,4 @@
 PROJET/vendor/
 .gitignore
 .DS_Store
+.env
