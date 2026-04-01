@@ -2,6 +2,7 @@
 
 namespace App\php\Services;
 
+use App\php\Contenants\Postulation;
 use App\php\Repositories\Filerepository;
 use App\php\Repositories\Postsrepository;
 use App\php\Repositories\Postulationrepository;
@@ -14,7 +15,7 @@ class Postulationservice extends Service
     private $id_utilisateur;
     private $Fileservice;
     private $Postsrepository;
-    private $post;
+    private $LM;
     private $file;
     private $uploaddir;
     public function __construct()
@@ -39,20 +40,24 @@ class Postulationservice extends Service
         $this->id_post = $id_cible_;
     }
 
-    private function __construct3($id_post_,$id_utilisateur_,$file_,$uploaddir_):void
+    private function __construct3($id_post_,$id_utilisateur_,$file_,$uploaddir_,$LM):void
     {
         $this->id_post = (int)$id_post_;
         $this->id_utilisateur = (int)$id_utilisateur_;
-        $this->file = htmlspecialchars($file_);
+        $this->file = trim(htmlspecialchars($file_));
         $this->uploaddir = $uploaddir_;
         $this->Fileservice = new Fileservice();
         $this->Postsrepository = new Postsrepository();
-        $this->post =$this->Postsrepository->getDataByID($id_post_);
+        $this->LM = trim((string)$LM);
     }
 
     public function getPageData()
     {
-        return $this->Postsrepository->getDataByID($this->id_post);
+        if ($this->insertData())
+        {
+            return " Postulation réussie!!! ";
+        }
+        return " echec de la Postulation :(";
     }
 
     private function UploadFilePDF()
@@ -80,8 +85,21 @@ class Postulationservice extends Service
     }
     public function insertData(){
         if ($this->UploadFilePDF()['success']===true) {
-            $this->repository->insertData($this->post);
-            return true;
+            $Filerepository = new Filerepository();
+            if(!$Filerepository->checkFile($this->file))
+            {
+                $Filerepository->InsertData($this->file);
+            }
+            $idFile=$Filerepository->getIDByData($this->file);
+            $postulation = new Postulation(
+                "",
+                $this->id_utilisateur,
+                $this->id_post,
+                $idFile,
+                $this->LM
+            );
+
+            return $this->repository->insertData($postulation);
         }
         return false;
     }
