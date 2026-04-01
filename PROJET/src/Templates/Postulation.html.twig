@@ -5,26 +5,33 @@
     <title>Postulation</title>
 </head>
 <body>
+<header class="header-minimal">
+        <a href="" class="back-button" title="Retour à la recherche">
+            <img src="../../assets/images/back-arrow.png" alt="Retour">
+        </a>
+    </header>
+    <main class="container-offre">
+        <section class="card form-card">
+            <form id="postform" method="post" enctype="multipart/form-data">
+                <div class="form-grid">
+                    <div class="field">
+                        <label for="cv">Curriculum Vitae (CV)</label>
+                        <input type="file" id="postfile" name="CV" accept="application/pdf" required>
+                        <span class="hint">Format PDF de préférence</span>
+                    </div>
+                    <div class="field">
+                        <label for="lm">Lettre de motivation</label>
+                        <textarea class="post-textarea" type="text" id="lm" name="lm"> </textarea>
+                        <span class="hint">Optionnel</span>
+                    </div>
+                </div>
 
-<article>
-    <center><h2 >Postuler :</h2></center>
-    <form class="" id="postform" method="post" enctype="multipart/form-data" >
-        <label>Lettre de motivation (max:144)<br><textarea rows="6" cols="50" class="" name="LM"
-                                                         maxlength="144"  placeholder="" required ></textarea></label>
-        <br><br>
-        <div class="">
-            <div class="">
-                <label>CV: <br>  <input id="postfile" maxlength="2" type="file" accept="application/pdf" name="CV" required>
-                </label>
-            </div>
-        </div>
-        <br><br>
-        <div >
-            <button id="topost" class="" type="submit">Postuler</button>
-        </div>
-    </form>
-
-</article>
+                <div class="actions">
+                    <button type="submit" class="btn-primary">Envoyer ma candidature</button>
+                </div>
+            </form>
+        </section>
+    </main>
 
 </body>
 </html>
