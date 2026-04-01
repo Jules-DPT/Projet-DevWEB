@@ -65,23 +65,23 @@ class Recherchesservice extends Service
         $this->pagination= new Paginationservice();
     }
 
-    public function getPageData()
+    public function getPageData(): array
     {
         return $this->repository->getPageData();
     }
 
-    public function getTotalPages()
+    public function getTotalPages(): int
     {
         $this->totalPages = ceil($this->repository->getALLCount()/$this->limit);
         return  $this->totalPages ;
     }
 
-    public function getPath($get_)
+    public function getPath($get_):string
     {
         return $this->pagination->getPath($get_);
     }
 
-    public function getPage()
+    public function getPage():int
     {
         return $this->page;
     }
