@@ -755,6 +755,34 @@ input:focus, select:focus{
 .back-button img {
   width: 20px;
 }
+#BtnToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(12px); 
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+}
+#BtnToTop:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.1);
+  transition: 0.2s;
+}
+.arrow-img {
+    width: 25px;
+    height: 25px;
+}
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.1);
+}
+.back-button img {
+  width: "25px;
+}
+
 .job-content {
   margin-top: 20px;
   color: var(--apple-white);

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Page d'accueil -->
+  <url>
+    <loc>https://www.stageforme.fr/</loc>
+    <lastmod>2026-03-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Connexion -->
+  <url>
+    <loc>https://www.stageforme.fr/connexion</loc>
+    <lastmod>2026-03-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Recherche (offres, entreprises, comptes) -->
+  <url>
+    <loc>https://www.stageforme.fr/recherche</loc>
+    <lastmod>2026-03-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Mentions légales -->
+  <url>
+    <loc>https://www.stageforme.fr/mentions-legales</loc>
+    <lastmod>2026-03-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!--
+    Pages authentifiées (dashboard, postulation, création de comptes…) :
+    volontairement EXCLUES du sitemap car elles nécessitent une session.
+    Elles sont également bloquées dans robots.txt.
+  -->
+
+</urlset>
