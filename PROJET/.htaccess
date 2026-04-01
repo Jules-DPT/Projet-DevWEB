@@ -1,7 +1,4 @@
 RewriteEngine On
-# Définit la base de réécriture à la racine du VirtualHost
-RewriteBase /
-
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php [QSA,L]
