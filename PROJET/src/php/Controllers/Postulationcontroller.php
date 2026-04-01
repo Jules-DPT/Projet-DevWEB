@@ -8,24 +8,26 @@ use App\php\Services\Postulationservice;
 
 class Postulationcontroller extends Controller
 {
-    public function __construct($id_user_, $role_, $loggedin_,$file_,$id_post_)
+    private $dir_path;
+    public function __construct($id_user_, $role_, $loggedin_,$file_,$id_post_,$LM_)
     {
         $this->id_user = $id_user_;
         $this->role = $role_;
         $this->loggedin = $loggedin_;
-        $this->service=new Postulationservice($id_post_,$id_user_,$file_,"../../../../Files/utilisateur/CV/");
-
+        $this->dir_path='../../../../Files/utilisateur/CV/';
+        $this->service=new Postulationservice($id_post_,$this->id_user,$file_,$this->dir_path,$LM_);
 
     }
-    protected function getPageData()
+    public function getPageData()
     {
-
+        $result=$this->service->getPageData();
+        $check=$this->service->checkPostulation();
         switch ($this->role) {
-            case "ETUDIANT":
-                echo $this->template->render('Postulation.html.twig');
+            case "ETUDIANT" and $check==false:
+                echo $this->template->render('Postulation.html.twig',["result"=>$result]);
                 break;
             default:
-                echo $this->template->render('welcomepage.html.twig');
+                header("Location: /");
                 break;
         }
     }
