@@ -28,6 +28,9 @@
     </div>
     <img src="../../assets/images/menu-btn.png" alt="menu hamburger" class="menu-hamburger">
 </nav>
-    <script src="../../assets/js/scripts.js" type="application/javascript"></script>
-    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    <script src="{{ asset('assets/js/scripts.js') }}"></script>
+
+<button onclick="topFunction()" id="myBtn" title="Retour en haut">
+    <img src="{{ asset('assets/images/UP.png') }}" alt="Retour en haut" class="btn-img">
+</button>
 {% endblock %}
