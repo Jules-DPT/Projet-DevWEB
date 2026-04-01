@@ -1,11 +1,13 @@
 {% block affichage %}
-        <a href="#" class="gestion-box offer-card">
+    {% for post in contenant  %}
+        <a href="/recherche/fiche?id_cible={{ post.id }}&page=1&type=3" class="gestion-box offer-card">
             <div class="tag-container">
-                <span class="tag">📍 Paris</span>
+                <span class="tag">📍 {{ post.ville }}</span>
             </div>
             <div class="content-mid">
-                <h3>Développeur Front-end</h3>
-                <p class="description">Rejoignez notre équipe pour travailler sur des interfaces modernes en React.</p>
+                <h3>{{ post.titre }}</h3>
+                <p class="description">{{ post.description }}</p>
             </div>
         </a>
+    {% endfor %}
 {% endblock %}
