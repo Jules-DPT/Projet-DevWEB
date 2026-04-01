@@ -66,7 +66,7 @@ La règle s'applique à **tous** les robots (Googlebot, Bingbot, etc.). On pourr
 Allow: /$
 Allow: /connexion
 Allow: /recherche
-Allow: /recherche.fiche
+Allow: /recherche/fiche
 Allow: /mentions-legales
 ```
 
