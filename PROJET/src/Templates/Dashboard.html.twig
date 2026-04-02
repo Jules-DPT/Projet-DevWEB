@@ -8,6 +8,38 @@
     <a href="/" class="back-button" title="Retour accueil">
         <img src="../../assets/images/back-arrow.png" alt="Retour">
     </a>
-
+    <main id="main">
+        <section class="board-head">
+            <h1>Dashboard</h1>
+            <p class="muted">conçu pour simplifier votre expérience.</p>
+            </section>
+            <section class="board-head">
+                <h1>Dashboard</h1>
+                <p class="muted">conçu pour simplifier votre expérience.</p>
+                </section>
+                <section class="card side-board form-card" aria-label="Formulaire de création de compte">
+                <a href="dashboard.html"><div class="nav-links">
+                    <img src="../../assets/images/stats-icon.png" alt="dashboard icon" class="stats-icon">
+                </div></a>
+                <a href="dashboard-1.html"><div class="nav-links">
+                    <img src="../../assets/images/profile-icon.png" alt="dashboard icon" class="profile-icon">
+                </div></a>
+                <a href="dashboard-2.html"><div class="nav-links">
+                    <img src="../../assets/images/gestion-icon.png" alt="dashboard icon" class="stats-icon">
+                </div></a>
+                </section>
+            <section class="card board form-card scroll">
+            {% if dashboard = Stats}
+                {% include "DashStats.html.twig" with{"path":path} %}
+            {% endif %}
+            {% if dashboard = profile %}
+                {% include "DashProfile.html.twig" with{"path":path} %}
+            {% endif %}
+            {% if dashboard = gestion %}
+                {% include "DashGestion.html.twig" with{"path":path} %}
+            {% endif %}
+        </section>
+    </main>
+<script src="assets/js/menu.js"></script>
 </body>
 </html>
