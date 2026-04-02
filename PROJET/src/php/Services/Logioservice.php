@@ -129,7 +129,9 @@ class Logioservice extends Service
 
     public function LogOut(){
 
-
+        $_SESSION["loggedin"] = false;
+        $_SESSION["id_user"] = -1;
+        $_SESSION["role"] = "NO";
         $_SESSION = array();
         session_unset();
         // Destroy the session.
