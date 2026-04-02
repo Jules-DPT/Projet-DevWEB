@@ -19,8 +19,14 @@
        {% include 'CarouStat.html.twig' with{"path":path,"trendingPosts":trendingPosts,"MostW":MostW,"NbPosts":NbPosts,"NbPostsVille":NbPostsVille,"limit":limit} %}
     </section>
     <section class="wpost">
-        {% include 'Recentpost.html.twig' with{"contenant":contenant2} %}
-        {% include 'Recentpost.html.twig' with{"contenant":contenant1} %}
+        <div class="card form-card">
+            <h2 class="title">Offres les plus anciennes</h2>
+            {% include 'Recentpost.html.twig' with{"contenant":contenant2} %}
+        </div>
+        <div class="card form-card">
+            <h2 class="title">Offres les plus récentes</h2>
+            {% include 'Recentpost.html.twig' with{"contenant":contenant1} %}
+        </div>
     </section>
 </main>
 </body>

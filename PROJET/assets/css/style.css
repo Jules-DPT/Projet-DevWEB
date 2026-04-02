@@ -1148,6 +1148,14 @@ input[type="file"]::file-selector-button {
   margin-top: 5px;
 }
 
+/* Classe pour pousser l'élément tout en bas */
+.wpost {
+  position: absolute;
+  display: flex;
+  top: 100vh;
+  padding: 20px;
+  min-width: 50%;
+}
 
 @media (min-width: 900px){
   .auth-layout{
