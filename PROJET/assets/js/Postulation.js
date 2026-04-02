@@ -9,3 +9,14 @@ document.getElementById("postform").addEventListener("submit", function(e) {
         }
     }
 });
+
+const input = document.getElementsByName('CV');
+const acceptedTypes = ['application/pdf'];
+
+input.addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    if (file && !acceptedTypes.includes(file.type)) {
+        alert('Invalid file type. Only  PDF allowed.');
+        input.value = ''; // Reset input
+    }
+});
