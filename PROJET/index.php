@@ -36,7 +36,7 @@ setcookie(
 session_set_cookie_params([
     'lifetime' => 0, // expire à la fermeture du navigateur
     'path' => '/',
-    'secure' => false,     // HTTPS obligatoire
+    'secure' => true,     // HTTPS obligatoire
     'httponly' => true,   // pas accessible JS
     'samesite' => 'Strict'
 ]);
