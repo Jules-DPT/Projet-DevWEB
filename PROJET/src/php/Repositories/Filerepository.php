@@ -90,9 +90,11 @@ class Filerepository extends Repository
         $row->bind_param('s',$filename);
         $row->execute();
         $result=$row->affected_rows;
-        if($result==0){
+        if($result<0){
             return false;
         }
         return true;
+
+
     }
 }

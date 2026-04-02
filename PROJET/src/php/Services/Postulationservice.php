@@ -18,6 +18,8 @@ class Postulationservice extends Service
     private $LM;
     private $file;
     private $uploaddir;
+
+    private $filename;
     public function __construct()
     {
         $this->repository = new Postulationrepository();
@@ -25,7 +27,7 @@ class Postulationservice extends Service
         switch ($num) {
             case 1: $this->__construct1(func_get_arg(0)); break;
             case 2: $this->__construct2(func_get_arg(0),func_get_arg(1)); break;
-            case 4: $this->__construct3(func_get_arg(0), func_get_arg(1),func_get_arg(2),func_get_arg(3)); break;
+            case 5: $this->__construct3(func_get_arg(0), func_get_arg(1),func_get_arg(2),func_get_arg(3),func_get_arg(4)); break;
         }
     }
 
@@ -72,9 +74,9 @@ class Postulationservice extends Service
         }
 
         if ($this->Fileservice->getMimeType($_FILES[$this->file]['tmp_name']) == 'application/pdf') {
-            $uploadfile = $this->uploaddir . basename($_FILES[$this->file]['name']);
-
-            if (!move_uploaded_file($_FILES[$this->file] ['tmp_name'], $uploadfile)) {
+            $this->filename=basename($_FILES[$this->file]['name']);
+            $uploadfile = $_SERVER['DOCUMENT_ROOT'] .$this->uploaddir .$this->filename ;
+            if (!move_uploaded_file($_FILES[$this->file]['tmp_name'], $uploadfile)) {
                 return ['success' => false, 'message' => 'erreur de chemin serveur'];
             }
             return ['success' => true, 'message' => ' est un PDF et est accepté'];
@@ -84,13 +86,16 @@ class Postulationservice extends Service
         }
     }
     public function insertData(){
+        if($this->checkPostulation()){
+            return false;
+        }
         if ($this->UploadFilePDF()['success']===true) {
             $Filerepository = new Filerepository();
-            if(!$Filerepository->checkFile($this->file))
+            if(!$Filerepository->checkFile($this->filename))
             {
-                $Filerepository->InsertData($this->file);
+                $Filerepository->InsertData($this->filename);
             }
-            $idFile=$Filerepository->getIDByData($this->file);
+            $idFile=$Filerepository->getIDByData($this->filename);
             $postulation = new Postulation(
                 "",
                 $this->id_utilisateur,
@@ -112,7 +117,9 @@ class Postulationservice extends Service
             {
                 $check[]=true;
             }
-            $check[]=false;
+            else{
+                $check[]=false;
+            }
         }
         return $check;
     }
@@ -125,6 +132,16 @@ class Postulationservice extends Service
     public function getPostulation($id_user)
     {
         return $this->repository->getDataByID($id_user);
+    }
+
+    public function getIdpost()
+    {
+        return $this->id_post;
+    }
+
+    public function getIdUtilisateur()
+    {
+        return $this->id_utilisateur;
     }
 
 }
