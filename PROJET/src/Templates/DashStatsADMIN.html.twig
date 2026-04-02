@@ -1,0 +1,39 @@
+{% block affichage %}
+    <div class="card-info">
+        <div class="card-info title">
+            <span>CPIA1</span>
+        </div>
+        <div class="stat">
+            <div class="stat-icon blue">
+                <img src="assets/images/up-arrow.png" alt="up arrow">
+            </div>
+            <div>
+            <div class="stat-value">
+                <canvas id="myChart"></canvas>
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                <script>
+                    const ctx = document.getElementById('myChart');
+                    new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels:  ["Utilisateurs","Offres","Entreprises"],
+                            datasets: [{
+                                label: '# nb: utilisateurs;offres;entreprises',
+                                data: [{{ NbUsers|json_encode|raw }},{{ NbPosts|json_encode|raw }},{{ NbEntreprises|json_encode|raw }}],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                </script></div>
+                <div class="stat-label">+8.2% le mois dernier</div>
+            </div>
+        </div>
+
+{% endblock %}

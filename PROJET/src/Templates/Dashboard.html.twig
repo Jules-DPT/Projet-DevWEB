@@ -31,13 +31,21 @@
                 </section>
             <section class="card board form-card scroll">
             {% if type == 1 %}
-                {% include "DashStats.html.twig" with{"path":path} %}
+                {% if role=="ADMIN" %}
+                    {% include "DashStatsADMIN.html.twig" with{'role':role,"NbUsers":NbUsers,"NbPosts":NbPosts,"NbEntreprises":NbEntreprises} %}
+                {% endif %}
+                {% if role=="PILOTE" %}
+                    {% include "DashStatsPILOTE.html.twig" with{'role':role,"StudentByPost":StudentByPost} %}
+                {% endif %}
+                {% if role=="ETUDIANT" %}
+                    {% include "DashStatsETUDIANT.html.twig" with{'role':role,"NbWishes":NbWishes} %}
+                {% endif %}
             {% endif %}
             {% if type == 2 %}
-                {% include "DashProfile.html.twig" with{"path":path} %}
+                {% include "DashProfile.html.twig" with{"compte":compte} %}
             {% endif %}
             {% if type == 3 %}
-                {% include "DashGestion.html.twig" with{"path":path} %}
+                {% include "DashGestion.html.twig" with{} %}
             {% endif %}
         </section>
     </main>

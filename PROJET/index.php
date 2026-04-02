@@ -57,8 +57,8 @@ $id_user = (int)$_SESSION['id_user'];
 $role = $_SESSION['role'];
 $loggedin = $_SESSION['loggedin'];
 
-//$id_user=3;
-//$role = "PILOTE";
+//$id_user=1;
+//$role = "ETUDIANT";
 //$loggedin = true;
 
 $loader = new \Twig\Loader\FilesystemLoader('src/Templates');
@@ -146,7 +146,8 @@ switch ($uri) {
 
 
         case '/dashboard':
-            $Dashboardcontroller = new Dashboardcontroller($id_user,$role,$loggedin,$twig);
+            $type=isset($_GET['type'])? (int)$_GET['type'] : 1;
+            $Dashboardcontroller = new Dashboardcontroller($id_user,$role,$loggedin,$type,$twig);
             $Dashboardcontroller->getPageData();
 
         break;

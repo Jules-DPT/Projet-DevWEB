@@ -1,12 +1,22 @@
 
-
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <html lang="fr">
+
+<head>
+    <link rel="stylesheet" href="../../assets/css/recherche.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <meta charset="UTF-8">
+    <title>Accueil</title>
+</head>
+
+
+<body>
 {% block head %}
     {% include "base.html.twig" with{"path":path} %}
 {% endblock %}
-<body>
-<link rel="stylesheet" href="../../assets/css/recherche.css">
-<link rel="stylesheet" href="../../assets/css/style.css">
+<br>
+<br>
 {% block body %}
 <main id="main" class="container page search">
 <div class="page-head">
