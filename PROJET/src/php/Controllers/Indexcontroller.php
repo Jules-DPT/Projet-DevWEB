@@ -8,8 +8,11 @@ use App\php\Services\Statservice;
 class Indexcontroller extends Controller
 {
 
-    public function __construct($template_)
+    public function __construct($id_user_,$role_,$loggedin_,$template_)
     {
+        $this->id_user=$id_user_;
+        $this->role=$role_;
+        $this->loggedin=$loggedin_;
         $this->template=$template_;
         $this->service=new Statservice();
     }
@@ -24,6 +27,6 @@ class Indexcontroller extends Controller
         $olderposts=$this->service->getPostsOld();
         header('Content-Type: text/html; charset=UTF-8');
         $path="/ ";
-        echo $this->template->render('welcomepage.html.twig',["path"=>$path,"trendingPosts"=>$trendingPosts,"MostW"=>$MostW,"NbPosts"=>$NbPosts,"NbMoyPosts"=>$NbMoyPosts,"limit"=>$limit,"contenant1"=>$recentposts,"contenant2"=>$olderposts]);
+        echo $this->template->render('welcomepage.html.twig',["role"=>$this->role,"path"=>$path,"trendingPosts"=>$trendingPosts,"MostW"=>$MostW,"NbPosts"=>$NbPosts,"NbMoyPosts"=>$NbMoyPosts,"limit"=>$limit,"contenant1"=>$recentposts,"contenant2"=>$olderposts]);
     }
 }
