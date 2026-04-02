@@ -8,6 +8,7 @@ require "vendor/autoload.php";
 
 use App\php\Controllers\Fichecontroller;
 use App\php\Controllers\Indexcontroller;
+use App\php\Controllers\Logiocontroller;
 use App\php\Controllers\Mentionscontroller;
 use App\php\Controllers\Postulationcontroller;
 use App\php\Controllers\Recherchecontroller;
@@ -35,11 +36,11 @@ setcookie(
 session_set_cookie_params([
     'lifetime' => 0, // expire à la fermeture du navigateur
     'path' => '/',
-    'secure' => true,     // HTTPS obligatoire
+    'secure' => false,     // HTTPS obligatoire
     'httponly' => true,   // pas accessible JS
     'samesite' => 'Strict'
 ]);
-session_start(['id_user','role','loggedin']);
+session_start();
 
 if ( !isset($_SESSION['loggedin'])) {
     $_SESSION['loggedin'] = false;
@@ -51,12 +52,13 @@ if (!isset($_SESSION['id_user'])) {
     $_SESSION['id_user']=-1;
 }
 
-//$id_user = (int)$_SESSION['id_user'];
-//$role = $_SESSION['role'];
+$id_user = (int)$_SESSION['id_user'];
+$role = $_SESSION['role'];
 $loggedin = $_SESSION['loggedin'];
 
-$id_user=1;
-$role = "ETUDIANT";
+//$id_user=1;
+//$role = "ETUDIANT";
+//var_dump($_SESSION);
 
 $loader = new \Twig\Loader\FilesystemLoader('src/Templates');
 $twig = new \Twig\Environment($loader, [
@@ -67,8 +69,11 @@ $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 switch ($uri) {
     case '/':
-        $Indexcontroller=new Indexcontroller($twig);
+        $Indexcontroller=new Indexcontroller($id_user,$role,$loggedin,$twig);
         $Indexcontroller->getPageData();
+        echo $id_user;
+        echo $role;
+        echo $loggedin==false?"false":"true";
         break;
 
     case '/recherche':
@@ -138,25 +143,46 @@ switch ($uri) {
             $Postulationcontroller = new Postulationcontroller($id_user,$role,$loggedin,'',$id_cible,"",$twig);
             $Postulationcontroller->getPageData();
         }
-        //header('Location: ' .'?type=3&id_cible='.$id_cible."&page=1");
         break;
 
-        case '/connexion':
+
+
+        case '/dashboard':
+            echo "dashboard";
+            echo $id_user;
+            echo $role;
+            echo $loggedin==false?"false":"true";
+        break;
+
+        case ('/login'):
             if($loggedin)
             {
-
+                header("Location:  /dashboard");
             }
             else
             {
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    $email=isset($_POST['email']) ? (string)$_POST['email'] : "";
+                    $password=isset($_POST['password']) ? (string)$_POST['password'] : "";
+                    $Logiocontroller = new Logiocontroller($id_user, $role, $loggedin, $email, $password, $twig);
+                    $Logiocontroller->LogIn();
 
+                }
+                else
+                {
+                    $Logiocontroller = new Logiocontroller($id_user, $role, $loggedin, "", "", $twig);
+                    $Logiocontroller->getPageData();
+                }
             }
-            echo "connexion";
-            break;
+
+
+        break;
 
         case '/mentions-legales':
+            echo "mentions-legales";
             $Mentionscontroller = new Mentionscontroller($twig);
             $Mentionscontroller->getPageData();
-            break;
+        break;
 
         case '/robot.txt':
             $Robotcontroller = new Robotcontroller($twig);
@@ -164,7 +190,7 @@ switch ($uri) {
             break;
 
     default:
-        $Errorcontroller =new Errorcontroller($twig,"404");
+        $Errorcontroller =new Errorcontroller("404",$twig,$role);
         $Errorcontroller->getPageData();
         break;
 }

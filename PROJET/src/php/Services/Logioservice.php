@@ -24,7 +24,6 @@ class Logioservice extends Service
 
     private $Entreprisesrepository;
     public function __construct($id_user_,$role_,$loggedin_){
-        session_start();
         $this->id_user = (int)$id_user_;
         $this->role =trim((string)$role_);
         $this->loggedin = $loggedin_;
@@ -32,6 +31,7 @@ class Logioservice extends Service
         $this->Postsrepository = new Postsrepository();
         $this->Wishlistsrepository= new Wishlistrepository($this->id_user);
         $this->Entreprisesrepository = new Entreprisesrepository();
+
 
     }
     public function getPageData()
@@ -107,20 +107,16 @@ class Logioservice extends Service
 
         $passbyid=$this->repository->getPassByID($id);
         if($passbyid!=null){
-            $hashed_password =$passbyid;
-            if (password_verify($password, $hashed_password)) {
+            if (password_verify($password, $passbyid)) {
                 $this->setIdUser($id);
                 $this->setRole($this->repository->getRoleByID($id));
-                session_start();
-
                 $_SESSION["loggedin"] = true;
                 $_SESSION["id_user"] = $this->id_user;
                 $_SESSION["role"] = $this->role;
-
                 return "mot de passe correct";
             }
             else{
-                return "mot de passe incorrect.";
+                return "mot de passe incorrect. ";
             }
         }
 
@@ -132,9 +128,8 @@ class Logioservice extends Service
     }
 
     public function LogOut(){
-        // Initialize the session
-        session_start();
-        // Unset all the session variables
+
+
         $_SESSION = array();
         session_unset();
         // Destroy the session.
