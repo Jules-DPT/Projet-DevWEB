@@ -4,7 +4,7 @@
 User-agent: *
 
 # --- Pages publiques autorisées à l'indexation ---
-Allow: /$
+Allow: /
 Allow: /connexion
 Allow: /recherche
 Allow: /mentions-legales
