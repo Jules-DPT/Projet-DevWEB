@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+{% block head %}
+    {% include "base.html.twig" with{"path":path} %}
+{% endblock %}
+<link rel="stylesheet" href="../../assets/css/style.css">
+{% block body %}
 <body>
 
 </body>
