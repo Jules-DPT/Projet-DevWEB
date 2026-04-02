@@ -59,7 +59,7 @@ $loggedin = $_SESSION['loggedin'];
 
 //$id_user=3;
 //$role = "PILOTE";
-//loggedin=true
+//$loggedin = true;
 
 $loader = new \Twig\Loader\FilesystemLoader('src/Templates');
 $twig = new \Twig\Environment($loader, [
