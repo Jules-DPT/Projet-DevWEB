@@ -11,11 +11,9 @@ Allow: /mentions-legales
 
 # --- Zones privées / authentifiées ---
 Disallow: /dashboard
-Disallow: /admin
-Disallow: /pilote
 Disallow: /postulation
-Disallow: /change-password
-Disallow: /user-created
+Disallow: /dashboard/change-password
+Disallow: /dashboard/admin/user-created
 
 # --- Ressources techniques ---
 Disallow: /vendor/
