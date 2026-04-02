@@ -15,7 +15,7 @@ class PostTest extends TestCase
         $this->post= new Post(1,"Stage web","nous cherchons un developpeur web",
             "2025-06-01","jsp@mail.com","0789097624","4 rue de la Poste",
             "Paris","75000","France",12,"Technova","600€",
-            "2025-09-01","2025-12-31",2,"STAGE",36);
+            "2025-09-01","2025-12-31",2,"STAGE",36,"python,management,stats");
 
     }
 
@@ -102,6 +102,11 @@ class PostTest extends TestCase
     public function testgetDuree()
     {
         $this->assertSame(36, $this->post->getDuree());
+    }
+
+    public function testgetCompetences()
+    {
+        $this->assertSame("python,management,stats",$this->post->getCompetences());
     }
 
     //---------------set-methods---------------------------------------------------------------------------------------
@@ -207,5 +212,11 @@ class PostTest extends TestCase
     {
         $this->post->setDuree(12);
         $this->assertSame(12, $this->post->getDuree());
+    }
+
+    public function testsetCompetences()
+    {
+        $this->post->setCompetences("Design,SQL,WEB");
+        $this->assertSame("Design,SQL,WEB", $this->post->getCompetences());
     }
 }
