@@ -24,14 +24,14 @@ class Entreprisesrepository extends Rechercherepository
 
         $num = func_num_args();
         switch ($num) {
-            case 3: $this->__construct2(func_get_arg(0), func_get_arg(1),func_get_arg(2)); break;
+            case 3: $this->__construct1(func_get_arg(0), func_get_arg(1),func_get_arg(2)); break;
         }
 
     }
 
 
 
-    private function __construct2($page_, $limit_, $recherche_):void
+    private function __construct1($page_, $limit_, $recherche_):void
     {
         $this->page = $page_;
         $this->limit = $limit_ >= 0 ? $limit_ : $this->limit;
@@ -143,10 +143,6 @@ class Entreprisesrepository extends Rechercherepository
         return (int)$data['nb'];
     }
 
-    public function getAlldata()
-    {
-
-    }
 
     public function getDataByID($id_entreprise)
     {

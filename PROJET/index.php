@@ -8,6 +8,7 @@ require "vendor/autoload.php";
 
 use App\php\Controllers\Fichecontroller;
 use App\php\Controllers\Indexcontroller;
+use App\php\Controllers\Mentionscontroller;
 use App\php\Controllers\Postulationcontroller;
 use App\php\Controllers\Recherchecontroller;
 use App\php\Controllers\Errorcontroller;
@@ -127,11 +128,11 @@ switch ($uri) {
             {
                 $Postulationcontroller = new Postulationcontroller($id_user,$role,$loggedin,'CV',$id_cible,$LM,$twig);
                 $Postulationcontroller->getPostulationData();
-                header('Location: ' .'recherche/fiche?type=3&id_cible='.$id_cible."&page=1");
                 $LM="";
             }
 
         }
+        //header('Location: ' .'?type=3&id_cible='.$id_cible."&page=1");
         break;
 
         case '/connexion':
@@ -139,7 +140,8 @@ switch ($uri) {
             break;
 
         case '/mentions-legales':
-            echo "mentions-legales";
+            $Mentionscontroller = new Mentionscontroller($twig);
+            $Mentionscontroller->getPageData();
             break;
 
         case '/dashboard':

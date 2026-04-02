@@ -354,8 +354,8 @@ input:focus, select:focus{
 .side-text {
   position: absolute;
   top: 40%;
-  left: 5%;
-  width: 50vw;
+  left: 3vw;
+  width: 40vw;
 }
 
 .side-text h1 {
@@ -370,7 +370,7 @@ input:focus, select:focus{
 
 .stats {
   position: absolute;
-  right: 500px;
+  right: 3vw;
   top: 20%;
 }
 
@@ -379,7 +379,7 @@ input:focus, select:focus{
 }
 
 .stats .card {
-  width: 275%;
+  width: 50vw;
   min-height: 70vh;
 }
 
@@ -791,6 +791,7 @@ input:focus, select:focus{
   display: flex;
   gap: 10px;
   margin-bottom: 10px;
+  color: var(--apple-white);
 }
 
 .job-content p {
@@ -1047,6 +1048,65 @@ input[type="file"]::file-selector-button {
   color: var(--apple-white);
 }
 
+.gestion-box {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  padding: 24px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 10px;
+  width: 49.5%;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between; 
+  min-height: 200px; 
+  box-sizing: border-box;
+}
+
+.gestion-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.25);
+}
+
+.description {
+  margin: 20px 0;
+  font-size: 0.9em;
+  line-height: 1.5;
+  color: var(--apple-white);
+  text-align: left; 
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.button-group .btn-primary {
+  flex: 1;
+  padding: 10px 0;
+}
+
+.location {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.content-mid h3 {
+  margin: 15px 0 5px 0;
+  color: white;
+  font-size: 1.1rem;
+}
+
+.content-mid .description {
+  margin-top: 0;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
 @media (min-width: 900px){
   .auth-layout{
     grid-template-columns: 1.05fr .95fr;
@@ -1139,7 +1199,7 @@ input[type="file"]::file-selector-button {
   .side-text {
     top: 35%;
     left: 10vw;
-    width: 60vw;
+    width: 80vw;
   }
   
   .side-text h1 {

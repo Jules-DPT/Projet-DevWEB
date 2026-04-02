@@ -29,10 +29,10 @@ class Comptesrepository extends Rechercherepository
 
     }
 
-    private function __construct1($role,$id_user,$limit_)
+    private function __construct1($role_,$id_user_,$limit_)
     {
-        $this->role = $role;
-        $this->id_user = $id_user;
+        $this->role = $role_;
+        $this->id_user = $id_user_;
         $this->limit = $limit_ >= 0 ? (int)$limit_ : $this->limit;
     }
 
@@ -321,19 +321,19 @@ class Comptesrepository extends Rechercherepository
         return $comptes;
     }
 
-    public function getNom($id)
+    public function getNom($id_)
     {
         $query="select nom from bdd_web.utilisateur where id=?";
-        $result = $this->executeQueryByID($query, $id);
+        $result = $this->executeQueryByID($query, $id_);
         $data = $result->fetch_assoc();
         $result->close();
         return (string)$data["nom"];
     }
 
-    public function getPrenom($id)
+    public function getPrenom($id_)
     {
         $query="select prenom from bdd_web.utilisateur where id=?";
-        $result = $this->executeQueryByID($query, $id);
+        $result = $this->executeQueryByID($query, $id_);
         $data = $result->fetch_assoc();
         $result->close();
         return (string)$data["prenom"];
