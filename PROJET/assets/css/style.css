@@ -755,7 +755,8 @@ input:focus, select:focus{
 .back-button img {
   width: 20px;
 }
-#BtnToTop {
+
+#myBtn {
     position: fixed;
     bottom: 30px;
     right: 30px;
@@ -765,8 +766,12 @@ input:focus, select:focus{
     border-radius: 50%;
     padding: 10px;
     cursor: pointer;
+    width: 50px;
+    height: 50px;
+    color: white;
+    z-index: 111;
 }
-#BtnToTop:hover {
+#myBtn:hover {
   background: rgba(255, 255, 255, 0.25);
   transform: scale(1.1);
   transition: 0.2s;
@@ -780,8 +785,10 @@ input:focus, select:focus{
   transform: scale(1.1);
 }
 .back-button img {
-  width: "25px;
+  width: 25px;
 }
+
+
 
 .job-content {
   margin-top: 20px;
