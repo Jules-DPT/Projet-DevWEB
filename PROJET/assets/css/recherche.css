@@ -293,11 +293,6 @@ input::placeholder{
 .margin_div {
     margin: 10px;
 }
-
-#recherche{
-    width: 10%;
-}
-
 .conteneurgrid{
     display: grid;
     grid-template-rows: auto;

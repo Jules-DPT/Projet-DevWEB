@@ -5,52 +5,60 @@
     {% include "base.html.twig" with{"path":path} %}
 {% endblock %}
 <body>
-
 <link rel="stylesheet" href="../../assets/css/recherche.css">
 <link rel="stylesheet" href="../../assets/css/style.css">
 {% block body %}
-<div class="liquid-form-center">
+<main id="main" class="container page search">
+<div class="page-head">
+      <h1>Rechercher une offre</h1>
+      <p class="muted">La vérité je sais pas quoi écrire c'est pas mon job ça</p>
+    </div>
 
-    <div class="liquid_box">
-        <div class="margin_div">
-            <form class="form-center" action="?= strtok($_SERVER['REQUEST_URI'], '?') ?>" method="get">
-                <label>
-                    <input type="search" id="Recherche" name="recherche" placeholder="Recherchez ici !" class="liquid_box_mini">
-                    <input type="submit" id="Recherche_btn" value="Rechercher" class="liquid_box_mini">
-                </label>
-
-            <br>
-
-
-                    <div class="conteneur">
-                        {% if type==1 %}
-                            {% if (role=="PILOTE" or role=="ADMIN") %}
-                                <label class="liquid_box_mini" ><input type="radio" id="etudiants" name="type" value=1 checked  > Comptes</label>
-                            {% endif %}
-                            <label class="liquid_box_mini" ><input type="radio" id="entreprises" name="type" value=2   > Fiches entreprises</label>
-                            <label class="liquid_box_mini" ><input type="radio" id="offres" name="type" value=3   > Offres</label>
-                        {% endif %}
-                        {% if type==2 %}
-                            {% if (role=="PILOTE" or role=="ADMIN") %}
-                                <label class="liquid_box_mini" ><input type="radio" id="etudiants" name="type" value=1   > Comptes</label>
-                            {% endif %}
-                            <label class="liquid_box_mini" ><input type="radio" id="entreprises" name="type" value=2 checked  > Fiches entreprises</label>
-                            <label class="liquid_box_mini" ><input type="radio" id="offres" name="type" value=3   > Offres</label>
-                        {% endif %}
-                        {% if type==3 %}
-                            {% if (role=="PILOTE" or role=="ADMIN") %}
-                                <label class="liquid_box_mini" ><input type="radio" id="etudiants" name="type" value=1   > Comptes</label>
-                            {% endif %}
-                            <label class="liquid_box_mini" ><input type="radio" id="entreprises" name="type" value=2   > Fiches entreprises</label>
-                            <label class="liquid_box_mini" ><input type="radio" id="offres" name="type" value=3  checked > Offres</label>
-                        {% endif %}
-
-                        </div>
-                </form>
-
-
-
+    <section class="card form-card" aria-label="Barre de recherche offre">
+      <form action="?= strtok($_SERVER['REQUEST_URI'], '?') ?>" method="get">
+        
+        <div class="field">
+          <label for="rechercher">Rechercher</label>
+          <input id="Recherche" name="recherche" type="search" placeholder="ex: Stage ingénieur..." />
         </div>
+        <div class="actions">
+          <div class="radio-group">
+            {% if type==1 %}
+                {% if (role=="PILOTE" or role=="ADMIN") %}
+                    <input type="radio" id="étudiants" name="type" value=1>
+                    <label for="étudiants">Comptes</label>
+                {% endif %}
+                <input type="radio" id="offres" name="type" value=3 checked>
+                <label for="offres">Offres</label>
+                <input type="radio" id="entreprises" name="type" value=2>
+                <label for="entreprises">Fiches entreprises</label>
+            {% endif %}
+            {% if type==2 %}
+                {% if (role=="PILOTE" or role=="ADMIN") %}
+                    <input type="radio" id="étudiants" name="type" value=1>
+                    <label for="étudiants">Comptes</label>
+                {% endif %}
+                <input type="radio" id="offres" name="type" value=3 checked>
+                <label for="offres">Offres</label>
+                <input type="radio" id="entreprises" name="type" value=2>
+                <label for="entreprises">Fiches entreprises</label>
+            {% endif %}
+            {% if type==3 %}
+                {% if (role=="PILOTE" or role=="ADMIN") %}
+                    <input type="radio" id="étudiants" name="type" value=1>
+                    <label for="étudiants">Comptes</label>
+                {% endif %}
+                <input type="radio" id="offres" name="type" value=3 checked>
+                <label for="offres">Offres</label>
+                <input type="radio" id="entreprises" name="type" value=2>
+                <label for="entreprises">Fiches entreprises</label>
+            {% endif %}
+          </div>
+          <button type="reset" class="btn-primary">Effacer</button>
+          <button class="btn-primary" type="submit" id="Recherche_btn" value="Rechercher">Rechercher</button>
+        </div>
+      </form>
+    </section>
         <div class="conteneur_offres" >
             {% if res is null %}
                 <br> <br> <br>
@@ -77,7 +85,7 @@
 
 
 </div>
-
+</main>
 {% endblock %}
 </body>
 </html>
