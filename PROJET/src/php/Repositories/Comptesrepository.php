@@ -202,7 +202,7 @@ class Comptesrepository extends Rechercherepository
 
     public function getRoleById($id_)
     {
-        $query="select t.type from bdd_web.utilisateur 
+        $query="select t.type as type from bdd_web.utilisateur 
                 left join type_utilisateur t on utilisateur.id_type = t.id where utilisateur.id=?";
         $result=$this->ExecuteQueryByID($query, $id_);
         $data = $result->fetch_assoc();
@@ -228,9 +228,10 @@ class Comptesrepository extends Rechercherepository
         $query="select count(utilisateur.id) as nb from bdd_web.utilisateur";
         $row=$this->SQL->prepare($query);
         $row->execute();
-        $result = $row->fetch_assoc();
-        $result->close();
-        return (int)$result['nb'];
+        $result = $row->get_result();
+        $data = $result->fetch_assoc();
+        $row->close();
+        return (int)$data['nb'];
     }
 
     public function getStudentByPostulation()

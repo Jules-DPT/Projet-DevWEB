@@ -198,9 +198,10 @@ class Entreprisesrepository extends Rechercherepository
         $query="select count(id) as nb from entreprise";
         $row =$this->SQL->prepare($query);
         $row->execute();
-        $result = $row->fetch_assoc();
-        $result->close();
-        return (int)$result['nb'];
+        $result = $row->get_result();
+        $data = $result->fetch_assoc();
+        $row->close();
+        return (int)$data['nb'];
     }
 
 
