@@ -57,9 +57,9 @@ $id_user = (int)$_SESSION['id_user'];
 $role = $_SESSION['role'];
 $loggedin = $_SESSION['loggedin'];
 
-//$id_user=1;
-//$role = "ETUDIANT";
-//var_dump($_SESSION);
+//$id_user=3;
+//$role = "PILOTE";
+//loggedin=true
 
 $loader = new \Twig\Loader\FilesystemLoader('src/Templates');
 $twig = new \Twig\Environment($loader, [
@@ -72,9 +72,6 @@ switch ($uri) {
     case '/':
         $Indexcontroller=new Indexcontroller($id_user,$role,$loggedin,$twig);
         $Indexcontroller->getPageData();
-        echo $id_user;
-        echo $role;
-        echo $loggedin==false?"false":"true";
         break;
 
     case '/recherche':
@@ -179,7 +176,6 @@ switch ($uri) {
         break;
 
         case '/mentions-legales':
-            echo "mentions-legales";
             $Mentionscontroller = new Mentionscontroller($twig);
             $Mentionscontroller->getPageData();
         break;
