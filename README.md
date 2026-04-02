@@ -6,6 +6,30 @@ Site web de recherche de stage — Projet A2 CESI.
 
 ---
 
+##  Gestion des permissions
+
+Notre site utilise une **matrice de permissions** nécessitant une connexion pour accéder à certains paramètres.
+
+- Seuls les **Admins** et **Pilotes** peuvent rechercher des comptes utilisateurs
+- Seuls les **Étudiants** peuvent postuler
+
+
+
+##  Base de données
+
+La base de données est implémentée avec **MySQL** et est normalisée jusqu'à la **troisième forme normale (3NF)**.
+
+
+
+##  Architecture
+
+L'application repose sur une **architecture en couches (layered architecture)** :
+(index.php/view)<=>Controller<=>Service<=>(contenants)<=>repository<=>BDD.
+
+##  Style
+
+Le style graphique de l'application s'inspire du design **"Liquid Glass"** d’Apple.
+
 ## 🗺️ Indexation & SEO — `sitemap.xml` et `robots.txt`
 
 Ces deux fichiers sont placés à la **racine du projet** (au même niveau que `index.php`) et constituent la base du référencement naturel du site StageForMe auprès des moteurs de recherche (Google, Bing, etc.).
