@@ -6,6 +6,7 @@
 
 require "vendor/autoload.php";
 
+use App\php\Controllers\Dashboardcontroller;
 use App\php\Controllers\Fichecontroller;
 use App\php\Controllers\Indexcontroller;
 use App\php\Controllers\Logiocontroller;
@@ -148,10 +149,9 @@ switch ($uri) {
 
 
         case '/dashboard':
-            echo "dashboard";
-            echo $id_user;
-            echo $role;
-            echo $loggedin==false?"false":"true";
+            $Dashboardcontroller = new Dashboardcontroller($id_user,$role,$loggedin,$twig);
+            $Dashboardcontroller->getPageData();
+
         break;
 
         case ('/login'):

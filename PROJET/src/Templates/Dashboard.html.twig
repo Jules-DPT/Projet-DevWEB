@@ -29,13 +29,13 @@
                 </div></a>
                 </section>
             <section class="card board form-card scroll">
-            {% if dashboard = Stats}
+            {% if dashboard == Stats %}
                 {% include "DashStats.html.twig" with{"path":path} %}
             {% endif %}
-            {% if dashboard = profile %}
+            {% if dashboard == profile %}
                 {% include "DashProfile.html.twig" with{"path":path} %}
             {% endif %}
-            {% if dashboard = gestion %}
+            {% if dashboard == gestion %}
                 {% include "DashGestion.html.twig" with{"path":path} %}
             {% endif %}
         </section>
