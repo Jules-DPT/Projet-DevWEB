@@ -246,7 +246,7 @@ class Comptesrepository extends Rechercherepository
         $result = $row->get_result();
         $stat=[];
         while ($data = $result->fetch_assoc()) {
-            $stat[]=[$data["id"],$data["nom"],$data["prenom"],$data["promo"],$data["nb"]];
+            $stat[]=["id"=>$data["id"],"nom"=>$data["nom"],"prenom"=>$data["prenom"],"promo"=>$data["promo"],"nb"=>$data["nb"]];
         }
         $result->close();
         return $stat;
