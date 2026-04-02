@@ -19,7 +19,7 @@ class Comptesrepository extends Rechercherepository
         $this->autoSQL();
         $num = func_num_args();
         switch ($num) {
-            case 2:
+            case 3:
                 $this->__construct1(func_get_arg(0),func_get_arg(1),func_get_arg(2));
                 break;
             case 5:
