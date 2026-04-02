@@ -78,7 +78,7 @@ class FichecontrollerTest extends TestCase
         $this->mockService->method('getIdCible')->willReturn(4);
         $this->mockService->method('getType')->willReturn(2);
         $this->mockService->method('getIdUser')->willReturn(45);
-        $this->mockService->method('getRole')->willReturn('admin');
+        $this->mockService->method('getRole')->willReturn('ADMIN');
         $this->mockService->method('getPageData')->willReturn(['data']);
         $this->mockService->method('getTotalPages')->willReturn(1);
         $this->mockService->method('getCommentaire')->willReturn([$comment1, $comment2]);
