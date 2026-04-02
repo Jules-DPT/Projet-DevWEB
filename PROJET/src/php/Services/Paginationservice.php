@@ -4,15 +4,8 @@ namespace App\php\Services;
 
 use App\php\Services\Service;
 
-class Paginationservice extends Service
+class Paginationservice
 {
-    public function __construct()
-    {
-
-    }
-    public function getPageData()
-    {
-    }
 
     public function getPath($get_)
     {

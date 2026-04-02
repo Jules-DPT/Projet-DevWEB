@@ -12,6 +12,7 @@ use App\php\Controllers\Mentionscontroller;
 use App\php\Controllers\Postulationcontroller;
 use App\php\Controllers\Recherchecontroller;
 use App\php\Controllers\Errorcontroller;
+use App\php\Controllers\Robotcontroller;
 
 
 error_reporting(E_ALL);
@@ -120,10 +121,10 @@ switch ($uri) {
     case '/recherche/Fiche/Postuler':
         $id_cible=isset($_GET['id_cible'])? (int)$_GET['id_cible'] : -1;
         //$CV=isset($_POST['CV']) ? $_POST['CV'] : '';
-        $Postulationcontroller = new Postulationcontroller($id_user,$role,$loggedin,'',$id_cible,"",$twig);
-        $Postulationcontroller->getPageData();
+
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $LM=isset($_POST['LM'])? (string)$_POST['LM'] : "";
+
             if ($LM!="")
             {
                 $Postulationcontroller = new Postulationcontroller($id_user,$role,$loggedin,'CV',$id_cible,$LM,$twig);
@@ -132,10 +133,23 @@ switch ($uri) {
             }
 
         }
+        else
+        {
+            $Postulationcontroller = new Postulationcontroller($id_user,$role,$loggedin,'',$id_cible,"",$twig);
+            $Postulationcontroller->getPageData();
+        }
         //header('Location: ' .'?type=3&id_cible='.$id_cible."&page=1");
         break;
 
         case '/connexion':
+            if($loggedin)
+            {
+
+            }
+            else
+            {
+
+            }
             echo "connexion";
             break;
 
@@ -144,8 +158,9 @@ switch ($uri) {
             $Mentionscontroller->getPageData();
             break;
 
-        case '/dashboard':
-            echo "dashboard";//je ne sais pas si nous en avons vraiment besoin ou si nous ferons via connexion ?
+        case '/robot.txt':
+            $Robotcontroller = new Robotcontroller($twig);
+            $Robotcontroller->getPageData();
             break;
 
     default:
