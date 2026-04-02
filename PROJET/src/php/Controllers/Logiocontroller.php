@@ -50,8 +50,8 @@ class Logiocontroller extends Controller
         header('Content-Type: text/html; charset=UTF-8');
         if ($this->loggedin)
         {
-            $contenant=$this->service->getPageData();
-            echo $this->template->render('Dashboard.html.twig',['role'=>$this->role,"contenant"=>$contenant]);
+            header('location: /dashboard');
+
         }
         else
         {
