@@ -1,0 +1,51 @@
+{% block affichage %}
+<div class="card form-card">
+  <h2 class="title">Statistiques d'activité</h2>
+  
+  <div class="stats-grid">
+    <div class="card-info">
+      <div class="title">
+        Utilisateurs
+        <span class="stat-icon blue"></span>
+      </div>
+      <div class="stat">
+        <div class="stat-value">1,284</div>
+      </div>
+      <p class="stat-label">Actifs ce mois-ci</p>
+    </div>
+
+    <div class="card-info">
+      <div class="title">
+        Revenus
+        <span class="stat-icon green"></span>
+      </div>
+      <div class="stat">
+        <div class="stat-value">12,400€</div>
+      </div>
+      <p class="stat-label">+15% vs mois dernier</p>
+    </div>
+
+    <div class="card-info">
+      <div class="title">
+        Alertes
+        <span class="stat-icon red"></span>
+      </div>
+      <div class="stat">
+        <div class="stat-value">3</div>
+      </div>
+      <p class="stat-label">Actions requises</p>
+    </div>
+
+    <div class="card-info">
+      <div class="title">
+        Objectifs
+        <span class="stat-icon yellow"></span>
+      </div>
+      <div class="stat">
+        <div class="stat-value">85%</div>
+      </div>
+      <p class="stat-label">Progression annuelle</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

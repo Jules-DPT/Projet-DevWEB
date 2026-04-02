@@ -16,15 +16,11 @@
         <H2>StageForMe centralise les offres, les entreprises, les profils étudiants et le suivi des candidatures dans une seule plateforme.</H2>
     </section>
     <section class="stats">
-        <div class="title">
-            <h1>Nos statistiques</h1>
-        </div>
-        <div class="card form-card">
-            {% include 'Recentpost.html.twig' with{"contenant":contenant1} %}
-        </div>
-        <div class="card form-card">
-            {% include 'Recentpost.html.twig' with{"contenant":contenant2} %}
-        </div>
+       {% include 'CarouStat.html.twig' with{"path":path} %}
+    </section>
+    <section class="wpost">
+        {% include 'Recentpost.html.twig' with{"contenant":contenant2} %}
+        {% include 'Recentpost.html.twig' with{"contenant":contenant1} %}
     </section>
 </main>
 </body>
