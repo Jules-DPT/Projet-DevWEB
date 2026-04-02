@@ -57,8 +57,8 @@ $id_user = (int)$_SESSION['id_user'];
 $role = $_SESSION['role'];
 $loggedin = $_SESSION['loggedin'];
 
-//$id_user=1;
-//$role = "ETUDIANT";
+//$id_user=6;
+//$role = "ADMIN";
 //$loggedin = true;
 
 $loader = new \Twig\Loader\FilesystemLoader('src/Templates');
