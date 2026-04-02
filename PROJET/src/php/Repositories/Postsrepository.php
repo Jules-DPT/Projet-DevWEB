@@ -289,26 +289,28 @@ class Postsrepository extends Rechercherepository
         $result=$row->get_result();
         $stat=[];
         while ($data = $result->fetch_assoc()) {
-            $stat = [(int)$data['id'], $data['titre'],$data['nb']];
+            $stat [] = ["id"=>(int)$data['id'],"titre"=> $data['titre'],"nb"=>$data['nb']];
         }
         $result->close();
         return $stat;
 
     }
 
-    public function getNbMoyCandidature()
+    public function getNbCandidatureVille()
     {
-        $query="select posts.id,posts.titre,AVG(id_utilisateur) as moy
+        $query="select v.nom as ville,count(id_utilisateur) as nb
                 from posts
-                        left join postulation p on posts.id = p.id_post
-                group by posts.id order by moy DESC LIMIT ?";
+                         left join postulation p on posts.id = p.id_post
+                            left join bdd_web.adresse a on posts.id_adresse = a.id
+                            left join bdd_web.ville v on v.id = a.id_ville
+                group by v.nom order by nb DESC LIMIT ?";
         $row=$this->SQL->prepare($query);
         $row->bind_param("i",$this->limit);
         $row->execute();
         $result=$row->get_result();
         $stat=[];
         while ($data = $result->fetch_assoc()) {
-            $stat = [(int)$data['id'], $data['titre'],$data['moy']];
+            $stat [] = ["ville"=>(int)$data['ville'], "nb"=>$data['nb']];
         }
         $result->close();
         return $stat;
@@ -326,7 +328,7 @@ class Postsrepository extends Rechercherepository
         $result=$row->get_result();
         $stat=[];
         while ($data = $result->fetch_assoc()) {
-            $stat = [(int)$data['id'], $data['titre'],$data['nb']];
+            $stat []= ["id"=>(int)$data['id'],"titre"=> $data['titre'],"nb"=>$data['nb']];
         }
         $result->close();
         return $stat;

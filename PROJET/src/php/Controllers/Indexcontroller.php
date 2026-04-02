@@ -21,12 +21,12 @@ class Indexcontroller extends Controller
         $trendingPosts=$this->service->getTrendingPosts();
         $MostW=$this->service->getMostWishPosts();
         $NbPosts=$this->service->getNbPosts();
-        $NbMoyPosts=$this->service->getNbMoyCandidature();
+        $NbPostsVille=$this->service->getNbCandidatureVille();
         $limit=$this->service->getLimit();
         $recentposts=$this->service->getPostsNew();
         $olderposts=$this->service->getPostsOld();
         header('Content-Type: text/html; charset=UTF-8');
         $path="/ ";
-        echo $this->template->render('welcomepage.html.twig',["role"=>$this->role,"path"=>$path,"trendingPosts"=>$trendingPosts,"MostW"=>$MostW,"NbPosts"=>$NbPosts,"NbMoyPosts"=>$NbMoyPosts,"limit"=>$limit,"contenant1"=>$recentposts,"contenant2"=>$olderposts]);
+        echo $this->template->render('welcomepage.html.twig',["role"=>$this->role,"path"=>$path,"trendingPosts"=>$trendingPosts,"MostW"=>$MostW,"NbPosts"=>$NbPosts,"NbPostsVille"=>$NbPostsVille,"limit"=>$limit,"contenant1"=>$recentposts,"contenant2"=>$olderposts]);
     }
 }

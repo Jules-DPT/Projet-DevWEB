@@ -5,44 +5,85 @@
   <div class="stats-grid">
     <div class="card-info">
       <div class="title">
-        Utilisateurs
+        Nombres d'offres
         <span class="stat-icon blue"></span>
       </div>
       <div class="stat">
-        <div class="stat-value">1,284</div>
+        <div class="stat-value">{{ NbPosts }}</div>
       </div>
-      <p class="stat-label">Actifs ce mois-ci</p>
+      <p class="stat-label">Toujours en recherche!</p>
     </div>
 
     <div class="card-info">
       <div class="title">
-        Revenus
+        Les posts adorés
         <span class="stat-icon green"></span>
       </div>
       <div class="stat">
-        <div class="stat-value">12,400€</div>
+        <div class="stat-value">
+          {% for post in MostW %}
+            <a href="/recherche/Fiche?id_cible={{ post.id }}&page=1&type=3">
+              <div class="offres">
+                <span class="title">{{ post.titre }}  nb:{{ post.nb }}</span>
+              </div>
+            </a>
+          {% endfor %}
+        </div>
       </div>
-      <p class="stat-label">+15% vs mois dernier</p>
+      <p class="stat-label">vers le sommet ?</p>
     </div>
 
     <div class="card-info">
       <div class="title">
-        Alertes
+        Trending Posts
         <span class="stat-icon red"></span>
       </div>
       <div class="stat">
-        <div class="stat-value">3</div>
+        <div class="stat-value">
+          {% for post in trendingPosts %}
+            <a href="/recherche/Fiche?id_cible={{ post.id }}&page=1&type=3">
+              <div class="offres">
+                <span class="title">{{ post.titre }}  nb:{{ post.nb }}</span>
+              </div>
+            </a>
+          {% endfor %}
+        </div>
       </div>
-      <p class="stat-label">Actions requises</p>
+      <p class="stat-label">ça grouille!!!</p>
     </div>
 
     <div class="card-info">
       <div class="title">
-        Objectifs
+        Nombre d'offres moyen par ville
         <span class="stat-icon yellow"></span>
       </div>
       <div class="stat">
-        <div class="stat-value">85%</div>
+        <div class="stat-value">
+          <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+          <script>
+            const ctx = document.getElementById('myChart');
+
+            new Chart(ctx, {
+              type: 'bar',
+              data: {
+                labels: [{{ NbPostsVille[0].ville }}, {{ NbPostsVille[1].ville }}, {{ NbPostsVille[2].ville }}, {{ NbPostsVille[3].ville }}, {{ NbPostsVille[4].ville }}],
+                datasets: [{
+                  label: '# of Votes',
+                  data: [{{ NbPostsVille[0].nb }}, {{ NbPostsVille[1].nb }}, {{ NbPostsVille[2].nb }}, {{ NbPostsVille[3].nb }}, {{ NbPostsVille[4].nb }}],
+                  borderWidth: 1
+                }]
+              },
+              options: {
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
+                }
+              }
+            });
+          </script>
+          <canvas id="myChart"></canvas>
+        </div>
       </div>
       <p class="stat-label">Progression annuelle</p>
     </div>

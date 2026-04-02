@@ -16,7 +16,7 @@
         <H2>StageForMe centralise les offres, les entreprises, les profils étudiants et le suivi des candidatures dans une seule plateforme.</H2>
     </section>
     <section class="stats">
-       {% include 'CarouStat.html.twig' with{"path":path} %}
+       {% include 'CarouStat.html.twig' with{"path":path,"trendingPosts":trendingPosts,"MostW":MostW,"NbPosts":NbPosts,"NbPostsVille":NbPostsVille,"limit":limit} %}
     </section>
     <section class="wpost">
         {% include 'Recentpost.html.twig' with{"contenant":contenant2} %}

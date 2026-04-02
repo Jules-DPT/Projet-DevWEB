@@ -61,9 +61,9 @@ class Statservice
         return $this->Postrepository->getNbPosts();
     }
 
-    public function getNbMoyCandidature()
+    public function getNbCandidatureVille()
     {
-        return $this->Postrepository->getNbMoyCandidature();
+        return $this->Postrepository->getNbCandidatureVille();
     }
 
     public function getMostWishPosts()
