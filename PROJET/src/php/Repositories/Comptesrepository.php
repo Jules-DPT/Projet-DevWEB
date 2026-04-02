@@ -188,12 +188,12 @@ class Comptesrepository extends Rechercherepository
     {
         $query="select utilisateur.id as ID from bdd_web.utilisateur 
                 left join bdd_web.email e on e.id = utilisateur.id_email where e.email=?";
-        $this->SQL->bind_param("s", $email);
         $row=$this->SQL->prepare($query);
+        $row->bind_param("s", $email);
         $row->execute();
         $data = $row->get_result();
         $result=$data->fetch_assoc();
-        $result->close();
+        $row->close();
         if ($data==null){
             return false;
         }
