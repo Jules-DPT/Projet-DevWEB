@@ -59,17 +59,19 @@
       </div>
       <div class="stat">
         <div class="stat-value">
+          <canvas id="myChart"></canvas>
           <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
           <script>
             const ctx = document.getElementById('myChart');
-
+            const posts = {{ NbPostsVille|json_encode|raw }};
+              console.log(posts);
             new Chart(ctx, {
               type: 'bar',
               data: {
-                labels: [{{ NbPostsVille[0].ville }}, {{ NbPostsVille[1].ville }}, {{ NbPostsVille[2].ville }}, {{ NbPostsVille[3].ville }}, {{ NbPostsVille[4].ville }}],
+                labels: posts.map(p => p.ville),
                 datasets: [{
-                  label: '# of Votes',
-                  data: [{{ NbPostsVille[0].nb }}, {{ NbPostsVille[1].nb }}, {{ NbPostsVille[2].nb }}, {{ NbPostsVille[3].nb }}, {{ NbPostsVille[4].nb }}],
+                  label: '# nb of postulation',
+                  data: posts.map(p => p.nb),
                   borderWidth: 1
                 }]
               },
@@ -82,7 +84,7 @@
               }
             });
           </script>
-          <canvas id="myChart"></canvas>
+
         </div>
       </div>
       <p class="stat-label">Progression annuelle</p>

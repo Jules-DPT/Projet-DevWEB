@@ -27,6 +27,7 @@ class Indexcontroller extends Controller
         $olderposts=$this->service->getPostsOld();
         header('Content-Type: text/html; charset=UTF-8');
         $path="/ ";
+        var_dump($NbPostsVille);
         echo $this->template->render('welcomepage.html.twig',["role"=>$this->role,"path"=>$path,"trendingPosts"=>$trendingPosts,"MostW"=>$MostW,"NbPosts"=>$NbPosts,"NbPostsVille"=>$NbPostsVille,"limit"=>$limit,"contenant1"=>$recentposts,"contenant2"=>$olderposts]);
     }
 }

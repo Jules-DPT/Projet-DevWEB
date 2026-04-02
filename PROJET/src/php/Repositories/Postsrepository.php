@@ -310,7 +310,7 @@ class Postsrepository extends Rechercherepository
         $result=$row->get_result();
         $stat=[];
         while ($data = $result->fetch_assoc()) {
-            $stat [] = ["ville"=>(int)$data['ville'], "nb"=>$data['nb']];
+            $stat [] = ["ville"=>(string)$data['ville'], "nb"=>(int)$data['nb']];
         }
         $result->close();
         return $stat;
