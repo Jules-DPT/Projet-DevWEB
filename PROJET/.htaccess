@@ -1,4 +1,9 @@
 RewriteEngine On
+# Vérification si la requête est HTTP
+RewriteCond %{HTTPS} off
+# Redirection vers la même URL, en HTTPS
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php [QSA,L]
