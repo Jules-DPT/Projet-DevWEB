@@ -182,7 +182,7 @@ switch ($uri) {
             break;
 
         case '/mentions-legales':
-            $Mentionscontroller = new Mentionscontroller($twig);
+            $Mentionscontroller = new Mentionscontroller($role,$twig);
             $Mentionscontroller->getPageData();
         break;
 
