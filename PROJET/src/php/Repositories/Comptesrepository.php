@@ -50,6 +50,9 @@ class Comptesrepository extends Rechercherepository
 
     protected function getWhere()
     {
+        /*
+         * Récupère (return) la clause where SQL spécialement assemblé avec la recherche et les colonnes du compte
+         */
         $words=explode(" ",trim($this->recherche));
         if ($this->role=="PILOTE"){
             $where=" WHERE t.type!='ADMIN' and t.type!='PILOTE' and id_pilote='$this->id_user'";
@@ -79,6 +82,9 @@ class Comptesrepository extends Rechercherepository
     }
     public function getPageData()
     {
+        /*
+         * retourne un array de compte selon le where de la recherche (pour la page recherche)
+         */
         $where = $this->getWhere();
         $query = "select utilisateur.id as id,utilisateur.nom as nom,utilisateur.prenom as prenom,t.type as type,promo,f.chemin as file
                     from bdd_web.utilisateur
@@ -110,6 +116,9 @@ class Comptesrepository extends Rechercherepository
 
     public function getALLCount()
     {
+        /*
+         * Récupère le total de Comptes associée a une recherche
+         */
         $where = $this->getWhere();
         $query="select count(utilisateur.id) as nb
                     from bdd_web.utilisateur
@@ -162,6 +171,9 @@ class Comptesrepository extends Rechercherepository
     }
 
     public function UpdatePassByID($id_, $Password_){
+        /*
+         * met a jour le mot de passe d'un utilisateur
+         */
         $query="update bdd_web.utilisateur set mot_de_passe=? where id=?";
         $this->SQL->bind_param("si", $Password_, $id_);
         $row=$this->SQL->prepare($query);
@@ -176,6 +188,9 @@ class Comptesrepository extends Rechercherepository
     }
 
     public function getPassByID($id_){
+        /*
+         * Récupère le mot de passe d'un utilisateur
+         */
         $query="select mot_de_passe from bdd_web.utilisateur where id=?";
         $result=$this->ExecuteQueryByID($query, $id_);
         $data = $result->fetch_assoc();
@@ -186,6 +201,9 @@ class Comptesrepository extends Rechercherepository
 
     public function getIdByEmail($email)
     {
+        /*
+         * Récupère l'id utilisateur via l'email
+         */
         $query="select utilisateur.id as ID from bdd_web.utilisateur 
                 left join bdd_web.email e on e.id = utilisateur.id_email where e.email=?";
         $row=$this->SQL->prepare($query);
@@ -202,6 +220,9 @@ class Comptesrepository extends Rechercherepository
 
     public function getRoleById($id_)
     {
+        /*
+         * Récupère le role utilisateur via l'id
+         */
         $query="select t.type as type from bdd_web.utilisateur 
                 left join type_utilisateur t on utilisateur.id_type = t.id where utilisateur.id=?";
         $result=$this->ExecuteQueryByID($query, $id_);
@@ -212,6 +233,9 @@ class Comptesrepository extends Rechercherepository
 
     public function UpdateTypeById($id_,$id_Type)
     {
+        /*
+         * Met a jour le type via l'id
+         */
         $query="update bdd_web.utilisateur set id_type=? where id=?";
         $this->SQL->bind_param("ii", $id_Type, $id_);
         $row=$this->SQL->prepare($query);
@@ -225,6 +249,9 @@ class Comptesrepository extends Rechercherepository
 
     public function getNbComptes()
     {
+        /*
+         * Retourne le nombre total d'utilisateur
+         */
         $query="select count(utilisateur.id) as nb from bdd_web.utilisateur";
         $row=$this->SQL->prepare($query);
         $row->execute();
@@ -236,6 +263,9 @@ class Comptesrepository extends Rechercherepository
 
     public function getStudentByPostulation()
     {
+        /*
+         * Retourne des comptes étudiant associé au pilote (les classes par nb postulation)
+         */
         $query="select count(p.id) as nb,u.id ,u.nom,u.prenom,U.promo
                 from postulation p
                          left join utilisateur u on u.id = p.id_utilisateur

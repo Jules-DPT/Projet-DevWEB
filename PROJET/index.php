@@ -176,6 +176,11 @@ switch ($uri) {
 
         break;
 
+        case '/logout':
+            $Logiocontroller = new Logiocontroller($id_user, $role, $loggedin, "", "", $twig);
+            $Logiocontroller->LogOut();
+            break;
+
         case '/mentions-legales':
             $Mentionscontroller = new Mentionscontroller($twig);
             $Mentionscontroller->getPageData();
