@@ -75,4 +75,10 @@ class Logiocontroller extends Controller
 
 
     }
+
+    public function LogOut()
+    {
+        $this->service->LogOut();
+        header('location: /');
+    }
 }
