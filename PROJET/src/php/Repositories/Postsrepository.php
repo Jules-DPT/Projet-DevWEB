@@ -34,6 +34,9 @@ class Postsrepository extends Rechercherepository
     }
 
     protected function getWhere(){
+        /*
+         * Récupère (return) la clause where SQL spécialement assemblé avec la recherche et les colonnes d'un poste
+         */
         $words=explode(" ",trim($this->recherche));
         $where = "";
         if (!empty($words) && $words[0] !== "") {
@@ -49,6 +52,9 @@ class Postsrepository extends Rechercherepository
 
     public function getPageData()
     {
+        /*
+         * retourne un array d'offres selon le where de la recherche (pour la page recherche)
+         */
         $where = $this->getWhere();
         $query = ("select posts.id AS id,titre, CONCAT(SUBSTRING_INDEX(description,' ',30), '...') AS description_pointille,
                    remuneration,d.date as date_post,d2.date as date_debut,d3.date as date_fin,nb_de_postulations,nombre_wishlist,
@@ -97,6 +103,9 @@ class Postsrepository extends Rechercherepository
 
     public function getALLCount()
     {
+        /*
+         * Récupère le total d'offres associée a une recherche
+         */
         $where = $this->getWhere();
         $query = ("select count(posts.id) as nb
                     FROM bdd_web.posts
@@ -120,6 +129,9 @@ class Postsrepository extends Rechercherepository
 
     public function getNbPosts()
     {
+        /*
+         * Retourne le nombre total de posts
+         */
         $query="select count(posts.id) as nb from bdd_web.posts";
         $row =$this->SQL->prepare($query);
         $row->execute();
@@ -131,6 +143,9 @@ class Postsrepository extends Rechercherepository
 
     public function getPostsByIdEntreprise($id_entreprise)
     {
+        /*
+         * Retourne tous les posts associé a une entreprise
+         */
         $query="SELECT po.id as id,po.titre as titre ,po.description as description,e.email as email,t.numero as telephone,
                    po.nb_de_postulations,e2.nom as entreprise,a.adresse,v.nom as ville,v.code_postal as code_postal,p.nom as pays,po.remuneration,
                    d2.date as date_debut,d3.date as date_fin,po.nombre_wishlist,c.type as contrat,d.semaines as duree,d1.date as date_creation
@@ -279,6 +294,9 @@ class Postsrepository extends Rechercherepository
     }
 
     public function getTrendingPosts(){
+        /*
+         * Récupère les offres avec le plus de postulation
+         */
         $query="select posts.id,posts.titre,count(id_utilisateur) as nb
                 from posts
                     left join postulation p on posts.id = p.id_post
@@ -298,6 +316,9 @@ class Postsrepository extends Rechercherepository
 
     public function getNbCandidatureVille()
     {
+        /*
+         * Retourne les villes avec le plus de Candidature
+         */
         $query="select v.nom as ville,count(id_utilisateur) as nb
                 from posts
                          left join postulation p on posts.id = p.id_post
@@ -318,6 +339,9 @@ class Postsrepository extends Rechercherepository
 
     public function getMostWishPosts()
     {
+        /*
+         * Retourne les posts les plus bookmarrqué.
+         */
         $query="select posts.id,posts.titre,count(id_utilisateur) as nb
                     from posts
                         left join whishlist w on posts.id = w.id_posts
@@ -336,6 +360,9 @@ class Postsrepository extends Rechercherepository
 
     public function getCompetencesByID($id_)
     {
+        /*
+         * Retourne une chaine de carac des compétences
+         */
         $query="select  competence from posts_competence
          left join competence c on c.id = id_competence
          where id_posts=?";
@@ -359,6 +386,10 @@ class Postsrepository extends Rechercherepository
 
     public function getPostsNew()
     {
+        /*
+         * Retourne (en array) les offres ajoutés récemment
+         *
+         */
         $query="select posts.id AS id,titre, CONCAT(SUBSTRING_INDEX(description,' ',30), '...') AS description_pointille
                     ,d.date as date_post,
                        e.nom as entreprise,v.nom as ville
@@ -404,6 +435,9 @@ class Postsrepository extends Rechercherepository
 
     public function getPostsOld()
     {
+        /*
+         * Retourne un array de posts considéré comme vieux ou qui expire bientot
+         */
         $query="select posts.id AS id,titre, CONCAT(SUBSTRING_INDEX(description,' ',30), '...') AS description_pointille,
                 d2.date as date_debut,v.nom as ville,
                    e.nom as entreprise
@@ -451,6 +485,9 @@ class Postsrepository extends Rechercherepository
 
     public function getNbpostByEntreprise($id_)
     {
+        /*
+         * Retourne le nombre d'offres d'une entreprise
+         */
         $query="select count(*) as nb from posts where id_entreprise=?";
         $result=$this->ExecuteQueryByID($query,$id_);
         $data=$result->fetch_assoc();
