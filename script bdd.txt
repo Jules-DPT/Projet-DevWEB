@@ -1,0 +1,265 @@
+create table competence
+(
+    id         int auto_increment
+        primary key,
+    competence varchar(100) not null
+);
+
+create table contrat
+(
+    id   int auto_increment
+        primary key,
+    type varchar(40) null
+);
+
+create table date
+(
+    id   int auto_increment
+        primary key,
+    date date not null
+);
+
+create table duree
+(
+    id       int auto_increment
+        primary key,
+    semaines int not null
+);
+
+create table email
+(
+    id    int auto_increment
+        primary key,
+    email varchar(100) not null
+);
+
+create table file
+(
+    id     int auto_increment
+        primary key,
+    chemin varchar(200) not null
+);
+
+create table pays
+(
+    id         int auto_increment
+        primary key,
+    nom        varchar(50) not null,
+    prefix_tel varchar(5)  not null
+);
+
+create table telephone
+(
+    id      int auto_increment
+        primary key,
+    numero  varchar(20) null,
+    id_pays int         null,
+    constraint telephone_telephone__fk
+        foreign key (id_pays) references pays (id)
+);
+
+create table type_utilisateur
+(
+    id   int auto_increment
+        primary key,
+    type varchar(40) null
+);
+
+create table utilisateur
+(
+    id           int auto_increment
+        primary key,
+    nom          varchar(100) null,
+    prenom       varchar(100) null,
+    mot_de_passe varchar(256) null,
+    id_type      int          not null,
+    id_chemin    int          null,
+    id_pilote    int          null,
+    promo        varchar(20)  not null,
+    id_email     int          not null,
+    id_telephone int          null,
+    snake_score  int          null,
+    constraint id_email
+        unique (id_email),
+    constraint utilisateur___fk
+        foreign key (id_type) references type_utilisateur (id),
+    constraint utilisateur_email__fk
+        foreign key (id_email) references email (id),
+    constraint utilisateur_file__fk
+        foreign key (id_chemin) references file (id),
+    constraint utilisateur_telephone__fk
+        foreign key (id_telephone) references telephone (id)
+);
+
+create table ville
+(
+    id          int auto_increment
+        primary key,
+    nom         varchar(100) not null,
+    id_pays     int          null,
+    code_postal int          not null,
+    constraint ville_ibfk_1
+        foreign key (id_pays) references pays (id)
+);
+
+create table adresse
+(
+    id       int auto_increment
+        primary key,
+    adresse  varchar(255) not null,
+    id_ville int          not null,
+    constraint adresse_ibfk_1
+        foreign key (id_ville) references ville (id)
+);
+
+create index id_ville
+    on adresse (id_ville);
+
+create table entreprise
+(
+    id           int auto_increment
+        primary key,
+    nom          varchar(100) not null,
+    id_adresse   int          not null,
+    descritption varchar(400) null,
+    id_telephone int          null,
+    id_logo      int          null,
+    id_email     int          null,
+    constraint entreprise___fk
+        foreign key (id_logo) references file (id),
+    constraint entreprise___fk_2
+        foreign key (id_email) references email (id),
+    constraint entreprise_adresse__fk
+        foreign key (id_adresse) references adresse (id),
+    constraint entreprise_telephone__fk
+        foreign key (id_telephone) references telephone (id)
+);
+
+create table evaluation_entreprise
+(
+    id             int auto_increment
+        primary key,
+    note           float        not null,
+    commentaire    varchar(400) null,
+    id_utilisateur int          null,
+    id_entreprise  int          not null,
+    constraint evaluation_entreprise_evaluation_entreprise__fk
+        foreign key (id_entreprise) references entreprise (id),
+    constraint evaluation_entreprise_ibfk_1
+        foreign key (id_utilisateur) references utilisateur (id)
+);
+
+create index Evaluation
+    on evaluation_entreprise (id_utilisateur);
+
+create table posts
+(
+    id                 int auto_increment
+        primary key,
+    titre              varchar(40)  not null,
+    description        varchar(400) null,
+    id_email           int          not null,
+    id_telephone       int          null,
+    nb_de_postulations int          null,
+    id_entreprise      int          null,
+    id_adresse         int          null,
+    remuneration       varchar(40)  null,
+    id_date_debut      int          null,
+    id_date_fin        int          null,
+    nombre_wishlist    int          null,
+    id_contrat         int          null,
+    id_duree           int          null,
+    id_date_post       int          null,
+    constraint posts_adresse__fk
+        foreign key (id_adresse) references adresse (id),
+    constraint posts_contrat__fk
+        foreign key (id_contrat) references contrat (id),
+    constraint posts_date1__fk
+        foreign key (id_date_post) references date (id),
+    constraint posts_date2__fk
+        foreign key (id_date_debut) references date (id),
+    constraint posts_date3__fk
+        foreign key (id_date_fin) references date (id),
+    constraint posts_duree__fk
+        foreign key (id_duree) references duree (id),
+    constraint posts_email__fk
+        foreign key (id_email) references email (id),
+    constraint posts_entreprise__fk
+        foreign key (id_entreprise) references entreprise (id),
+    constraint posts_telephone__fk
+        foreign key (id_telephone) references telephone (id)
+);
+
+create table evaluation_posts
+(
+    id             int auto_increment
+        primary key,
+    note           float        not null,
+    commentaire    varchar(400) null,
+    id_utilisateur int          not null,
+    id_post        int          not null,
+    constraint evaluation_posts_ibfk_1
+        foreign key (id_utilisateur) references utilisateur (id),
+    constraint evaluation_posts_ibfk_2
+        foreign key (id_post) references posts (id)
+);
+
+create index id_post
+    on evaluation_posts (id_post);
+
+create index id_utilisateur
+    on evaluation_posts (id_utilisateur);
+
+create table posts_competence
+(
+    id_competence int not null,
+    id_posts      int not null,
+    primary key (id_posts, id_competence),
+    constraint posts_competence_ibfk_1
+        foreign key (id_competence) references competence (id),
+    constraint posts_competence_ibfk_2
+        foreign key (id_posts) references posts (id)
+);
+
+create index id_competence
+    on posts_competence (id_competence);
+
+create table postulation
+(
+    id             int auto_increment
+        primary key,
+    LM             varchar(500) null,
+    id_cv          int          not null,
+    id_utilisateur int          not null,
+    id_post        int          not null,
+    constraint postulation___fk
+        foreign key (id_post) references posts (id),
+    constraint postulation_ibfk_1
+        foreign key (id_cv) references file (id),
+    constraint postulation_ibfk_2
+        foreign key (id_utilisateur) references utilisateur (id)
+);
+
+create index id_cv
+    on postulation (id_cv);
+
+create index id_utilisateur
+    on postulation (id_utilisateur);
+
+create index id_pays
+    on ville (id_pays);
+
+create table whishlist
+(
+    id_utilisateur int not null,
+    id_posts       int not null,
+    primary key (id_utilisateur, id_posts),
+    constraint whishlist_ibfk_1
+        foreign key (id_utilisateur) references utilisateur (id),
+    constraint whishlist_ibfk_2
+        foreign key (id_posts) references posts (id)
+);
+
+create index id_posts
+    on whishlist (id_posts);
+

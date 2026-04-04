@@ -1,0 +1,163 @@
+#PAYS
+INSERT INTO pays (id, nom, prefix_tel) VALUES
+(1, 'France', '+33');
+
+#VILLES
+INSERT INTO ville (id, nom, id_pays, code_postal) VALUES
+(1, 'Paris', 1, 75000),
+(2, 'Lyon', 1, 69000),
+(3, 'Marseille', 1, 13000);
+
+#ADRESSES
+INSERT INTO adresse (id, adresse, id_ville) VALUES
+(1, '10 rue de Rivoli', 1),
+(2, '25 avenue des Champs-Élysées', 1),
+(3, '8 rue de la République', 2),
+(4, '12 place Bellecour', 2),
+(5, '5 quai du Port', 3),
+(6, '18 rue Paradis', 3),
+(7, '3 rue Lafayette', 1),
+(8, '44 boulevard Haussmann', 1),
+(9, '7 rue Garibaldi', 2),
+(10, '2 rue Sainte', 3),
+(11, '15 rue du Dev', 1);
+
+#TELEPHONE
+INSERT INTO telephone (id, numero) VALUES
+(1, '0102030401'),
+(2, '0102030402'),
+(3, '0102030403'),
+(4, '0102030404'),
+(5, '0102030405'),
+(6, '0102030406'),
+(7, '0102030407'),
+(8, '0102030408'),
+(9, '0102030409'),
+(10, '0102030410'),
+(11, '0600000001'),
+(12, '0600000002');
+
+#EMAIL
+INSERT INTO email (id, email) VALUES
+(1, 'contact@technova.fr'),
+(2, 'hr@alphacorp.fr'),
+(3, 'jobs@betasys.fr'),
+(4, 'recrutement@delta.fr'),
+(5, 'contact@epsilon.fr'),
+(6, 'contact@zetatech.fr'),
+(7, 'hr@omegasoft.fr'),
+(8, 'contact@sigmatech.fr'),
+(9, 'jobs@kappait.fr'),
+(10, 'contact@lambdacorp.fr'),
+(11, 'user1@mail.fr'),
+(12, 'user2@mail.fr');
+
+#Type uti
+INSERT INTO type_utilisateur (id, type) VALUES
+(1, 'ETUDIANT'),
+(2, 'PILOTE'),
+(3, 'ADMIN');
+
+#USER
+INSERT INTO utilisateur 
+(id, nom, prenom, mot_de_passe, id_type, id_pilote, promo, id_email, id_telephone, snake_score)
+VALUES
+(1, 'Dupont', 'Jean', 'hashedpwd1', 1, NULL, '2025', 11, 11, 120),
+(2, 'Martin', 'Claire', 'hashedpwd2', 2, NULL, '2024', 12, 12, 95);
+
+#Entreprise
+INSERT INTO entreprise (id, nom, id_adresse, descritption, id_telephone) VALUES
+(1, 'TechNova', 1, 'Entreprise spécialisée en développement web.', 1),
+(2, 'AlphaCorp', 2, 'Cabinet de conseil IT.', 2),
+(3, 'BetaSys', 3, 'Solutions cloud et DevOps.', 3),
+(4, 'DeltaSoft', 4, 'Développement logiciel embarqué.', 4),
+(5, 'EpsilonTech', 5, 'Startup IA.', 5),
+(6, 'ZetaTech', 6, 'Cybersécurité.', 6),
+(7, 'OmegaSoft', 7, 'Applications mobiles.', 7),
+(8, 'SigmaTech', 8, 'Big Data & Analytics.', 8),
+(9, 'KappaIT', 9, 'Infogérance.', 9),
+(10, 'LambdaCorp', 10, 'Solutions SaaS.', 10);
+
+#Contrat
+INSERT INTO contrat (id, type) VALUES
+(1, 'CDI'),
+(2, 'CDD'),
+(3, 'STAGE'),
+(4, 'ALTERNANCE');
+
+#Duree
+INSERT INTO duree (id, semaines) VALUES
+(1, 12),
+(2, 24),
+(3, 52);
+
+#DATE
+INSERT INTO date (id, date) VALUES
+(1, '2025-03-01'),
+(2, '2025-06-01'),
+(3, '2025-09-01'),
+(4, '2025-12-31'),
+(5, '2025-02-01');
+
+
+#COMP
+INSERT INTO competence (id, competence) VALUES
+(1, 'Java'),
+(2, 'Python'),
+(3, 'SQL'),
+(4, 'React'),
+(5, 'Docker');
+
+#Post
+INSERT INTO posts
+(id, titre, description, id_email, id_telephone, nb_de_postulations,
+ id_entreprise, id_adresse, remuneration,
+ id_date_debut, id_date_fin, nombre_wishlist,
+ id_contrat, id_duree, id_date_post)
+VALUES
+(1, 'Développeur Java', 'Backend Spring Boot', 1, 1, 5, 1, 1, '40k€', 1, 4, 2, 1, 3, 5),
+(2, 'DevOps Engineer', 'CI/CD & Docker', 2, 2, 3, 2, 2, '45k€', 1, 4, 1, 1, 3, 5),
+(3, 'Data Analyst', 'SQL & PowerBI', 3, 3, 2, 3, 3, '38k€', 2, 4, 0, 2, 2, 5),
+(4, 'Développeur React', 'Frontend ReactJS', 4, 4, 6, 4, 4, '42k€', 1, 4, 4, 1, 3, 5),
+(5, 'Stage IA', 'Machine Learning', 5, 5, 8, 5, 5, '800€', 1, 2, 5, 3, 1, 5),
+(6, 'Cybersecurity Analyst', 'Pentesting', 6, 6, 1, 6, 6, '50k€', 2, 4, 0, 1, 3, 5),
+(7, 'Mobile Developer', 'Flutter', 7, 7, 2, 7, 7, '39k€', 3, 4, 1, 2, 2, 5),
+(8, 'Data Engineer', 'ETL & Big Data', 8, 8, 4, 8, 8, '48k€', 1, 4, 2, 1, 3, 5),
+(9, 'Technicien IT', 'Support niveau 2', 9, 9, 1, 9, 9, '30k€', 2, 4, 0, 2, 2, 5),
+(10, 'Développeur SaaS', 'Fullstack', 10, 10, 7, 10, 10, '44k€', 1, 4, 3, 1, 3, 5),
+(11, 'Alternant Dev Web', 'PHP & MySQL', 1, 1, 9, 1, 11, '1000€', 1, 3, 6, 4, 2, 5);
+
+#Posts_Comp
+INSERT INTO posts_competence VALUES
+(1,1),(3,1),
+(5,2),
+(3,3),
+(4,4),
+(2,5),
+(5,6),
+(4,7),
+(3,8),
+(1,10),
+(3,11);
+
+
+
+#Evaluations
+INSERT INTO evaluation_entreprise VALUES
+(1, 4.5, 'Très bonne ambiance.', 1, 1),
+(2, 3.8, 'Bonne expérience globale.', 2, 2);
+
+INSERT INTO evaluation_posts VALUES
+(1, 4.0, 'Annonce claire.', 1, 1),
+(2, 3.5, 'Processus un peu long.', 2, 2);
+
+#postulation
+INSERT INTO postulation VALUES
+(1, 'Motivation pour rejoindre votre entreprise.', 1, 1),
+(2, 'Très intéressée par ce poste.', 2, 2);
+
+#Whishlist
+INSERT INTO whishlist VALUES
+(1,1),
+(1,5),
+(2,3); 
